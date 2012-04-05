@@ -1,6 +1,6 @@
 ---
-layout : default
-title : プロジェクト・タイトル
+layout: default
+title: プロジェクト・タイトル
 ---
 
 # 見出し{#header1}
