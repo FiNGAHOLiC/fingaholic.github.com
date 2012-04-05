@@ -1,14 +1,14 @@
 ---
-layout: default
-title: プロジェクト・タイトル
+layout : default
+title : プロジェクト・タイトル
 ---
 
-# h1
-## h2
-### h3
-#### h4
-##### h5
-###### h6
+# 見出し1
+## 見出し2
+### 見出し3
+#### 見出し4
+##### 見出し5
+###### 見出し6
 
 - list1
 - list2
@@ -31,8 +31,8 @@ title: プロジェクト・タイトル
 
 [リンクテキスト](url 'タイトル')  
 [人民][a]の[人民][a]による[人民][a]のための[政治][b]
-[a]: http://ja.wikipedia.org/wiki/%E4%BA%BA%E6%B0%91
-[b]: http://www.kantei.go.jp/ "首相官邸"
+[a] : http://ja.wikipedia.org/wiki/%E4%BA%BA%E6%B0%91
+[b] : http://www.kantei.go.jp/ "首相官邸"
 
 *em*
 **strong**
