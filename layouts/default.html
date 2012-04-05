@@ -9,9 +9,10 @@
 		<meta name="viewport" content="width=device-width">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
-		<title>fingaholic github page</title>
+		<title>{% if page.title %}{{ page.title }}{% endif %}</title>
+		<link rel="stylesheet" href="/css/normalize.css">
 	</head>
 	<body>
-		<h1>Hello world!</h1>
+		{{ content }}
 	</body>
 </html>
