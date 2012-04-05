@@ -3,8 +3,7 @@ layout : default
 title : プロジェクト・タイトル
 ---
 
-# 見出し
-[Link back to H1](#header1)
+# 見出し{#header1}
 ## 見出し
 ### 見出し
 #### 見出し
