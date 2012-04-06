@@ -10,12 +10,12 @@ title: マークダウン
 ##### 見出し{#header5}
 ###### 見出し{#header6}
 
-- list1
-- list2
-- list3
-- list4
-- list5
-- list6
+* list1
+* list2
+* list3
+* list4
+* list5
+* list6
 
 1. list1
 2. list2
