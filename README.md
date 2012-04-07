@@ -1,5 +1,7 @@
 # jekyllテスト
 
+ [fingaholic github page](http://fingaholic.github.com/ 'fingaholic github page')
+
 ## 構成ファイル群
 	.
 	├─ _includes // インクルードファイル
