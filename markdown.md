@@ -14,7 +14,7 @@ title: マークダウン
 
 <div style="overflow:hidden;_zoom:1;">
 	<div style="float:left;background:#000;color:#fff;">HTMLも挿入可能</div>
-	<div style="float:rightbackground:#c00;color:#fff;">HTMLも挿入可能</div>
+	<div style="float:right;background:#c00;color:#fff;">HTMLも挿入可能</div>
 </div>
 
 ---
