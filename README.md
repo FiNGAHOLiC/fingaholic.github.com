@@ -18,3 +18,4 @@
 ## 参考サイト
 * [GitHub - mojombo/jekyll](https://github.com/mojombo/jekyll 'GitHub - mojombo/jekyll')
 * [CSS RADAR - jekyll](http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/ 'CSS RADAR - jekyll')
+* [Big Sky - Jekyllで始める簡単ブログ](http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm 'Big Sky - Jekyllで始める簡単ブログ')
