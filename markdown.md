@@ -44,10 +44,11 @@ title: マークダウン
 
 りんご
 :果物
-みかん
+
+りんご
 :果物
-さんま
-:魚
+りんご.
+:果物
 
 ---
 
@@ -73,3 +74,8 @@ title: マークダウン
 ![alt](http://placekitten.com/200/300 'title')
 
 ---
+
+| header | header | header |
+| ------ | ------ | ------ |
+| cell | cell | cell |
+| cell | cell | cell |
