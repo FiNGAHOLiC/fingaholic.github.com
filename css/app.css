@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*
+ * app.scss
+ *
+ * @modified 2011/04/09
+ *
+ */
+/* line 10, ../scss/app.scss */
+body {
+  margin: 0;
+  padding: 0;
+}
