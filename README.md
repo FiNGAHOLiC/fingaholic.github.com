@@ -11,6 +11,7 @@
 	│  ├─ default.html
 	├─ css // スタイルシート
 	│  ├─ normalize.css
+	│  ├─ app.css
 	├─ _config.yml // 基本設定
 	├─ index.md // トップページ用markdown
 	├─ markdown.md // マークダウンページ用markdown
