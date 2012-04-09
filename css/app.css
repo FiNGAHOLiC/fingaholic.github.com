@@ -9,10 +9,14 @@
 
 h1, h2, h3, h4, h5, h6 { margin: 0; }
 
+body { font-size: 100%; }
+
 header { padding: 1em 2em; background: black; color: white; }
 header h1 { float: left; }
 header nav { float: right; }
 header nav ul li { margin: 0 1em; float: left; }
+
+.area-main { width: 40em; margin: 0 auto; }
 
 footer { padding: 1em 2em; background: black; color: white; }
 footer p { text-align: right; }
