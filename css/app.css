@@ -13,5 +13,9 @@ header nav { float: right; overflow: hidden; _zoom: 1; }
 header nav ul { float: left; }
 header nav ul li { margin: 0 1em; }
 
-footer { padding: 1em 2em; background: #000; }
+footer { padding: 1em 2em; background: #000; color: #fff; }
 footer p { text-align: right; }
+
+a { color: #fff; text-decoration: underline; }
+a:visited { color: #fff; text-decoration: underline; }
+a:hover { color: #fff; text-decoration: none; }
