@@ -1,12 +1,10 @@
-# see https://github.com/mojombo/jekyll/wiki/Configuration
-
+# see : https://github.com/mojombo/jekyll/wiki/Configuration
 safe:        false
 auto:        false
 server:      false
 server_port: 4000
 baseurl:    /
 url: http://localhost:4000/
-title: fingaholic github pages
 
 source:      .
 destination: ./_site
@@ -43,3 +41,9 @@ kramdown:
     coderay_bold_every: 10
     coderay_css: style
 
+# see : https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink: /:month-:day-:year/:title.html
+
+# all variables can be refered in templates
+title: fingaholic github pages
+author: fingaholic
