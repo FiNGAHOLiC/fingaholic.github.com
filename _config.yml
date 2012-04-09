@@ -15,6 +15,7 @@ lsi:         false
 pygments:    false
 markdown:    maruku
 permalink:   date
+exclude: [scss, README.md]
 
 maruku:
   use_tex:    false
