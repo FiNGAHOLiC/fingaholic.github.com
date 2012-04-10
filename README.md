@@ -5,13 +5,13 @@
 ## 構成ファイル群
 	.
 	├─ _includes // インクルードファイル
-	│  ├─ header.html
-	│  ├─ footer.html
+	│  ├─ header.html // ヘッダー用
+	│  ├─ footer.html // フッター用
 	├─ _layouts // レイアウトファイル
-	│  ├─ default.html
-	│  ├─ post.html
+	│  ├─ default.html // 投稿一覧ページ用
+	│  ├─ post.html // 投稿詳細ページ用
 	├─ _posts // 記事用マークダウンファイル
-	│  ├─ $YEAR-$MONTH-$DATE-$TITLE.md
+	│  ├─ $YEAR-$MONTH-$DATE-$TITLE.$FORMAT // markdownかtextile
 	├─ js // JS
 	│  ├─ app.js
 	│  ├─ libs
