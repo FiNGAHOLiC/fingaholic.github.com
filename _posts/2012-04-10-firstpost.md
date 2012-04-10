@@ -1,6 +1,6 @@
 ---
 layout: post
-category: other
+category: misc
 title: Jekyllを使った投稿テスト
 date: 2012-04-10 18:26:00
 ---
