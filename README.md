@@ -9,7 +9,16 @@
 	│  ├─ footer.html
 	├─ _layouts // レイアウトファイル
 	│  ├─ default.html
-	├─ css // スタイルシート
+	├─ js // JS
+	│  ├─ app.js
+	│  ├─ libs
+	│      ├─ modernizr-2.5.3.min.js
+	│      ├─ jquery-1.7.1.min.js
+	│      ├─ jquery-ui-1.8.18.custom.min.js
+	│      ├─ jquery.easing.1.3.js
+	│  ├─ mylibs
+	│      ├─ jquery.ui.plugin.js
+	├─ css // CSS
 	│  ├─ normalize.css
 	│  ├─ app.css
 	├─ _config.yml // 基本設定
