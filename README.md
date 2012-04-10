@@ -9,6 +9,9 @@
 	│  ├─ footer.html
 	├─ _layouts // レイアウトファイル
 	│  ├─ default.html
+	│  ├─ post.html
+	├─ _posts // 記事用マークダウンファイル
+	│  ├─ $YEAR-$MONTH-$DATE-$TITLE.md
 	├─ js // JS
 	│  ├─ app.js
 	│  ├─ libs
@@ -22,8 +25,7 @@
 	│  ├─ normalize.css
 	│  ├─ app.css
 	├─ _config.yml // 基本設定
-	├─ index.md // トップページ用markdown
-	├─ markdown.md // マークダウンページ用markdown
+	├─ index.html // トップページ用HTML
 
 ## 参考サイト
 * [GitHub - mojombo/jekyll](https://github.com/mojombo/jekyll 'GitHub - mojombo/jekyll')
