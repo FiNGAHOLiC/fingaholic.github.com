@@ -7,7 +7,7 @@
  */
 .clearfix, header, header nav { overflow: hidden; _zoom: 1; }
 
-h1, h2, h3, h4, h5, h6 { margin: 0; }
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
 
 body { font-size: 100%; }
 
@@ -16,7 +16,10 @@ header h1 { float: left; }
 header nav { float: right; }
 header nav ul li { margin: 0 1em; float: left; }
 
-.area-main { width: 40em; margin: 0 auto; }
+.area-main { width: 60em; margin: 3em auto; }
+.area-main a { color: black; text-decoration: underline; }
+.area-main a:visited { color: black; text-decoration: underline; }
+.area-main a:hover { color: black; text-decoration: none; }
 
 footer { padding: 1em 2em; background: black; color: white; }
 footer p { text-align: right; }

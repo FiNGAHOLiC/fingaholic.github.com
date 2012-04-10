@@ -3,12 +3,12 @@ layout: default
 title: トップページ
 ---
 
-{% for post in site.posts limit:10 %}
-	<article>
+{% for post in site.posts limit:5 %}
+	<section>
 		<a href="{{ post.url }}">
 			<h1>{{ post.title }}</h1>
-			<p><time datatime="{{ post.date | date_to_string }}"></time></p>
+			<p><time datatime="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time></p>
 		</a>
-	</article>
+	</section>
 {% endfor %}
 

@@ -46,5 +46,5 @@ kramdown:
 permalink: /:month-:day-:year/:title.html
 
 # all variables can be refered in templates
-title: fingaholic github pages
+title: Jekyll blog
 author: fingaholic
