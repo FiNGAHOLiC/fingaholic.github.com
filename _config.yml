@@ -16,6 +16,7 @@ pygments:    true
 markdown:    maruku
 permalink:   date
 exclude: [scss, README.md]
+paginate : 10
 
 maruku:
   use_tex:    false
@@ -43,8 +44,8 @@ kramdown:
     coderay_css: style
 
 # see : https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:month-:day-:year/:title.html
+permalink: pretty
 
 # all variables can be refered in templates
-title: Jekyll blog
+title: jekylog
 author: fingaholic

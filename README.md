@@ -3,6 +3,8 @@
  [fingaholic github page](http://fingaholic.github.com/ 'fingaholic github page')
 
 ## 構成ファイル群
+
+**現在編集中**
 	.
 	├─ _includes // インクルードファイル
 	│  ├─ header.html // ヘッダー用
@@ -32,3 +34,4 @@
 * [CSS RADAR - jekyll](http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/ 'CSS RADAR - jekyll')
 * [Big Sky - Jekyllで始める簡単ブログ](http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm 'Big Sky - Jekyllで始める簡単ブログ')
 * [Markdown Cheat Sheet](http://support.mashery.com/docs/customizing_your_portal/Markdown_Cheat_Sheet 'Markdown Cheat Sheet')
+* [Ginpen - Markdown](http://ginpen.com/2011/12/02/markdown-syntax/ 'Ginpen - Markdown')

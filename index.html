@@ -3,12 +3,32 @@ layout: default
 title: トップページ
 ---
 
-{% for post in site.posts limit:10 %}
-	<section>
-		<a href="{{ post.url }}">
-			<h1>{{ post.title }}</h1>
-			<p><time datatime="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time></p>
-		</a>
-	</section>
-{% endfor %}
+<div class="mod-postlist">
+	{% for post in paginator.posts %}
+		<section>
+			<header>
+				<p>Posted on <time datatime="{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}">{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}</time></p>
+				<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+			</header>
+			<div class="summary"><p>{{ post.summary }}</p></div>
+		</section>
+	{% endfor %}
+</div>
+
+<div class="mod-pagenation">
+	{% if paginator.previous_page %}
+		{% if paginator.previous_page == 1 %}
+			<div class="prev"><a href="/" class="mod-btn">&#171; Newer Entries</a></div>
+		{% else %}
+			<div class="prev"><a href="/page{{ paginator.previous_page }}" class="mod-btn">&#171; Newer Entries</a></div>
+		{% endif %}
+	{% else %}
+		<div class="prev">&#171; Newer Entries</div>
+	{% endif %}
+	{% if paginator.next_page %}
+		<div class="next"><a href="/page{{ paginator.next_page }}" class="mod-btn">Older Entries &#187;</a></div>
+	{% else %}
+		<div class="next">Older Entries &#187;</div>
+	{% endif %}
+</div>
 
