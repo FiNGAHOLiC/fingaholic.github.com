@@ -3,8 +3,19 @@ layout: default
 ---
 <article class="mod-postdetail">
 	<header>
-		<p>Posted on <time datatime="{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}">{{ page.date | date : '%Y' }}-{{ page.date | date : '%m' }}-{{ page.date | date : '%d' }}</time></p>
+	<p>Posted on <time datatime="{{ page.date | date : '%Y' }}-{{ page.date | date : '%m' }}-{{ page.date | date : '%d' }}">{{ page.date | date : '%Y' }}-{{ page.date | date : '%m' }}-{{ page.date | date : '%d' }}</time> in {{ page.category }}</p>
 		<h1>{{ page.title }}</h1>
 	</header>
 	<section class="mod-postmain">{{ content }}</section>
 </article>
+
+{% if page.previous or page.next %}
+	<div class="mod-pagenation">
+		{% if page.previous %}
+			<div class="prev"><a href="{{ page.previous.url }}">&#171; Previous Entry</a></div>
+		{% endif %}
+		{% if page.next %}
+			<div class="next"><a href="{{ page.next.url }}">Next Entry &#187;</a></div>
+		{% endif %}
+	</div>
+{% endif %}

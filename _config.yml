@@ -49,3 +49,4 @@ permalink: pretty
 # all variables can be refered in templates
 title: jekylog
 author: fingaholic
+description: 'Blog by fingaholic, a front-end engineer'

@@ -1,13 +1,14 @@
 ---
 layout: default
-title: トップページ
+title: Home
+top: true
 ---
 
 <div class="mod-postlist">
 	{% for post in paginator.posts %}
 		<section>
 			<header>
-				<p>Posted on <time datatime="{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}">{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}</time></p>
+			<p>Posted on <time datatime="{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}">{{ post.date | date : '%Y' }}-{{ post.date | date : '%m' }}-{{ post.date | date : '%d' }}</time> in {{ post.category }}</p>
 				<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
 			</header>
 			<div class="summary"><p>{{ post.summary }}</p></div>
@@ -15,20 +16,22 @@ title: トップページ
 	{% endfor %}
 </div>
 
-<div class="mod-pagenation">
-	{% if paginator.previous_page %}
-		{% if paginator.previous_page == 1 %}
-			<div class="prev"><a href="/" class="mod-btn">&#171; Newer Entries</a></div>
+{% if paginator.previous_page or paginator.next_page %}
+	<div class="mod-pagenation">
+		{% if paginator.previous_page %}
+			{% if paginator.previous_page == 1 %}
+				<div class="prev"><a href="/">&#171; Newer Entries</a></div>
+			{% else %}
+				<div class="prev"><a href="/page{{ paginator.previous_page }}">&#171; Newer Entries</a></div>
+			{% endif %}
 		{% else %}
-			<div class="prev"><a href="/page{{ paginator.previous_page }}" class="mod-btn">&#171; Newer Entries</a></div>
+			<div class="prev">&#171; Newer Entries</div>
 		{% endif %}
-	{% else %}
-		<div class="prev">&#171; Newer Entries</div>
-	{% endif %}
-	{% if paginator.next_page %}
-		<div class="next"><a href="/page{{ paginator.next_page }}" class="mod-btn">Older Entries &#187;</a></div>
-	{% else %}
-		<div class="next">Older Entries &#187;</div>
-	{% endif %}
-</div>
+		{% if paginator.next_page %}
+			<div class="next"><a href="/page{{ paginator.next_page }}">Older Entries &#187;</a></div>
+		{% else %}
+			<div class="next">Older Entries &#187;</div>
+		{% endif %}
+	</div>
+{% endif %}
 
