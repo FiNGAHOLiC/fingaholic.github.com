@@ -1,0 +1,15 @@
+---
+layout: default
+title: Archive
+---
+
+<div class="mod-archive">
+	<h1>Archive</h1>
+	{% for post in site.posts %}
+		<div class="posts">
+			<p class="time"><time datatime="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time></p>
+			<p class="title"><a href="{{ post.url }}">{{ post.title }}</a></p>
+		</div>
+	{% endfor %}
+</div>
+
