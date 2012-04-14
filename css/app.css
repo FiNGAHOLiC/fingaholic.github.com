@@ -372,6 +372,7 @@ body { background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAA
 
 .area-body { width: 50em; margin: 0 auto; padding: 0 2em; text-align: left; }
 .area-body .area-header { position: relative; }
+@media screen and(max-widht:480px) { .area-body { width: 30em; } }
 
 .mod-header { padding: 10em 0; text-align: center; }
 .mod-header h1 { margin-bottom: .2em; font-size: 6em; }

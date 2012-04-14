@@ -1,8 +1,9 @@
 /*!
  * app.js
  *
- * @modified 2012/03/29
+ * @modified 2012/04/14
  * @requires Modernizr 2.5.3 or later &&
+ *           Respond 1.1.0 &&
  *           jQuery 1.7.x or later &&
  *           jQuery UI 1.8.x or later &&
  *           jQuery easing 1.3 or later
@@ -30,7 +31,12 @@
 	};
 
 	Modernizr.load([
-		// load jquery from a 3rd party CDN.
+		// use media query polifill
+		{
+			test : Modernizr.mq,
+			nope : '/js/libs/respond.min.js'
+		},
+		// load jquery from a 3rd party CDN
 		{
 			load : 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
 			callback : function (){
