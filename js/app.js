@@ -31,9 +31,9 @@
 	};
 
 	Modernizr.load([
-		// use media query polifill
+		// http://stackoverflow.com/questions/7460670/how-to-detect-if-media-queries-are-present-using-modernizr
 		{
-			test : Modernizr.mq,
+			test : Modernizr.mq('only all'),
 			nope : '/js/libs/respond.min.js'
 		},
 		// load jquery from a 3rd party CDN
