@@ -381,7 +381,7 @@ body { padding: 0 2em; background: white url(data:image/png;base64,iVBORw0KGgoAA
 
 .mod-header { padding: 10em 0; text-align: center; line-height: 1; }
 .mod-header h1 { margin-bottom: .2em; font-size: 6em; }
-@media screen and (max-width:38em) { .mod-header h1 { font-size: 4em; } }
+@media screen and (max-width:38em) { .mod-header h1 { margin-bottom: 0; font-size: 4em; } }
 .mod-header p { color: #999999; }
 @media screen and (max-width:38em) { .mod-header p { display: none; } }
 @media screen and (max-width:38em) { .mod-header { padding: 5em 0; } }
