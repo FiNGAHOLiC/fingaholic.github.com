@@ -428,9 +428,9 @@ body { padding: 0 2em; background: white url(data:image/png;base64,iVBORw0KGgoAA
 .mod-archive { padding-bottom: 1.5em; border-bottom: 1px solid #efefef; }
 .mod-archive h1 { font-size: 2em; margin-bottom: .5em; }
 .mod-archive .posts { margin-top: 1.5em; padding-top: 1.5em; border-top: 1px solid #efefef; line-height: 2; }
-.mod-archive .posts .time { width: 10em; margin: 0.4em 0 0; float: right; text-align: right; font-size: .8em; color: #999999; }
+.mod-archive .posts .time { width: 10em; margin-top: 0.4em; float: right; text-align: right; font-size: .8em; color: #999999; }
 @media screen and (max-width:52em) { .mod-archive .posts .time { width: 8em; } }
-@media screen and (max-width:38em) { .mod-archive .posts .time { width: auto; float: none; text-align: left; } }
+@media screen and (max-width:38em) { .mod-archive .posts .time { width: auto; margin-top: 0; float: none; text-align: left; } }
 .mod-archive .posts .title { width: 40em; float: left; }
 @media screen and (max-width:52em) { .mod-archive .posts .title { width: 28em; } }
 @media screen and (max-width:38em) { .mod-archive .posts .title { width: auto; float: none; } }
