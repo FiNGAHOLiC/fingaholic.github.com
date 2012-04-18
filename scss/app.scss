@@ -132,20 +132,22 @@ body{
 	padding:10em 0;
 	text-align:center;
 	line-height:1;
-	h1{
-		margin-bottom:.2em;
-		font-size:6em;
-		@extend .snp-font-chunkfive;
-		@media screen and (max-width:38em){
-			margin-bottom:0;
-			font-size:4em;
+	hgroup{
+		h1{
+			margin-bottom:.2em;
+			font-size:6em;
+			@extend .snp-font-chunkfive;
+			@media screen and (max-width:38em){
+				margin-bottom:0;
+				font-size:4em;
+			}
 		}
-	}
-	p{
-		@extend .snp-font-droid-regular;
-		color:$color-darkgray;
-		@media screen and (max-width:38em){
-			display:none;
+		h2{
+			@extend .snp-font-droid-regular;
+			color:$color-darkgray;
+			@media screen and (max-width:38em){
+				display:none;
+			}
 		}
 	}
 	@media screen and (max-width:38em){
