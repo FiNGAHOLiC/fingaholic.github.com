@@ -32,7 +32,10 @@
 	│  ├─ mylibs
 	│      ├─ jquery.ui.plugin.js
 	├─ scss // SCSS
-	│  ├─ chunkfive // Chunkfive 
+	│  ├─ _highlight.scss
+	│  ├─ _normalize.scss
+	│  ├─ _webfont.scss
+	│  ├─ app.scss
 	│  ├─ droid // Droid 
 	├─ _config.yml // 基本設定
 	├─ about.html // アバウト用HTML
