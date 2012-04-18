@@ -8,13 +8,20 @@
 
 	.
 	├─ _includes // インクルードファイル
-	│  ├─ header.html // ヘッダー用
 	│  ├─ footer.html // フッター用
+	│  ├─ ga.html // Google Analytics用
+	│  ├─ head.html // headタグ用
+	│  ├─ header.html // ヘッダー用
 	├─ _layouts // レイアウトファイル
 	│  ├─ default.html // 投稿一覧ページ用
 	│  ├─ post.html // 投稿詳細ページ用
 	├─ _posts // 記事用マークダウンファイル
 	│  ├─ $YEAR-$MONTH-$DATE-$TITLE.$FORMAT // markdownかtextile
+	├─ css // CSS
+	│  ├─ app.css
+	├─ fonts // Web font
+	│  ├─ chunkfive // Chunkfive 
+	│  ├─ droid // Droid 
 	├─ js // JS
 	│  ├─ app.js
 	│  ├─ libs
@@ -24,11 +31,15 @@
 	│      ├─ jquery.easing.1.3.js
 	│  ├─ mylibs
 	│      ├─ jquery.ui.plugin.js
-	├─ css // CSS
-	│  ├─ normalize.css
-	│  ├─ app.css
+	├─ scss // SCSS
+	│  ├─ chunkfive // Chunkfive 
+	│  ├─ droid // Droid 
 	├─ _config.yml // 基本設定
+	├─ about.html // アバウト用HTML
+	├─ archive.html // アーカイブ用HTML
 	├─ index.html // トップページ用HTML
+	├─ 404.html // 404用HTML
+	├─ atom.xml // RSS用XML
 
 ## 参考サイト
 * [GitHub - mojombo/jekyll](https://github.com/mojombo/jekyll 'GitHub - mojombo/jekyll')
