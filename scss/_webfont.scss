@@ -1,0 +1,60 @@
+@font-face{
+	font-family:'ChunkFiveRegular';
+	font-style:normal;
+	font-weight:normal;
+	src:url('/chunkfive/fonts/Chunkfive-webfont.eot');
+	src:
+		url('/fonts/chunkfive/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/chunkfive/Chunkfive-webfont.woff') format('woff'),
+		url('/fonts/chunkfive/Chunkfive-webfont.ttf') format('truetype'),
+		url('/fonts/chunkfive/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+}
+
+@font-face {
+	font-family:'DroidSerifRegular';
+	font-style:normal;
+	font-weight:normal;
+	src:url('/fonts/droid/DroidSerif-Regular-webfont.eot');
+	src:
+		url('/fonts/droid/DroidSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/droid/DroidSerif-Regular-webfont.woff') format('woff'),
+		url('/fonts/droid/DroidSerif-Regular-webfont.ttf') format('truetype'),
+		url('/fonts/droid/DroidSerif-Regular-webfont.svg#DroidSerifRegular') format('svg');
+
+}
+
+@font-face {
+	font-family:'DroidSerifItalic';
+	font-style:normal;
+	font-weight:normal;
+	src:url('/fonts/droid/DroidSerif-Italic-webfont.eot');
+	src:
+		url('/fonts/droid/DroidSerif-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/droid/DroidSerif-Italic-webfont.woff') format('woff'),
+		url('/fonts/droid/DroidSerif-Italic-webfont.ttf') format('truetype'),
+		url('/fonts/droid/DroidSerif-Italic-webfont.svg#DroidSerifItalic') format('svg');
+}
+
+@font-face {
+	font-family:'DroidSerifBold';
+	font-style:normal;
+	font-weight:normal;
+	src:url('/fonts/droid/DroidSerif-Bold-webfont.eot');
+	src:
+		url('/fonts/droid/DroidSerif-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/droid/DroidSerif-Bold-webfont.woff') format('woff'),
+		url('/fonts/droid/DroidSerif-Bold-webfont.ttf') format('truetype'),
+		url('/fonts/droid/DroidSerif-Bold-webfont.svg#DroidSerifBold') format('svg');
+}
+
+@font-face {
+	font-family:'DroidSerifBoldItalic';
+	font-style:normal;
+	font-weight:normal;
+	src:url('/fonts/droid/DroidSerif-BoldItalic-webfont.eot');
+	src:
+		url('/fonts/droid/DroidSerif-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/droid/DroidSerif-BoldItalic-webfont.woff') format('woff'),
+		url('/fonts/droid/DroidSerif-BoldItalic-webfont.ttf') format('truetype'),
+		url('/fonts/droid/DroidSerif-BoldItalic-webfont.svg#DroidSerifBoldItalic') format('svg');
+}
