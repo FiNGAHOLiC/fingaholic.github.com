@@ -4,8 +4,6 @@
 
 ## 構成ファイル群
 
-**現在編集中**
-
 	.
 	├─ _includes // インクルードファイル
 	│  ├─ footer.html // フッター用
@@ -29,6 +27,7 @@
 	│      ├─ jquery-1.7.1.min.js
 	│      ├─ jquery-ui-1.8.18.custom.min.js
 	│      ├─ jquery.easing.1.3.js
+	│      ├─ respond.min.js
 	│  ├─ mylibs
 	│      ├─ jquery.ui.plugin.js
 	├─ scss // SCSS
