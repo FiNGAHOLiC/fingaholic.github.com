@@ -33,7 +33,7 @@ $typo-family-droid-bold:'DroidSerifBold';
 $typo-family-droid-bolditalic:'DroidSerifBoldItalic';
 $typo-family-chunkfive:'ChunkFiveRegular';
 $typo-family-serif:'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
-$typo-family-sanserif:'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Meiryo', 'メイリオ', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
+$typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
 
 
 // ==========================
@@ -246,8 +246,8 @@ body{
 }
 
 .mod-postmain{
-	h1{ font-size:1.5em; margin-bottom:.75em; font-weight:normal; }
-	h2,h3,h4,h5,h6{ margin-bottom:1em; font-weight:normal; }
+	h1{ font-size:1.5em; margin-bottom:.75em; }
+	h2,h3,h4,h5,h6{ margin-bottom:1em; }
 	p,ul,ol,dl,table,blockquote,hr{ margin-top:1.8em; margin-bottom:1.8em; }
 	blockquote{ padding:0 2em; color:$color-darkgray; }
 	pre{ text-shadow:none; }
