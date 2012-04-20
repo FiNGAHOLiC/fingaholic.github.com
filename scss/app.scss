@@ -140,6 +140,8 @@ a{
 	}
 }
 
+pre,code,kbd,samp,tt{ line-height:1.6; }
+
 ::selection,::-moz-selection{
 	background:$color-rose;
 	color:$color-white;
@@ -295,11 +297,6 @@ body{
 	blockquote{
 		padding:0 40px;
 		color:$color-darkgray;
-	}
-	.highlight{
-		pre{
-			line-height:1.6;
-		}
 	}
 	table,.highlight{ margin-bottom:15px; }
 	a{
