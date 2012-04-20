@@ -62,7 +62,7 @@
 		},
 		// Web fonts
 		{
-			load : 'http://typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D'
+			load : 'https://typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D'
 		}
 	]);
 
