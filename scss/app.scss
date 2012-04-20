@@ -296,7 +296,11 @@ body{
 		padding:0 40px;
 		color:$color-darkgray;
 	}
-	.highlight{ line-height:1.6; }
+	.highlight{
+		pre{
+			line-height:1.6;
+		}
+	}
 	table,.highlight{ margin-bottom:15px; }
 	a{
 		&:link{
