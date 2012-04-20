@@ -17,13 +17,25 @@
 //
 // ==========================
 
+// browser detection
+$support-ie6:false;
+$support-ie7:false;
+$support-ie8:true;
+$support-mozilla:true;
+$support-webkit:true;
+$support-opera:true;
+
 // color
 $color-white:#fff;
 $color-black:#000;
-$color-gray:#ccc;
-$color-lightgray:#efefef;
-$color-darkgray:#999;
 $color-rose:#a5001e;
+
+// mix color
+
+$color-darkgray:mix($color-white, $color-black, 25%);
+$color-gray:mix($color-white, $color-black, 50%);
+$color-lightgray:mix($color-white, $color-black, 90%);
+
 
 // typo-family
 $typo-family-droid-regular:'DroidSerifRegular';
@@ -33,7 +45,7 @@ $typo-family-droid-bolditalic:'DroidSerifBoldItalic';
 $typo-family-chunkfive:'ChunkFiveRegular';
 $typo-family-serif:'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
 $typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
-$typo-family-gothicmb:'font-family: ゴシックMB101 B';
+$typo-family-gothicmb:'ゴシックMB101 B';
 
 
 // ==========================
@@ -261,7 +273,6 @@ body{
 		bottom:1px solid $color-lightgray;
 	}
 	line-height:1;
-	color:$color-gray;
 	.prev{ float:left; }
 	.next{ float:right; }
 }
@@ -296,7 +307,7 @@ body{
 	p,ul,ol,dl,table,blockquote,ins,.highlight{ @extend .snp-font-14; }
 	blockquote{
 		padding:0 40px;
-		color:$color-darkgray;
+		color:$color-gray;
 	}
 	table,.highlight{ margin-bottom:15px; }
 	a{
