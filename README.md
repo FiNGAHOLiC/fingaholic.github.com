@@ -1,6 +1,6 @@
-# jekyllテスト
+# Githubでjekyll使ってブログ
 
- [fingaholic github page](http://fingaholic.github.com/ 'fingaholic github page')
+ [jekylog](http://fingaholic.github.com/ 'jekylog')
 
 ## 構成ファイル群
 
