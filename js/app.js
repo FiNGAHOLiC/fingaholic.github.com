@@ -59,10 +59,6 @@
 				'/js/mylibs/jquery.ui.plugin.js'
 			],
 			complete : onComplete
-		},
-		// Web fonts
-		{
-			load : 'https://typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D'
 		}
 	]);
 
