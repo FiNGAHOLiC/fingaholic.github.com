@@ -44,8 +44,7 @@ $typo-family-droid-bold:'DroidSerifBold';
 $typo-family-droid-bolditalic:'DroidSerifBoldItalic';
 $typo-family-chunkfive:'ChunkFiveRegular';
 $typo-family-serif:'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
-$typo-family-sanserif:'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Meiryo', 'メイリオ', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
-$typo-family-gothicmb:'ゴシックMB101 B';
+$typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
 
 
 // ==========================
@@ -77,7 +76,6 @@ $typo-family-gothicmb:'ゴシックMB101 B';
 .snp-font-chunkfive{ font-family:$typo-family-chunkfive; }
 .snp-font-serif{ font-family:$typo-family-serif; }
 .snp-font-sanserif{ font-family:$typo-family-sanserif; }
-.snp-font-gothicmb{ font-family:$typo-family-gothicmb; }
 
 .snp-clearfix{
 	overflow:hidden;
@@ -326,7 +324,6 @@ body{
 			}
 			h1{
 				@extend .snp-font-26;
-				@extend .snp-font-gothicmb;
 				font-weight:normal;
 				@media screen and (max-width:480px){
 					font-size:138.5%;
@@ -372,7 +369,6 @@ body{
 		}
 		h1{
 			@extend .snp-font-26;
-			@extend .snp-font-gothicmb;
 			font-weight:normal;
 			@media screen and (max-width:480px){
 				font-size:138.5%;
