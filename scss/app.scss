@@ -183,6 +183,10 @@ body{
 	.area-header{ position:relative; }
 	.area-main{}
 	.area-footer{}
+	@media screen and (max-width:480px){
+		width:300px;
+		padding:0 10px;
+	}
 }
 
 
@@ -201,11 +205,20 @@ body{
 			@extend .snp-font-100;
 			@extend .snp-font-chunkfive;
 			margin-bottom:20px;
+			@media screen and (max-width:480px){
+				font-size:462%;
+			}
 		}
 		h2{
 			@extend .snp-font-20;
 			@extend .snp-font-droid-italic;
 			color:$color-darkgray;
+			@media screen and (max-width:480px){
+				font-size:108%;
+			}
+		}
+		@media screen and (max-width:480px){
+			padding:80px 0 0;
 		}
 	}
 }
@@ -220,10 +233,38 @@ body{
 			@extend .snp-clearfix;
 			@extend .snp-font-14;
 			@extend .snp-font-droid-bold;
+			padding-left:0;
 			line-height:1;
 			li{
 				padding-left:40px;;
 				float:left;
+			}
+		}
+	}
+	@media screen and (max-width:480px){
+		padding-top:40px;
+		padding-bottom:80px;
+		position:static;
+		top:auto;
+		right:auto;
+		z-index:auto;
+		text-align:center;
+		nav{
+			ul{
+				padding-top:10px;
+				padding-bottom:10px;
+				padding-left:0;
+				border:{
+					top:1px solid $color-lightgray;
+					bottom:1px solid $color-lightgray;
+				}
+				li{
+					margin-left:20px;
+					margin-right:20px;
+					padding-left:0;
+					float:none;
+					display:inline;
+				}
 			}
 		}
 	}
@@ -237,6 +278,10 @@ body{
 		line-height:1;
 		text-align:center;
 		color:$color-darkgray;
+		@media screen and (max-width:480px){
+			padding:60px 0;
+			font-size:77%;
+		}
 	}
 }
 
@@ -256,9 +301,17 @@ body{
 				@extend .snp-font-26;
 				@extend .snp-font-gothicmb;
 				font-weight:normal;
+				@media screen and (max-width:480px){
+					font-size:138.5%;
+				}
 			}
 		}
-		.summary{ @extend .snp-font-14; }
+		.summary{
+			@extend .snp-font-14;
+			@media screen and (max-width:480px){
+				font-size:93%;
+			}
+		}
 	}
 }
 
@@ -275,6 +328,9 @@ body{
 	line-height:1;
 	.prev{ float:left; }
 	.next{ float:right; }
+	@media screen and (max-width:480px){
+		font-size:93%;
+	}
 }
 
 .mod-postdetail{
@@ -290,6 +346,9 @@ body{
 			@extend .snp-font-26;
 			@extend .snp-font-gothicmb;
 			font-weight:normal;
+			@media screen and (max-width:480px){
+				font-size:138.5%;
+			}
 		}
 	}
 }
@@ -300,12 +359,23 @@ body{
 		@extend .snp-font-18;
 		margin-top:40px;
 		font-weight:bold;
+		@media screen and (max-width:480px){
+			font-size:108%;
+		}
 	}
 	h2,h3,h4,h5,h6{ 
 		@extend .snp-font-14;
 		font-weight:bold;
+		@media screen and (max-width:480px){
+			font-size:93%;
+		}
 	}
-	p,ul,ol,dl,table,blockquote,ins,.highlight{ @extend .snp-font-14; }
+	p,ul,ol,dl,table,blockquote,ins,.highlight{
+		@extend .snp-font-14;
+		@media screen and (max-width:480px){
+			font-size:93%;
+		}
+	}
 	blockquote{
 		padding:0 40px;
 		color:$color-gray;
@@ -337,6 +407,9 @@ body{
 		@extend .snp-font-30;
 		@extend .snp-font-droid-bold;
 		margin-bottom:20px;
+		@media screen and (max-width:480px){
+			font-size:153.9%;
+		}
 	}
 	.posts{
 		@extend .snp-clearfix;
@@ -349,10 +422,21 @@ body{
 			float:right;
 			text-align:right;
 			color:$color-darkgray;
+			@media screen and (max-width:480px){
+				width:auto;
+				float:none;
+				text-align:left;
+				font-size:77%;
+			}
 		}
 		.title{
 			width:660px;
 			float:left;
+			@media screen and (max-width:480px){
+				width:auto;
+				float:none;
+				font-size:93%;
+			}
 		}
 	}
 }
@@ -362,10 +446,16 @@ body{
 		@extend .snp-font-30;
 		@extend .snp-font-droid-bold;
 		margin-bottom:20px;
+		@media screen and (max-width:480px){
+			font-size:153.9%;
+		}
 	}
 	p{
 		@extend .snp-font-14;
 		margin-bottom:10px;
+		@media screen and (max-width:480px){
+			font-size:93%;
+		}
 	}
 }
 
@@ -374,9 +464,15 @@ body{
 		@extend .snp-font-30;
 		@extend .snp-font-droid-bold;
 		margin-bottom:20px;
+		@media screen and (max-width:480px){
+			font-size:153.9%;
+		}
 	}
 	p{
 		@extend .snp-font-14;
 		margin-bottom:10px;
+		@media screen and (max-width:480px){
+			font-size:93%;
+		}
 	}
 }
