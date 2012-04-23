@@ -395,7 +395,7 @@ pre, code, kbd, samp, tt { font-family: monospace; *font-size: 108%; line-height
 
 .snp-font-sanserif, body { font-family: "Meiryo", "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", Helvetica, Arial, sans-serif; }
 
-.snp-font-gothicmb101, .mod-postlist section header h1, .mod-postdetail header h1 { font-family: "ゴシックMB101 B", "Gothic MB101 Bold"; }
+.snp-font-kakumin, .mod-postlist section header h1, .mod-postdetail header h1 { font-family: "カクミン R", "Kakumin Regular"; }
 
 .snp-clearfix, .mod-gnavi nav ul, .mod-pagenation, .mod-archive .posts { overflow: hidden; zoom: 1; }
 
@@ -493,7 +493,7 @@ body { background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAA
 .mod-archive .posts .title { width: 660px; float: left; }
 @media screen and (max-width:840px) { .mod-archive .posts .title { width: 470px; } }
 @media screen and (max-width:650px) { .mod-archive .posts .title { width: 340px; } }
-@media screen and (max-width:480px) { .mod-archive .posts .title { width: auto; float: none; font-size: 138.5%; } }
+@media screen and (max-width:480px) { .mod-archive .posts .title { width: auto; float: none; font-size: 93%; } }
 
 .mod-about h1 { margin-bottom: 20px; }
 @media screen and (max-width:480px) { .mod-about h1 { font-size: 153.9%; } }
