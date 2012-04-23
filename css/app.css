@@ -397,7 +397,7 @@ pre, code, kbd, samp, tt { font-family: monospace; *font-size: 108%; line-height
 
 .snp-font-gothicmb101 { font-family: "ゴシックMB101 L", "Gothic MB101 Light"; }
 
-.snp-font-shingo, .mod-postlist section header h1, .mod-postdetail header h1 { font-family: "新ゴ L", "Shin Go Light"; }
+.snp-font-shingo, .mod-postlist section header h1, .mod-postdetail header h1, .mod-postmain h1, .mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6 { font-family: "新ゴ L", "Shin Go Light"; }
 
 .snp-clearfix, .mod-gnavi nav ul, .mod-pagenation, .mod-archive .posts { overflow: hidden; zoom: 1; }
 
@@ -474,9 +474,8 @@ body { background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAA
 @media screen and (max-width:480px) { .mod-postdetail header h1 { font-size: 138.5%; } }
 
 .mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-postmain p, .mod-postmain ul, .mod-postmain ol, .mod-postmain dl, .mod-postmain table, .mod-postmain blockquote, .mod-postmain ins, .mod-postmain .highlight { margin-top: 10px; }
-.mod-postmain h1 { margin-top: 40px; font-weight: bold; }
+.mod-postmain h1 { margin-top: 40px; }
 @media screen and (max-width:480px) { .mod-postmain h1 { font-size: 108%; } }
-.mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6 { font-weight: bold; }
 @media screen and (max-width:480px) { .mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6 { font-size: 93%; } }
 @media screen and (max-width:480px) { .mod-postmain p, .mod-postmain ul, .mod-postmain ol, .mod-postmain dl, .mod-postmain table, .mod-postmain blockquote, .mod-postmain ins, .mod-postmain .highlight { font-size: 93%; } }
 .mod-postmain blockquote { padding-left: 20px; border-left: 5px solid #e5e5e5; color: #7f7f7f; }
