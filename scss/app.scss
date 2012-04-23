@@ -18,12 +18,15 @@
 // ==========================
 
 // browser detection
-$support-ie6:false;
-$support-ie7:false;
+$support-ie6:true;
+$support-ie7:true;
 $support-ie8:true;
 $support-mozilla:true;
 $support-webkit:true;
 $support-opera:true;
+
+// Patoh to img dir
+$path-img:'/img/';
 
 // color
 $color-white:#fff;
@@ -79,8 +82,11 @@ $typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hi
 
 .snp-clearfix{
 	overflow:hidden;
-	_zoom:1;
+	@if $support-ie6{
+		zoom:1;
+	}
 }
+
 
 // ==========================
 //
@@ -94,11 +100,14 @@ h1,h2,h3,h4,h5,h6{ font-weight:normal; }
 
 small{ font-size:100%; }
 
+
 // ==========================
 //
 // Misc
 //
 // ==========================
+
+ul,ol{ padding-left:2em; }
 
 hr{ border:none; }
 
@@ -178,7 +187,10 @@ body{
 	margin:0 auto;
 	padding:0 40px;
 	text-align:left;
-	.area-header{ position:relative; }
+	.area-header{
+		position:relative;
+		*zoom:1;
+	}
 	.area-main{}
 	.area-footer{}
 	@media screen and (max-width:840px){
@@ -401,7 +413,8 @@ body{
 		}
 	}
 	blockquote{
-		padding:0 40px;
+		padding-left:20px;
+		border-left:5px solid $color-lightgray;
 		color:$color-gray;
 	}
 	table,.highlight{ margin:15px 0; }
