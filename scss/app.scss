@@ -183,8 +183,16 @@ body{
 	.area-header{ position:relative; }
 	.area-main{}
 	.area-footer{}
+	@media screen and (max-width:840px){
+		width:auto;
+		padding:0 40px;
+	}
+	@media screen and (max-width:650px){
+		width:auto;
+		padding:0 20px;
+	}
 	@media screen and (max-width:480px){
-		width:300px;
+		width:auto;
 		padding:0 10px;
 	}
 }
@@ -205,17 +213,26 @@ body{
 			@extend .snp-font-100;
 			@extend .snp-font-chunkfive;
 			margin-bottom:20px;
+			@media screen and (max-width:650px){
+				font-size:616%; // 80px
+			}
 			@media screen and (max-width:480px){
-				font-size:462%;
+				font-size:462%; // 60px
 			}
 		}
 		h2{
 			@extend .snp-font-20;
 			@extend .snp-font-droid-italic;
 			color:$color-darkgray;
-			@media screen and (max-width:480px){
-				font-size:108%;
+			@media screen and (max-width:650px){
+				font-size:138.5%; // 18px
 			}
+			@media screen and (max-width:480px){
+				font-size:108%; // 14px
+			}
+		}
+		@media screen and (max-width:650px){
+			padding:110px;
 		}
 		@media screen and (max-width:480px){
 			padding:80px 0 0;
@@ -224,15 +241,15 @@ body{
 }
 
 .mod-gnavi{
-	position:absolute;
-	top:40px;
-	right:0;
-	z-index:1;
 	nav{
 		ul{
 			@extend .snp-clearfix;
 			@extend .snp-font-14;
 			@extend .snp-font-droid-bold;
+			position:absolute;
+			top:40px;
+			right:0;
+			z-index:1;
 			padding-left:0;
 			line-height:1;
 			li{
@@ -241,19 +258,26 @@ body{
 			}
 		}
 	}
+	@media screen and (max-width:650px){
+		nav{
+			ul{
+				top:20px;
+			}
+		}
+	}
 	@media screen and (max-width:480px){
 		padding-top:40px;
 		padding-bottom:80px;
-		position:static;
-		top:auto;
-		right:auto;
-		z-index:auto;
 		text-align:center;
 		nav{
 			ul{
 				padding-top:10px;
 				padding-bottom:10px;
 				padding-left:0;
+				position:static;
+				top:auto;
+				right:auto;
+				z-index:auto;
 				border:{
 					top:1px solid $color-lightgray;
 					bottom:1px solid $color-lightgray;
@@ -278,8 +302,11 @@ body{
 		line-height:1;
 		text-align:center;
 		color:$color-darkgray;
+		@media screen and (max-width:650px){
+			padding:110px 0;
+		}
 		@media screen and (max-width:480px){
-			padding:60px 0;
+			padding:80px 0;
 			font-size:77%;
 		}
 	}
@@ -329,6 +356,7 @@ body{
 	.prev{ float:left; }
 	.next{ float:right; }
 	@media screen and (max-width:480px){
+		margin-top:40px;
 		font-size:93%;
 	}
 }
@@ -432,6 +460,12 @@ body{
 		.title{
 			width:660px;
 			float:left;
+			@media screen and (max-width:840px){
+				width:470px;
+			}
+			@media screen and (max-width:650px){
+				width:340px;
+			}
 			@media screen and (max-width:480px){
 				width:auto;
 				float:none;
