@@ -48,8 +48,8 @@ $typo-family-droid-bolditalic:'DroidSerifBoldItalic';
 $typo-family-chunkfive:'ChunkFiveRegular';
 $typo-family-serif:'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
 $typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
-// $typo-family-gothicmb101:'ゴシックMB101 L', 'Gothic MB101 Light';
-$typo-family-gothicmb101:'新ゴ DB','Shin Go DeBold';
+$typo-family-gothicmb101:'ゴシックMB101 L', 'Gothic MB101 Light';
+$typo-family-shingo:'新ゴ L','Shin Go Light';
 
 
 // ==========================
@@ -339,7 +339,7 @@ body{
 			}
 			h1{
 				@extend .snp-font-26;
-				@extend .snp-font-gothicmb101;
+				@extend .snp-font-shingo;
 				font-weight:normal;
 				@media screen and (max-width:480px){
 					font-size:138.5%;
@@ -385,7 +385,7 @@ body{
 		}
 		h1{
 			@extend .snp-font-26;
-			@extend .snp-font-gothicmb101;
+			@extend .snp-font-shingo;
 			font-weight:normal;
 			@media screen and (max-width:480px){
 				font-size:138.5%;
