@@ -38,6 +38,7 @@ $color-rose:#a5001e;
 $color-darkgray:mix($color-white, $color-black, 25%);
 $color-gray:mix($color-white, $color-black, 50%);
 $color-lightgray:mix($color-white, $color-black, 90%);
+$color-lightergray:mix($color-white, $color-black, 96%);
 
 
 // typo-family
@@ -348,7 +349,7 @@ body{
 				@extend .snp-font-10;
 				margin-bottom:5px;
 				line-height:1;
-				color:$color-darkgray;
+				color:$color-lightergray;
 				@media screen and (max-width:480px){
 					font-size:93%; // 12px
 				}
@@ -397,7 +398,7 @@ body{
 			@extend .snp-font-10;
 			margin-bottom:5px;
 			line-height:1;
-			color:$color-darkgray;
+			color:$color-lightergray;
 			@media screen and (max-width:480px){
 				font-size:93%; // 12px
 			}
@@ -468,7 +469,7 @@ body{
 		@extend .snp-font-14;
 		padding-top:20px;
 		padding-bottom:20px;
-		border-top:1px solid $color-lightgray;
+		border-top:1px solid $color-lightergray;
 		.time{
 			width:100px;
 			float:right;
