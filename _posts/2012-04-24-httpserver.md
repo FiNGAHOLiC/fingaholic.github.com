@@ -31,8 +31,7 @@ SimpleHTTPServer.test()
 
 # Rubyの場合
 
-こっちはスムーズにいった。
-
+こっちはスムーズにいった。  
 まずはコマンドラインから叩く場合。
 
 {% highlight console %}
