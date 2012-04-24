@@ -345,13 +345,10 @@ body{
 		header{
 			margin-bottom:10px;
 			p{
-				@extend .snp-font-10;
+				@extend .snp-font-12;
 				margin-bottom:5px;
 				line-height:1;
 				color:$color-gray;
-				@media screen and (max-width:480px){
-					font-size:93%; // 12px
-				}
 			}
 			h1{
 				@extend .snp-font-26;
@@ -394,13 +391,10 @@ body{
 	header{
 		margin-bottom:40px;
 		p{
-			@extend .snp-font-10;
+			@extend .snp-font-12;
 			margin-bottom:5px;
 			line-height:1;
 			color:$color-gray;
-			@media screen and (max-width:480px){
-				font-size:93%; // 12px
-			}
 		}
 		h1{
 			@extend .snp-font-26;
