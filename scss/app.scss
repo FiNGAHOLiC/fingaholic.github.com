@@ -473,6 +473,7 @@ body{
 		.title{
 			width:660px;
 			float:left;
+			@extend .snp-font-shingo;
 			@media screen and (max-width:840px){
 				width:470px;
 			}
