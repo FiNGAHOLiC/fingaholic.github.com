@@ -404,22 +404,13 @@ body{
 		@extend .snp-font-18;
 		@extend .snp-font-shingo;
 		margin-top:40px;
-		@media screen and (max-width:480px){
-			font-size:138.5%; // 18px
-		}
 	}
 	h2,h3,h4,h5,h6{ 
 		@extend .snp-font-14;
 		@extend .snp-font-shingo;
-		@media screen and (max-width:480px){
-			font-size:108%; // 14px
-		}
 	}
 	p,ul,ol,dl,table,blockquote,ins,.highlight{
 		@extend .snp-font-14;
-		@media screen and (max-width:480px){
-			font-size:108%; // 14px
-		}
 	}
 	blockquote{
 		padding-left:20px;
@@ -472,7 +463,6 @@ body{
 				width:auto;
 				float:none;
 				text-align:left;
-				font-size:108%; // 14px
 			}
 		}
 		.title{
@@ -487,7 +477,6 @@ body{
 			@media screen and (max-width:480px){
 				width:auto;
 				float:none;
-				font-size:108%; // 14px
 			}
 		}
 	}
@@ -502,8 +491,10 @@ body{
 			font-size:153.9%; // 20px
 		}
 	}
-	p{
+	p,ul{
 		@extend .snp-font-14;
+	}
+	p{
 		margin-bottom:10px;
 		@media screen and (max-width:480px){
 			font-size:108%; // 14px
@@ -520,8 +511,10 @@ body{
 			font-size:153.9%; // 20px
 		}
 	}
-	p{
+	p,ul{
 		@extend .snp-font-14;
+	}
+	p{
 		margin-bottom:10px;
 		@media screen and (max-width:480px){
 			font-size:93%; // 12px
