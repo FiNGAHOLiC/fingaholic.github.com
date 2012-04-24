@@ -343,14 +343,14 @@ body{
 				@extend .snp-font-shingo;
 				font-weight:normal;
 				@media screen and (max-width:480px){
-					font-size:138.5%; // 18px
+					font-size:153.9%; // 20px
 				}
 			}
 		}
 		.summary{
 			@extend .snp-font-14;
 			@media screen and (max-width:480px){
-				font-size:93%; // 12px
+				font-size:108%; // 14px
 			}
 		}
 	}
