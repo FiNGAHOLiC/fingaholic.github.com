@@ -386,6 +386,9 @@ body{
 			margin-bottom:5px;
 			line-height:1;
 			color:$color-darkgray;
+			@media screen and (max-width:480px){
+				font-size:93%; // 12px
+			}
 		}
 		h1{
 			@extend .snp-font-26;
