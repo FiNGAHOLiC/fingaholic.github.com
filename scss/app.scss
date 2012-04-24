@@ -321,7 +321,7 @@ body{
 		}
 		@media screen and (max-width:480px){
 			padding:80px 0;
-			font-size:77%;
+			font-size:93%; // 12px
 		}
 	}
 }
@@ -343,14 +343,14 @@ body{
 				@extend .snp-font-shingo;
 				font-weight:normal;
 				@media screen and (max-width:480px){
-					font-size:138.5%;
+					font-size:138.5%; // 18px
 				}
 			}
 		}
 		.summary{
 			@extend .snp-font-14;
 			@media screen and (max-width:480px){
-				font-size:93%;
+				font-size:93%; // 12px
 			}
 		}
 	}
@@ -371,7 +371,7 @@ body{
 	.next{ float:right; }
 	@media screen and (max-width:480px){
 		margin-top:40px;
-		font-size:93%;
+		font-size:93%; // 12px
 	}
 }
 
@@ -389,7 +389,7 @@ body{
 			@extend .snp-font-shingo;
 			font-weight:normal;
 			@media screen and (max-width:480px){
-				font-size:138.5%;
+				font-size:138.5%; // 18px
 			}
 		}
 	}
@@ -402,20 +402,20 @@ body{
 		@extend .snp-font-shingo;
 		margin-top:40px;
 		@media screen and (max-width:480px){
-			font-size:108%;
+			font-size:108%; // 14px
 		}
 	}
 	h2,h3,h4,h5,h6{ 
 		@extend .snp-font-14;
 		@extend .snp-font-shingo;
 		@media screen and (max-width:480px){
-			font-size:93%;
+			font-size:93%; // 12px
 		}
 	}
 	p,ul,ol,dl,table,blockquote,ins,.highlight{
 		@extend .snp-font-14;
 		@media screen and (max-width:480px){
-			font-size:93%;
+			font-size:93%; // 12px
 		}
 	}
 	blockquote{
@@ -451,7 +451,7 @@ body{
 		@extend .snp-font-droid-bold;
 		margin-bottom:20px;
 		@media screen and (max-width:480px){
-			font-size:153.9%;
+			font-size:153.9%; // 20px
 		}
 	}
 	.posts{
@@ -469,7 +469,7 @@ body{
 				width:auto;
 				float:none;
 				text-align:left;
-				font-size:77%;
+				font-size:77%; // 10px
 			}
 		}
 		.title{
@@ -484,7 +484,7 @@ body{
 			@media screen and (max-width:480px){
 				width:auto;
 				float:none;
-				font-size:93%;
+				font-size:93%; // 12px
 			}
 		}
 	}
@@ -496,14 +496,14 @@ body{
 		@extend .snp-font-droid-bold;
 		margin-bottom:20px;
 		@media screen and (max-width:480px){
-			font-size:153.9%;
+			font-size:153.9%; // 20px
 		}
 	}
 	p{
 		@extend .snp-font-14;
 		margin-bottom:10px;
 		@media screen and (max-width:480px){
-			font-size:93%;
+			font-size:93%; // 12px
 		}
 	}
 }
@@ -514,14 +514,14 @@ body{
 		@extend .snp-font-droid-bold;
 		margin-bottom:20px;
 		@media screen and (max-width:480px){
-			font-size:153.9%;
+			font-size:153.9%; // 20px
 		}
 	}
 	p{
 		@extend .snp-font-14;
 		margin-bottom:10px;
 		@media screen and (max-width:480px){
-			font-size:93%;
+			font-size:93%; // 12px
 		}
 	}
 }
