@@ -337,6 +337,9 @@ body{
 				margin-bottom:5px;
 				line-height:1;
 				color:$color-darkgray;
+				@media screen and (max-width:480px){
+					font-size:93%; // 12px
+				}
 			}
 			h1{
 				@extend .snp-font-26;
@@ -371,7 +374,7 @@ body{
 	.next{ float:right; }
 	@media screen and (max-width:480px){
 		margin-top:40px;
-		font-size:93%; // 12px
+		font-size:108%; // 14px
 	}
 }
 
@@ -389,7 +392,7 @@ body{
 			@extend .snp-font-shingo;
 			font-weight:normal;
 			@media screen and (max-width:480px){
-				font-size:138.5%; // 18px
+				font-size:153.9%; // 20px
 			}
 		}
 	}
@@ -402,20 +405,20 @@ body{
 		@extend .snp-font-shingo;
 		margin-top:40px;
 		@media screen and (max-width:480px){
-			font-size:108%; // 14px
+			font-size:138.5%; // 18px
 		}
 	}
 	h2,h3,h4,h5,h6{ 
 		@extend .snp-font-14;
 		@extend .snp-font-shingo;
 		@media screen and (max-width:480px){
-			font-size:93%; // 12px
+			font-size:108%; // 14px
 		}
 	}
 	p,ul,ol,dl,table,blockquote,ins,.highlight{
 		@extend .snp-font-14;
 		@media screen and (max-width:480px){
-			font-size:93%; // 12px
+			font-size:108%; // 14px
 		}
 	}
 	blockquote{
@@ -469,7 +472,7 @@ body{
 				width:auto;
 				float:none;
 				text-align:left;
-				font-size:77%; // 10px
+				font-size:108%; // 14px
 			}
 		}
 		.title{
@@ -484,7 +487,7 @@ body{
 			@media screen and (max-width:480px){
 				width:auto;
 				float:none;
-				font-size:93%; // 12px
+				font-size:108%; // 14px
 			}
 		}
 	}
@@ -503,7 +506,7 @@ body{
 		@extend .snp-font-14;
 		margin-bottom:10px;
 		@media screen and (max-width:480px){
-			font-size:93%; // 12px
+			font-size:108%; // 14px
 		}
 	}
 }
