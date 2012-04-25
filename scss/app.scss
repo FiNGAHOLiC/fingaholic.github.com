@@ -387,6 +387,12 @@ body{
 	}
 }
 
+.mod-socialbutton{
+	margin-top:40px;
+	// http://facebook.stackoverflow.com/questions/3247855/facebook-like-button-how-to-disable-comment-pop-up
+	.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {display: none !important;}
+}
+
 .mod-postdetail{
 	header{
 		margin-bottom:40px;
