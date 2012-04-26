@@ -13,7 +13,7 @@ summary: 'このブログに設置するために久々に弄ってみたら相�
 * [Like Button - Facebook Developers](https://developers.facebook.com/docs/reference/plugins/like/ 'Like Button - Facebook Developers')
 
 1. 「URL to Like」は設置されたページのURLを取って欲しいから空にした。
-2. 「Send Button (XFBML Only)」不要なのでチェックを外した
+2. 「Send Button (XFBML Only)」不要なのでチェックを外した。
 3. 「Layout Style」は「standard」を選択。
 4. 「Width」はとりあえずデフォルト値の「450」のまま。
 5. 「Show Faces」は不要なのでチェックを外した。
