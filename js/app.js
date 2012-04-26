@@ -1,7 +1,7 @@
 /*!
  * app.js
  *
- * @modified 2012/04/19
+ * @modified 2012/04/26
  * @requires Modernizr 2.5.3 or later &&
  *           Respond 1.1.0 &&
  *           jQuery 1.7.x or later &&
@@ -26,18 +26,48 @@
 	var onComplete = function(){
 
 		(function($){
+
+			//  short snippet for detecting versions of IE
+			//  https://gist.github.com/2499659
+			//  https://gist.github.com/2133625
+			(function(){
+				var ie = (function(){
+					var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');
+					while(
+						div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+						all[0]
+					);
+					return v > 4 ? v : undef;
+				}());
+				$.browser.ie6 = (ie === 6);
+				$.browser.ielt7 = (ie < 7);
+				$.browser.ie7 = (ie === 7);
+				$.browser.ielt8 = (ie < 8);
+				$.browser.ie8 = (ie === 8);
+				$.browser.ielt9 = (ie < 9);
+				$.browser.ie9 = (ie === 9);
+			}());
+
 			// twitter
 			(function(){
-				$.getScript('https://platform.twitter.com/widgets.js');
+				$.getScript('//platform.twitter.com/widgets.js');
 			}());
+
 			// facebook
 			(function(d, s, id) {
 				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=414280305262678";
-				fjs.parentNode.insertBefore(js, fjs);
+				if(!d.getElementById(id)){
+					if(!$.browser.ielt8){
+						js = d.createElement(s);
+						js.id = id;
+						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=414280305262678";
+						fjs.parentNode.insertBefore(js, fjs);
+					}else{
+						$('.fb-like').remove();
+					};
+				};
 			}(document, 'script', 'facebook-jssdk'));
+
 		}(jQuery));
 
 	};
