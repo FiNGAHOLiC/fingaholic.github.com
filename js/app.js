@@ -55,7 +55,7 @@
 
 			// facebook
 			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
+				var js, fjs = d.getElementsByTagName(s)[0], $facebook = $('.fb-like');
 				if(!d.getElementById(id)){
 					if(!$.browser.ielt8){
 						js = d.createElement(s);
@@ -63,7 +63,7 @@
 						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=414280305262678";
 						fjs.parentNode.insertBefore(js, fjs);
 					}else{
-						$('.fb-like').remove();
+						$facebook.remove();
 					};
 				};
 			}(document, 'script', 'facebook-jssdk'));
