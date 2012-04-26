@@ -40,7 +40,8 @@ $ ruby -rwebrick -e "WEBrick::HTTPServer.new({:DocumentRoot => './', :Port => 80
 {% endhighlight %}
 
 コマンドラインから叩く場合は下記ファイルをwebserver.rbとして保存しておく。  
-ちなみにDocumentRootはその都度設定しておく。
+<del>ちなみにDocumentRootはその都度設定しておく。</del>  
+カレントディレクトリで起動の場合は不要だった。
 
 {% highlight ruby %}
 require 'webrick'
