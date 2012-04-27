@@ -72,7 +72,7 @@ $typo-family-shingo:'新ゴ L','Shin Go Light';
 .snp-font-26{ font-size:197%; }
 .snp-font-28{ font-size:215.6%; }
 .snp-font-30{ font-size:231%; }
-.snp-font-100{ font-size:770%; }
+.snp-font-98{ font-size:754.6%; }
 
 .snp-font-droid-regular{ font-family:$typo-family-droid-regular; }
 .snp-font-droid-italic{ font-family:$typo-family-droid-italic; }
@@ -234,7 +234,7 @@ body{
 		text-align:center;
 		line-height:1;
 		h1{
-			@extend .snp-font-100;
+			@extend .snp-font-98;
 			@extend .snp-font-chunkfive;
 			margin-bottom:20px;
 			@media screen and (max-width:650px){

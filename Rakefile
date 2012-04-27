@@ -1,3 +1,9 @@
+# Usage: rake watch
+desc "Watch scss"
+task :watch do
+	sh "sass --style compressed --watch scss:css"
+end
+
 # Usage: rake preveiw
 desc "Launch preview environment"
 task :preview do
