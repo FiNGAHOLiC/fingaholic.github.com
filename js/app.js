@@ -28,7 +28,6 @@
 		(function($){
 
 			//  short snippet for detecting versions of IE
-			//  https://gist.github.com/2499659
 			//  https://gist.github.com/2133625
 			(function(){
 				var ie = (function(){
@@ -54,15 +53,15 @@
 			}());
 
 			// facebook
-			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0], $facebook = $('.fb-like');
-				if(!d.getElementById(id)){
-						js = d.createElement(s);
-						js.id = id;
-						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=414280305262678";
-						fjs.parentNode.insertBefore(js, fjs);
+			(function(){
+				if(!!window.FB){
+					FB.init({ cookie: true, xfbml: true, appId: '414280305262678' });
+				}else{
+					$.getScript("http://connect.facebook.net/ja_JP/all.js#xfbml=1", function(){
+						FB.init({ cookie: true, xfbml: true, appId: '414280305262678' });
+					});
 				};
-			}(document, 'script', 'facebook-jssdk'));
+			}());
 
 		}(jQuery));
 
