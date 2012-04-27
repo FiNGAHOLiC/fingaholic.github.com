@@ -61,7 +61,6 @@
 						js.id = id;
 						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=414280305262678";
 						fjs.parentNode.insertBefore(js, fjs);
-						$facebook.remove();
 				};
 			}(document, 'script', 'facebook-jssdk'));
 
