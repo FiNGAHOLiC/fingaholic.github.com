@@ -3,7 +3,7 @@ layout: post
 category: sns
 title: mixi、twitter、FacebookのLikeボタンを設置する
 date: 2012-04-29
-summary: 'Facebookだけじゃなく仕事でよく使うLikeボタンをまとめてみた。ちなみにjQuery使用前提だけどLoadScript的な関数作っとけば代用は可能。'
+summary: 'Facebookだけじゃなく仕事でよく使うLikeボタンをまとめてみた。ちなみにjQuery使用前提だけどloadScript的な関数作っとけば代用は可能。'
 ---
 
 [前回の記事][facebook]でHTMLからscript要素を分離したけど他のサービスのLikeボタン（といってもtwitterとmixiだけ）も分離してみた。ちなみに当ブログではmixiユーザーは恐らく見ないだろうから設置してない。
