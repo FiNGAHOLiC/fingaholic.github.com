@@ -60,13 +60,13 @@ summary: 'Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
 		 * facebook
 		 */
 		(function(){
-			 if(window.FB){
-				 FB.init({ cookie: true, xfbml: true });
-			 }else{
-				 $.getScript("//connect.facebook.net/ja_JP/all.js", function(){
-				 FB.init({ cookie: true, xfbml: true });
-				 });
-			 };
+			if(window.FB){
+				FB.init({ cookie: true, xfbml: true });
+			}else{
+				$.getScript("//connect.facebook.net/ja_JP/all.js", function(){
+					FB.init({ cookie: true, xfbml: true });
+				});
+			};
 		}());
 
 	});
