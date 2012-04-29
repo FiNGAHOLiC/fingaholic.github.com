@@ -54,10 +54,10 @@
 
 			// facebook
 			(function(){
-				if(!!window.FB){
+				if(window.FB){
 					FB.init({ cookie: true, xfbml: true, appId: '414280305262678' });
 				}else{
-					$.getScript("http://connect.facebook.net/ja_JP/all.js#xfbml=1", function(){
+					$.getScript("http://connect.facebook.net/ja_JP/all.js", function(){
 						FB.init({ cookie: true, xfbml: true, appId: '414280305262678' });
 					});
 				};
