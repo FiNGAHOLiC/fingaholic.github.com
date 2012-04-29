@@ -39,7 +39,7 @@ summary: 'Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
 
 ちなみにmixiに関しては下記ページにログインしてmixi Pluginから新規サービスを作成、対象となるページを登録してservice-keyを発行する必要がある。
 
-[mixi Developer Center](http://developer.mixi.co.jp/ 'mixi Developer Center')
+* [mixi Developer Center](http://developer.mixi.co.jp/ 'mixi Developer Center')
 
 {% highlight javascript %}
 ;(function($, window, document, undefined){
@@ -83,4 +83,4 @@ Facebookに関してはロケールを明示的に示したかったので**パ�
 
 ちなみに関係ないけどmarkdown記法の中にjsFiddleのiframe埋め込むとレンダリングがストップしたので調べてみると下記のようにiframeタグに適当な文字列を入れとくと解決した。
 
-[Issue #346: Inserting an iframe causes page rendering to be partial · mojombo/jekyll](https://github.com/mojombo/jekyll/issues/346 'Issue #346: Inserting an iframe causes page rendering to be partial · mojombo/jekyll')
+* [Issue #346: Inserting an iframe causes page rendering to be partial · mojombo/jekyll](https://github.com/mojombo/jekyll/issues/346 'Issue #346: Inserting an iframe causes page rendering to be partial · mojombo/jekyll')
