@@ -425,7 +425,7 @@ body{
 }
 
 .mod-postmain{
-	h2,h3,h4,h5,h6,p,ul,ol,dl,table,blockquote,ins,.highlight{ margin-top:20px; }
+	h2,h3,h4,h5,h6,p,ul,ol,dl,table,blockquote,ins,.highlight, iframe{ margin-top:20px; }
 	h1{
 		@extend .snp-font-18;
 		@extend .snp-font-shingo;
