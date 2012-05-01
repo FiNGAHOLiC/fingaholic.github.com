@@ -7,6 +7,9 @@ module.exports = function(grunt){
 				'js/jquery.ui.plugin.js',
 				'js/app.js'
 			]
+		},
+		min : {
+			'js/all.min.js' : 'js/all.js'
 		}
 	});
 };
