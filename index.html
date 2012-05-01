@@ -24,13 +24,9 @@ top: true
 			{% else %}
 				<div class="prev"><a href="/page{{ paginator.previous_page }}">&#171; Newer Entries</a></div>
 			{% endif %}
-		{% else %}
-			<div class="prev">&#171; Newer Entries</div>
 		{% endif %}
 		{% if paginator.next_page %}
 			<div class="next"><a href="/page{{ paginator.next_page }}">Older Entries &#187;</a></div>
-		{% else %}
-			<div class="next">Older Entries &#187;</div>
 		{% endif %}
 	</div>
 {% endif %}
