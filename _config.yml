@@ -15,7 +15,7 @@ lsi: false
 pygments: true
 markdown: maruku
 permalink: date
-exclude: [scss, README.md, Rakefile]
+exclude: [scss, README.md, Rakefile, gruntTasks, grunt.js]
 paginate : 10
 
 maruku:

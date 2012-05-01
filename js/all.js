@@ -260,11 +260,12 @@ jQuery.extend( jQuery.easing,
 
 		// facebook
 		(function(){
+			var appId = 414280305262678;
 			if(window.FB){
-				FB.init({ cookie: true, xfbml: true, appId: '414280305262678' });
+				FB.init({ cookie: true, xfbml: true, appId: appId });
 			}else{
 				$.getScript("http://connect.facebook.net/ja_JP/all.js", function(){
-					FB.init({ cookie: true, xfbml: true, appId: '414280305262678' });
+					FB.init({ cookie: true, xfbml: true, appId: appId });
 				});
 			};
 		}());

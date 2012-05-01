@@ -14,9 +14,9 @@
 	<title>{% unless page.top %}{{ page.title }} | {% endunless %}{{ site.title }}</title>
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="{{ site.title }}">
-	<link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="/css/all.min.css">
 	<script src="/js/modernizr-2.5.3.min.js"></script>
-	<script>if(!Modernizr.mq()) Modernizr.load('/js/respond.min.js');</script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
 	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="/js/all.min.js"></script>
