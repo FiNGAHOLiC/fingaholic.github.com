@@ -1075,6 +1075,11 @@ body {
   padding-left: 20px;
   border-left: 5px solid #e5e5e5;
   color: #7f7f7f; }
+.mod-postmain .inline {
+  padding: 0 5px;
+  background: #272822;
+  color: #f8f8f2;
+  display: inline-block; }
 .mod-postmain a:link {
   color: #a5001e;
   text-decoration: underline; }

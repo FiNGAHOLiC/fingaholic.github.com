@@ -443,6 +443,12 @@ body{
 		border-left:5px solid $color-lightgray;
 		color:$color-gray;
 	}
+	.inline{
+		padding:0 5px;
+		background:#272822;
+		color:#f8f8f2;
+		display:inline-block;
+	}
 	// table,.highlight{ margin:25px 0; }
 	a{
 		&:link{

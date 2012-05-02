@@ -30,5 +30,5 @@ module.exports = function(grunt){
 			}
 		}
 	});
-	grunt.loadTasks('gruntTasks');
+	grunt.loadTasks('tasks');
 };
