@@ -46,19 +46,13 @@ summary: 'Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
 
 	$(function(){
 
-		/**
-		 * mixi
-		 */
+		// mixi
 		$.getScript('//static.mixi.jp/js/plugins.js#lang=ja');
 
-		/**
-		 * twitter
-		 */
+		// twitter
 		$.getScript('//platform.twitter.com/widgets.js');
 
-		/**
-		 * facebook
-		 */
+		// facebook
 		(function(){
 			if(window.FB){
 				FB.init({ cookie: true, xfbml: true });
@@ -79,7 +73,7 @@ Facebookに関してはロケールを明示的に示したかったので**パ�
 
 動作サンプルは下記。
 
-<iframe style="width: 100%; height: 500px" src="http://jsfiddle.net/FiNGAHOLiC/jNNE7/embedded/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
+<iframe style="width: 100%; height: 450px" src="http://jsfiddle.net/FiNGAHOLiC/jNNE7/embedded/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
 
 ちなみに関係ないけどmarkdown記法の中にjsFiddleのiframe埋め込むとレンダリングがストップしたので調べてみると下記のようにiframeタグに適当な文字列を入れとくと解決した。
 
