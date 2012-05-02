@@ -1,12 +1,13 @@
 # Usage: rake watch
-desc "Watch scss"
+desc "Grunt watch"
 task :watch do
-	sh "sass --style compressed --watch scss:css"
+	sh "grunt watch"
 end
 
 # Usage: rake preveiw
-desc "Launch preview environment"
+desc "Build files and launch preview environment"
 task :preview do
+	sh "grunt"
 	sh "jekyll --server --auto"
 end
 
