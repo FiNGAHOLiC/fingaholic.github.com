@@ -98,11 +98,17 @@ $typo-family-shingo:'新ゴ L','Shin Go Light';
 //
 // ==========================
 
-h1,h2,h3,h4,h5,h6,p,dl,dd,ul,ol,pre,blockquote{ margin:0; }
+h1,h2,h3,h4,h5,h6,p,dl,dd,ul,ol,pre,blockquote{
+	margin:0;
+}
 
-h1,h2,h3,h4,h5,h6{ font-weight:normal; }
+h1,h2,h3,h4,h5,h6{
+	font-weight:normal;
+}
 
-small{ font-size:100%; }
+small{
+	font-size:100%;
+}
 
 
 // ==========================
@@ -111,10 +117,15 @@ small{ font-size:100%; }
 //
 // ==========================
 
-ul,ol{ padding-left:2em; }
+ul,ol{
+	padding-left:2em;
+}
 
-hr{ border:none; }
+hr{
+	border:none;
+}
 
+// Flexible image
 // http://msdn.microsoft.com/en-us/library/ff521095(VS.85).aspx
 img{
 	max-width:100%;
@@ -140,7 +151,9 @@ table{
 		}
 	}
 	tr:nth-child(odd){
-		td{ background:#efefe6; }
+		td{
+			background:#efefe6;
+		}
 	}
 }
 
@@ -163,7 +176,9 @@ a{
 	}
 }
 
-pre,code,kbd,samp,tt{ line-height:1.6; }
+pre,code,kbd,samp,tt{
+	line-height:1.6;
+}
 
 ::selection,::-moz-selection{
 	background:$color-rose;
@@ -182,8 +197,10 @@ pre,code,kbd,samp,tt{ line-height:1.6; }
 ::-webkit-scrollbar-thumb:active { background:#000; }
 
 // https://developers.facebook.com/docs/reference/javascript/
-// not recommended, but I don't care...
-#fb-root{ display:none; }
+// Not recommended, but I don't care...
+#fb-root{
+	display:none;
+}
 
 
 // ==========================
@@ -345,7 +362,9 @@ body{
 .mod-postlist{
 	section{
 		margin-bottom:60px;
-		&:last-child{ margin-bottom:0; }
+		&:last-child{
+			margin-bottom:0;
+		}
 		header{
 			margin-bottom:10px;
 			p{
@@ -383,8 +402,12 @@ body{
 		bottom:1px solid $color-lightgray;
 	}
 	line-height:1;
-	.prev{ float:left; }
-	.next{ float:right; }
+	.prev{
+		float:left;
+	}
+	.next{
+		float:right;
+	}
 	@media screen and (max-width:480px){
 		margin-top:40px;
 		font-size:108%; // 14px
@@ -398,9 +421,13 @@ body{
 		line-height:1;
 	}
 	// http://facebook.stackoverflow.com/questions/3247855/facebook-like-button-how-to-disable-comment-pop-up
-	.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr { display: none !important; }
+	.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr{
+		display: none !important;
+	}
 	@media screen and (max-width:490px){
-		.fb-like span, .fb-like span iframe{ width:260px !important; }
+		.fb-like span, .fb-like span iframe{
+			width:260px !important;
+		}
 	}
 }
 
@@ -425,7 +452,9 @@ body{
 }
 
 .mod-postmain{
-	h2,h3,h4,h5,h6,p,ul,ol,dl,table,blockquote,ins,.highlight, iframe{ margin-top:20px; }
+	h2,h3,h4,h5,h6,p,ul,ol,dl,table,blockquote,ins,.highlight,iframe{
+		margin-top:20px;
+	}
 	h1{
 		@extend .snp-font-18;
 		@extend .snp-font-shingo;

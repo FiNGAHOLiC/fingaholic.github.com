@@ -1,5 +1,19 @@
 module.exports = function(grunt){
 	grunt.initConfig({
+		watch : {
+			scripts : {
+				files : [
+					'js/*.js'
+				],
+				tasks : 'concat min'
+			},
+			sass : {
+				files : [
+					'scss/*.scss'
+				],
+				tasks : 'sass cssmin'
+			}
+		},
 		concat : {
 			dist : {
 				src : [
@@ -31,4 +45,5 @@ module.exports = function(grunt){
 		}
 	});
 	grunt.loadTasks('tasks');
+	grunt.registerTask('default', 'concat min sass cssmin');
 };
