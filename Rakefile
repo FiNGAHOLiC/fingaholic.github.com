@@ -14,7 +14,7 @@ end
 
 # Usage: rake release
 desc "Pushing repository to Github"
-task :release do
+task :publish do
 	message = "Site updated at #{Time.now.strftime('%Y-%m-%d')}"
 	sh "git add ."
 	sh "git commit -m \"#{message}\""
