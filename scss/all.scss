@@ -369,7 +369,6 @@ body{
 			margin-bottom:10px;
 			p{
 				@extend .snp-font-12;
-				margin-bottom:5px;
 				line-height:1;
 				color:$color-gray;
 			}
@@ -436,7 +435,6 @@ body{
 		margin-bottom:40px;
 		p{
 			@extend .snp-font-12;
-			margin-bottom:5px;
 			line-height:1;
 			color:$color-gray;
 		}
@@ -452,7 +450,7 @@ body{
 }
 
 .mod-postmain{
-	h2,h3,h4,h5,h6,p,ul,ol,dl,table,blockquote,ins,.highlight,iframe{
+	h2,h3,h4,h5,h6,p,ul,ol,dl,table,blockquote,ins,iframe,.highlight{
 		margin-top:20px;
 	}
 	h1{

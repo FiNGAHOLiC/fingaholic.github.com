@@ -1017,7 +1017,6 @@ body {
   .mod-postlist section header {
     margin-bottom: 10px; }
     .mod-postlist section header p {
-      margin-bottom: 5px;
       line-height: 1;
       color: #7f7f7f; }
     .mod-postlist section header h1 {
@@ -1058,7 +1057,6 @@ body {
 .mod-postdetail header {
   margin-bottom: 40px; }
   .mod-postdetail header p {
-    margin-bottom: 5px;
     line-height: 1;
     color: #7f7f7f; }
   .mod-postdetail header h1 {
@@ -1067,7 +1065,7 @@ body {
       .mod-postdetail header h1 {
         font-size: 153.9%; } }
 
-.mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-postmain p, .mod-postmain ul, .mod-postmain ol, .mod-postmain dl, .mod-postmain table, .mod-postmain blockquote, .mod-postmain ins, .mod-postmain .highlight, .mod-postmain iframe {
+.mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-postmain p, .mod-postmain ul, .mod-postmain ol, .mod-postmain dl, .mod-postmain table, .mod-postmain blockquote, .mod-postmain ins, .mod-postmain iframe, .mod-postmain .highlight {
   margin-top: 20px; }
 .mod-postmain h1 {
   margin-top: 40px; }
