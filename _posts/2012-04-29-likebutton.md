@@ -6,6 +6,8 @@ date: 2012-04-29
 summary: 'Facebookだけじゃなく仕事でよく使うLikeボタンをまとめてみた。ちなみにjQuery使用前提だけどloadScript的な関数作っとけば代用は可能。'
 ---
 
+**下記コードはHTML5のコード内に埋め込む事が前提で、IE7以上での表示を想定しており、FacebookのLikeボタンはIE6だと「Permission denied」エラーが出るので、IE6にも対応させたい場合はiframeにする必要がある。**
+
 [前回の記事][facebook]でHTMLからscript要素を分離したけど他のサービスのLikeボタン（といってもtwitterとmixiだけ）も分離してみた。ちなみに当ブログではmixiユーザーは恐らく見ないだろうから設置してない。
 
 [facebook]: /posts/2012-04-26-facebook.html 'FacebookのLikeボタンを設置する'
@@ -77,4 +79,4 @@ Facebookに関してはロケールを明示的に示したかったので**パ�
 
 ちなみに関係ないけどmarkdown記法の中にjsFiddleのiframe埋め込むとレンダリングがストップしたので調べてみると下記のようにiframeタグに適当な文字列を入れとくと解決した。
 
-* [Issue #346: Inserting an iframe causes page rendering to be partial · mojombo/jekyll](https://github.com/mojombo/jekyll/issues/346 'Issue #346: Inserting an iframe causes page rendering to be partial · mojombo/jekyll')
+* [Issue #346: Inserting an iframe causes page rendering to be partial ・ mojombo/jekyll](https://github.com/mojombo/jekyll/issues/346 'Issue #346: Inserting an iframe causes page rendering to be partial ・ mojombo/jekyll')
