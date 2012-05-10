@@ -1071,7 +1071,7 @@ body {
       .mod-postdetail header h1 {
         font-size: 153.9%; } }
 
-.mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-postmain p, .mod-postmain ul, .mod-postmain ol, .mod-postmain dl, .mod-postmain table, .mod-postmain blockquote, .mod-postmain ins, .mod-postmain iframe, .mod-postmain .highlight {
+.mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-postmain p, .mod-postmain ul, .mod-postmain ol, .mod-postmain dt, .mod-postmain dd, .mod-postmain table, .mod-postmain blockquote, .mod-postmain ins, .mod-postmain iframe, .mod-postmain .highlight {
   margin-top: 20px; }
 .mod-postmain h1 {
   margin-top: 40px; }
