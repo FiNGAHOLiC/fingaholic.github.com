@@ -50,6 +50,7 @@ $typo-family-serif:'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'HGS明�
 $typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
 $typo-family-gothicmb101:'ゴシックMB101 L', 'Gothic MB101 Light';
 $typo-family-shingo:'新ゴ L','Shin Go Light';
+$typo-family-multilingual:Helvetica, Arial, sans-serif;
 
 
 // ==========================
@@ -83,6 +84,7 @@ $typo-family-shingo:'新ゴ L','Shin Go Light';
 .snp-font-sanserif{ font-family:$typo-family-sanserif; }
 .snp-font-gothicmb101{ font-family:$typo-family-gothicmb101; }
 .snp-font-shingo{ font-family:$typo-family-shingo; }
+.snp-font-multilingual{ font-family:$typo-family-multilingual; }
 
 .snp-clearfix{
 	overflow:hidden;
@@ -119,6 +121,10 @@ small{
 
 ul,ol{
 	padding-left:2em;
+}
+
+dt{
+	font-weight:bold;
 }
 
 hr{

@@ -822,6 +822,9 @@ tt {
 .snp-font-shingo, .mod-postlist section header h1, .mod-postdetail header h1, .mod-postmain h1, .mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-archive .posts .title {
   font-family: "新ゴ L", "Shin Go Light"; }
 
+.snp-font-multilingual {
+  font-family: Helvetica, Arial, sans-serif; }
+
 .snp-clearfix, .mod-gnavi nav ul, .mod-pagenation, .mod-archive .posts {
   overflow: hidden;
   _zoom: 1; }
@@ -837,6 +840,9 @@ small {
 
 ul, ol {
   padding-left: 2em; }
+
+dt {
+  font-weight: bold; }
 
 hr {
   border: none; }
