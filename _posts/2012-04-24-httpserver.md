@@ -3,7 +3,7 @@ layout: post
 category: ruby
 title: ローカルで簡易HTTPサーバー
 date: 2012-04-24
-summary: 'MAMPとかXAMPPとかでもいいんだけどローカル用の管理下にないファイルとかをサッと確認したい時に使うアレをメモ。'
+summary: MAMPとかXAMPPとかでもいいんだけどローカル用の管理下にないファイルとかをサッと確認したい時に使うアレをメモ。
 ---
 
 # Pythonの場合
