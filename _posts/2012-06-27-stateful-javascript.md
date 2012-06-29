@@ -1,7 +1,7 @@
 ---
 layout: post
 category: javascript
-title: Stateful JavaScript 1章
+title: ステートフルJavaScript 1章
 date: 2012-06-27
 summary: ステートフルJavaScript1章の備考録、っていうか写経。
 ---
