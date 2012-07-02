@@ -244,7 +244,7 @@ PubSub.publish('wem');
 }(jQuery));
 {% endhighlight %}
 
-* [jQuery Tiny Pub/Sub: A really, really, REALLY tiny pub/sub implementation for jQuery. &mdash; Gist](https://gist.github.com/661855, 'jQuery Tiny Pub/Sub: A really, really, REALLY tiny pub/sub implementation for jQuery. &mdash; Gist')
+* [jQuery Tiny Pub/Sub: A really, really, REALLY tiny pub/sub implementation for jQuery. &mdash; Gist](https://gist.github.com/661855 'jQuery Tiny Pub/Sub: A really, really, REALLY tiny pub/sub implementation for jQuery. &mdash; Gist')
 
 使い方は下記。
 
