@@ -488,4 +488,5 @@ $(function(){
 * [pjaxで実現する超高速Web | monoの開発ブログ](http://blog.monoweb.info/article/2011050321.html 'pjaxで実現する超高速Web | monoの開発ブログ')
 * [第19回html5とか勉強会 pjax](http://www.slideshare.net/KensakuKOMATSU/19html5 '第19回html5とか勉強会 pjax')
 * [githubのURLをうまく扱うオシャレなアレ = pjax  @  val it: α → α = fun](http://www.jmuk.org/diary/index.php/2011/06/03/pjax/ 'githubのURLをうまく扱うオシャレなアレ = pjax  @  val it: α → α = fun')
+
 お次はMVCのV、ビューとテンプレートについて。
