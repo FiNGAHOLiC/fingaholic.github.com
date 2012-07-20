@@ -32,20 +32,7 @@ summary: ステートフルJavaScript4章の備考録、っていうか写経。
 }(jQuery));
 {% endhighlight %}
 
-グローバル変数よりローカル変数なので高速で効率的なので、匿名関数への引数としてグローバル変数を渡して、ローカル変数で使いましょうねと。
-
-## 4.1.2 グローバル変数のエクスポート
-
-{% highlight javascript %}
-(function($, exports){
-	exports.Foo = 'wem';
-}(jQuery, window));
-
-console.log(Foo); // => 'wem'
-{% endhighlight %}
-
-インポートの逆。windowオブジェクトをモジュール内にインポートしてプロパティをセット。  
-ちなみにjQueryでもやってる。
+グローバル変数よりローカル変数なので高速で効率的なので、匿名関数への引数としてグローバル変数を渡して、ローカル変数で使いましょうねと。ちなみにjQueryでもやってる。
 
 {% highlight javascript %}
 (function($, window, document, undefined){
@@ -58,6 +45,18 @@ undefinedに関しては下記リンク先に書いてあるとおり、JavaScri
 で、windowとdocumentに関してはJSのminifierのためらしい。JSのminifierはローカルスコープで一文字の変数に置き換えるのでちょっと軽くなるとの事。まあ体感で感じることはないんだろうけども。
 
 * [JSでローカルスコープ作るときのアレの意味 - Takazudo hamalog](http://hamalog.tumblr.com/post/4047986427/jsscope 'JSでローカルスコープ作るときのアレの意味 - Takazudo hamalog')
+
+## 4.1.2 グローバル変数のエクスポート
+
+{% highlight javascript %}
+(function($, exports){
+	exports.Foo = 'wem';
+}(jQuery, window));
+
+console.log(Foo); // => 'wem'
+{% endhighlight %}
+
+インポートの逆。windowオブジェクトをモジュール内にインポートしてプロパティをセット。
 
 # 4.2 コンテキストの定義
 
@@ -122,7 +121,7 @@ undefinedに関しては下記リンク先に書いてあるとおり、JavaScri
 		return $.proxy(func, this);
 	};
 	mod.fn.load = function(){
-		this.proxy(func)();
+		$(this.proxy(func));
 	};
 	mod.fn.include = function(ob){
 		$.extend(this, ob);
@@ -183,7 +182,7 @@ var exports = this;
 
 下記が実行例。
 
-<iframe style="width: 100%; height: 450px" src="http://jsfiddle.net/FiNGAHOLiC/DXpc9/embedded/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
+<iframe style="width: 100%; height: 450px" src="http://jsfiddle.net/FiNGAHOLiC/PnLNV/embedded/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
 
 > 大きな変更点はもう一つあり、コントローラのインスタンス化時にview要素を渡しています。以前のコードではコントローラ内で要素を取得していました。コントローラを異なる要素に対しても利用でき、コードの重複を最小限にできるという点で、この変更には大きな意味があります。
 
@@ -252,6 +251,8 @@ jQuery(function($){
 下記が実行例。
 
 <iframe style="width: 100%; height: 450px" src="http://jsfiddle.net/FiNGAHOLiC/yN292/embedded/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
+
+大分分離できて汎用的に使いまわせそうになってきたけどthis.searchForm.submit(this.proxy(this.search));が気になるよねと。
 
 ## 4.2.4 イベント処理の委託
 
