@@ -472,7 +472,7 @@ $(function(){
 
 ポイントは何でもかんでもハッシュをシバン（hash=#、bang=!、合わせてshebang=シバンらしい）にする必要はなくて、**GoogleのAjax Crawlingという仕様に準拠している場合にのみ使用**するものだということ。結局サーバーサイドでUgly URL（_escaped_fragment_に置換されたURL）対応でHTML Snapshotを返す等の作業が出来ない場合は意味がない。
 
-ちなみに現在のtwitterは一部を除いてシバンによる管理じゃなくなってた。
+ちなみに現在のTwitterは一部を除いてシバンによる管理じゃなくなってた。
 
 ## 4.4.4 HTML5のHistory API
 
