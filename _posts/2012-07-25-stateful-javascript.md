@@ -43,7 +43,7 @@ var Maths = require('./maths');
 assertEqual(Maths.per(50, 100), 50);
 {% endhighlight %}
 
-> モジュールの中で定義されている関数を呼び出したい場合に必要なコードはrequire()のみであり、ここにモジュールのファイルを指定します。読み込んだ内容はローカル変数に保存されます。この例では、math.jsで公開されている関数はすべてMaths関数を通じて利用可能です。ここでのポイントは、モジュールが名前空間の中に置かれることと、Narwhal（https://github.com/tlrobinson/narwhal）やNode.jsといったCommonJS準拠のすべてのJavaScriptインタプリタ上で動作するという点です。
+> モジュールの中で定義されている関数を呼び出したい場合に必要なコードはrequire()のみであり、ここにモジュールのファイルを指定します。読み込んだ内容はローカル変数に保存されます。この例では、math.jsで公開されている関数はすべてMaths関数を通じて利用可能です。ここでのポイントは、モジュールが名前空間の中に置かれることと、Narwhal（[https://github.com/tlrobinson/narwhal](https://github.com/tlrobinson/narwhal 'https://github.com/tlrobinson/narwhal')）やNode.jsといったCommonJS準拠のすべてのJavaScriptインタプリタ上で動作するという点です。
 
 ## 6.1.2 モジュールとブラウザ
 

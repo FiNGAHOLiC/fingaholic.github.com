@@ -520,8 +520,15 @@ tt {
 
 .highlight pre {
   padding: 20px;
+  /* http://perishablepress.com/wrapping-content/ */
   white-space: pre;
-  word-wrap: normal; }
+  white-space: pre-wrap;
+  white-space: pre-line;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -hp-pre-wrap;
+  word-wrap: break-word; }
 
 .highlight .hll {
   background-color: #49483e; }
@@ -1075,6 +1082,16 @@ body {
   margin-top: 20px; }
 .mod-postmain h1 {
   margin-top: 40px; }
+.mod-postmain p {
+  /* http://perishablepress.com/wrapping-content/ */
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: pre-line;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -hp-pre-wrap;
+  word-wrap: break-word; }
 .mod-postmain blockquote {
   padding-left: 20px;
   border-left: 5px solid #e5e5e5;

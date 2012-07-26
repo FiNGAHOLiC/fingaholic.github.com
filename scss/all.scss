@@ -471,6 +471,17 @@ body{
 	p,ul,ol,dl,table,blockquote,ins,.highlight{
 		@extend .snp-font-14;
 	}
+	p{
+		/* http://perishablepress.com/wrapping-content/ */
+		white-space:pre;
+		white-space:pre-wrap;
+		white-space:pre-line;
+		white-space:-pre-wrap;
+		white-space:-o-pre-wrap;
+		white-space:-moz-pre-wrap;
+		white-space:-hp-pre-wrap;
+		word-wrap:break-word;
+	}
 	blockquote{
 		padding-left:20px;
 		border-left:5px solid $color-lightgray;

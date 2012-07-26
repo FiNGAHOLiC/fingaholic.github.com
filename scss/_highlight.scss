@@ -1,7 +1,18 @@
 .highlight { overflow:auto; background-color: #272822; font-family: Courier, monospace; color: #f8f8f2; }
 .highlight::-webkit-scrollbar { width: 5px; height: 5px; }
 .highlight::-webkit-scrollbar-track { background: #333; }
-.highlight pre { padding:20px; white-space:pre; word-wrap:normal; }
+.highlight pre {
+	padding:20px;
+	/* http://perishablepress.com/wrapping-content/ */
+	white-space:pre;
+	white-space:pre-wrap;
+	white-space:pre-line;
+	white-space:-pre-wrap;
+	white-space:-o-pre-wrap;
+	white-space:-moz-pre-wrap;
+	white-space:-hp-pre-wrap;
+	word-wrap:break-word;
+}
 .highlight .hll { background-color: #49483e; }
 .highlight .c { color: #75715e; } /* Comment */
 .highlight .err { color: #960050; background-color: #1e0010; } /* Error */
