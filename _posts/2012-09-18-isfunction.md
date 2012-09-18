@@ -16,12 +16,12 @@ var swf = null,
     },
     onScroll = function(){
 	var fn = onScrollHandler();
-    	$(window).on('scroll', onScrollHandler);
+    	$(window).on('scroll', fn);
     },
     onScrollHandler = function(){
     	var isFunc = $.isFunction(swf['onBrowserScroll']);
     	return function(){
-    		if(isFunc) swf['onBrowserScroll'](swf);
+    		if(isFunc) swf['onBrowserScroll']();
     	};
     };
 swfobject.embedSWF('.main.swf', 'flashcontents', 100, 100, '10', '', {}, {}, {}, onEmbedSWFHandler);
@@ -52,7 +52,7 @@ var swf = null,
     onScrollHandler = function(){
     	var isFunc = (typeof swf['onBrowserScroll'] === 'function');
     	return function(){
-    		if(isFunc) swf['onBrowserScroll'](swf);
+    		if(isFunc) swf['onBrowserScroll']();
     	};
     };
 swfobject.embedSWF('.main.swf', 'flashcontents', 100, 100, '10', '', {}, {}, {}, onEmbedSWFHandler);
