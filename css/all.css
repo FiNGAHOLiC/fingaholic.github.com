@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 /* normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
 /* =============================================================================
    HTML5 display definitions
@@ -929,11 +929,11 @@ body {
   .area-body .area-header {
     position: relative;
     *zoom: 1; }
-  @media screen and (max-width:840px) {
+  @media screen and (max-width: 840px) {
     .area-body {
       width: auto;
       padding: 0 40px; } }
-  @media screen and (max-width:650px) {
+  @media screen and (max-width: 650px) {
     .area-body {
       width: auto;
       padding: 0 20px; } }
@@ -944,24 +944,24 @@ body {
   line-height: 1; }
   .mod-header hgroup h1 {
     margin-bottom: 20px; }
-    @media screen and (max-width:650px) {
+    @media screen and (max-width: 650px) {
       .mod-header hgroup h1 {
         font-size: 616%; } }
-    @media screen and (max-width:480px) {
+    @media screen and (max-width: 480px) {
       .mod-header hgroup h1 {
         font-size: 462%; } }
   .mod-header hgroup h2 {
     color: #3f3f3f; }
-    @media screen and (max-width:650px) {
+    @media screen and (max-width: 650px) {
       .mod-header hgroup h2 {
         font-size: 138.5%; } }
-    @media screen and (max-width:480px) {
+    @media screen and (max-width: 480px) {
       .mod-header hgroup h2 {
         font-size: 108%; } }
-  @media screen and (max-width:650px) {
+  @media screen and (max-width: 650px) {
     .mod-header hgroup {
       padding: 110px 0; } }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-header hgroup {
       padding: 80px 0 0; } }
 
@@ -975,10 +975,10 @@ body {
   .mod-gnavi nav ul li {
     padding-left: 40px;
     float: left; }
-@media screen and (max-width:650px) {
+@media screen and (max-width: 650px) {
   .mod-gnavi nav ul {
     top: 20px; } }
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
   .mod-gnavi {
     padding-top: 40px;
     padding-bottom: 80px;
@@ -1009,10 +1009,10 @@ body {
   line-height: 1;
   text-align: center;
   color: #3f3f3f; }
-  @media screen and (max-width:650px) {
+  @media screen and (max-width: 650px) {
     .mod-footer p {
       padding: 110px 0 50px; } }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-footer p {
       padding: 80px 0 40px;
       font-size: 93%; } }
@@ -1028,10 +1028,10 @@ body {
       color: #7f7f7f; }
     .mod-postlist section header h1 {
       font-weight: normal; }
-      @media screen and (max-width:480px) {
+      @media screen and (max-width: 480px) {
         .mod-postlist section header h1 {
           font-size: 153.9%; } }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-postlist section .summary {
       font-size: 108%; } }
 
@@ -1045,7 +1045,7 @@ body {
     float: left; }
   .mod-pagenation .next {
     float: right; }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-pagenation {
       margin-top: 40px;
       font-size: 108%; } }
@@ -1057,7 +1057,7 @@ body {
     line-height: 1; }
   .mod-socialbutton .fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
     display: none !important; }
-  @media screen and (max-width:490px) {
+  @media screen and (max-width: 490px) {
     .mod-socialbutton .fb-like span, .mod-socialbutton .fb-like span iframe {
       width: 260px !important; } }
 
@@ -1068,7 +1068,7 @@ body {
     color: #7f7f7f; }
   .mod-postdetail header h1 {
     font-weight: normal; }
-    @media screen and (max-width:480px) {
+    @media screen and (max-width: 480px) {
       .mod-postdetail header h1 {
         font-size: 153.9%; } }
 
@@ -1113,7 +1113,7 @@ body {
   border-bottom: 1px solid #e5e5e5; }
   .mod-archive h1 {
     margin-bottom: 20px; }
-    @media screen and (max-width:480px) {
+    @media screen and (max-width: 480px) {
       .mod-archive h1 {
         font-size: 153.9%; } }
   .mod-archive .posts {
@@ -1125,7 +1125,7 @@ body {
       float: right;
       text-align: right;
       color: #7f7f7f; }
-      @media screen and (max-width:480px) {
+      @media screen and (max-width: 480px) {
         .mod-archive .posts .time {
           width: auto;
           float: none;
@@ -1134,36 +1134,36 @@ body {
     .mod-archive .posts .title {
       width: 660px;
       float: left; }
-      @media screen and (max-width:840px) {
+      @media screen and (max-width: 840px) {
         .mod-archive .posts .title {
           width: 470px; } }
-      @media screen and (max-width:650px) {
+      @media screen and (max-width: 650px) {
         .mod-archive .posts .title {
           width: 340px; } }
-      @media screen and (max-width:480px) {
+      @media screen and (max-width: 480px) {
         .mod-archive .posts .title {
           width: auto;
           float: none; } }
 
 .mod-about h1 {
   margin-bottom: 20px; }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-about h1 {
       font-size: 153.9%; } }
 .mod-about p {
   margin-bottom: 10px; }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-about p {
       font-size: 108%; } }
 
 .mod-notfound h1 {
   margin-bottom: 20px; }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-notfound h1 {
       font-size: 153.9%; } }
 .mod-notfound p {
   margin-bottom: 10px; }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-notfound p {
       font-size: 93%; } }
 
@@ -1172,6 +1172,6 @@ body {
   top: 0;
   left: 0;
   z-index: 2; }
-  @media screen and (max-width:480px) {
+  @media screen and (max-width: 480px) {
     .mod-github {
       display: none; } }
