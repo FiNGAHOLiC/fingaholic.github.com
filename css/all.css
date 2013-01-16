@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 /* normalize.css 2012-03-11T12:53 UTC - http://github.com/necolas/normalize.css */
 /* =============================================================================
    HTML5 display definitions
@@ -170,7 +170,7 @@ code,
 kbd,
 samp {
   font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
+  _font-family: "courier new", monospace;
   font-size: 1em; }
 
 /*
@@ -288,7 +288,7 @@ form {
  * Define consistent border, margin, and padding
  */
 fieldset {
-  border: 1px solid #c0c0c0;
+  border: 1px solid silver;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em; }
 
@@ -445,7 +445,7 @@ select,
 input,
 button,
 textarea {
-  font: 99% arial,helvetica,clean,sans-serif; }
+  font: 99% arial, helvetica, clean, sans-serif; }
 
 /**
  * To help tables remember to inherit
@@ -862,7 +862,7 @@ table {
   border-right: 1px solid #e8e8de;
   border-bottom: 1px solid #e8e8de; }
   table th, table td {
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     border-top: 1px solid #e8e8de;
     border-left: 1px solid #e8e8de; }
   table tr:nth-child(odd) td {

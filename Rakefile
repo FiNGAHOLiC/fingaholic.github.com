@@ -12,7 +12,7 @@ task :preview do
 end
 
 
-# Usage: rake release
+# Usage: rake publish
 desc "Pushing repository to Github"
 task :publish do
 	message = "Site updated at #{Time.now.strftime('%Y-%m-%d')}"

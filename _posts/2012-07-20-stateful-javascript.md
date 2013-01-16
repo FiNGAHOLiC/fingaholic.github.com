@@ -401,7 +401,7 @@ var con2 = {
 
 > そしてスタイルシートでは、このクラスが指定されている要素を表示し、指定されていない要素は非表示にします。
 
-{% highlight stylesheet %}
+{% highlight css %}
 #con1, #con2 { display: none; }
 #con1.active, #con2.active { display: block; }
 {% endhighlight %}
