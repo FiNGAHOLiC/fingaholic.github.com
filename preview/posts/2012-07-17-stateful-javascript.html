@@ -1,0 +1,479 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="ステートフルJavaScript 3章 | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-07-17-stateful-javascript.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="ステートフルJavaScript3章の備考録、っていうか写経。まずはモデル。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>ステートフルJavaScript 3章 | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="17 Jul 2012">17 Jul 2012</time></p>
+		<h1>ステートフルJavaScript 3章</h1>
+	</header>
+	<section class="mod-postmain"><h1 id='31_mvc'>3.1 MVCと名前空間</h1>
+
+<blockquote>
+<p>MVCパターンでは、データ管理はモデル（MVCのM）の中で行われます。モデルはビューやコントローラから切り離されていなければなりません。データの操作やふるまいに関するすべてのロジックは、モデルの中に適切な名前空間とともに保持されるべきです。</p>
+</blockquote>
+
+<p>これはなかなか実践出来てないところ。<br />プラグイン化して管理、連携してるとモデルもビューもコントローラも混ぜ混ぜで書いてた。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ユーザーの配列にUser.recordsという名前空間を与えることができました。ユーザーについての処理を行う関数も、Userモデル配下の名前空間に関連づけることにします。例えば以下のように、ユーザーのデータをサーバから取得するためのfetchRemoteという関数を定義します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>モデルが持つプロパティをすべて名前空間の中に置くと、プロパティ名の競合を避けることができ。同時にMVCへの準拠を確実なものにできます。また、複雑に絡まり合った関数やコールバックでコードが収拾のつかない状況に陥るのを防ぐこともできます。</p>
+</blockquote>
+
+<p>ここまでは大丈夫。</p>
+
+<blockquote>
+<p>名前空間の考え方をさらに一歩進めて、Userのインスタンスに特有の関数をすべてUserオブジェクトに持たせることも可能です。例えば、ユーザーを削除するための関数destroy()があるとします。この関数はユーザーのオブジェクトを参照しているため、以下のようにUserインスタンスに対して呼び出せるようにするべきです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>これを実現するには、Userを単なるオブジェクトでなくクラスとして定義します。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>特定のユーザーとの関連を持たない関数や変数については、以下のようにUserオブジェクト直下のプロパティとして宣言します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>いわゆるクラスメソッドでクラスから生成されたオブジェクト間で共通で使用出来るメソッドとして設定してやると。</p>
+
+<p>名前空間については下記が参考リンク。</p>
+
+<ul>
+<li><a href='http://michaux.ca/articles/javascript-namespacing' title='peter.michaux.ca - JavaScript Namespacing'>peter.michaux.ca - JavaScript Namespacing</a></li>
+</ul>
+
+<h1 id='32_orm'>3.2 ORMの作成</h1>
+
+<blockquote>
+<p>ORM（Object-Relational Mapping: オブジェクト関係マッピング）は従来、JavaScript以外の言語で使われるのが一般的でした。しかし、ORMは単に便利なデータ管理の手法であるだけではなく、モデルの利用法としても優れており、JavaScriptアプリケーションでも活用できます。例えば、ORMを使うとサーバ側のデータをモデルとして扱えます。ここではモデルのデータを変更すると、バックグラウンドでサーバーに対してAjaxリクエストが送信されます。また、モデルのインスタンスをHTMLの要素と関連づけることもできます。こうすると、インスタンスへの変更がビューに反映されることになります。</p>
+</blockquote>
+
+<p>？ サーバーサイドがあんまよく分からんから何となくしか理解できない。。。</p>
+
+<blockquote>
+<p>本質的に、ORMとは何らかのデータをラップしたオブジェクトのレイヤにすぎません。ORMはSQLデータベースの抽象化に使われるのが一般的ですが、ここではJavaScriptのデータ型を抽象化するためにORMを利用します。ORMというレイヤが加わると、独自の関数やプロパティを通じて単なるデータ構造により多くの機能を追加できるようになります。例えばデータの検証、監視、永続化あるいはサーバからのコールバックなどが、コードの再利用性を保ったまま実現できます。</p>
+</blockquote>
+
+<p>ORMはこの文章だけだとちょっと掴みづらい。 ただどっかで見たことあるなーって思ったら「みんなのPython」、通称「みんPy」に分かりやすい説明が書いてあった。まさかこんなところで役に立つとは。<br />ちなみにWebで閲覧できるので下記参考リンクよりどうぞ。<br />著者の柴田淳さんに感謝。</p>
+
+<blockquote>
+<p>　既に解説してきたとおり、データベースでデータを扱う手法と、Pythonのようなオブジェクト指向的なデータの扱い方の間には大きなギャップがあります。データベースではデータとデータを操作するための手続きが完全に分離しています。対してオブジェクト指向言語では、データと手続きが一体になっています。データを扱う時の考え方がそもそも異なるので、プログラムの中でデータベースを扱うときには、非Pythonな方法でデータを扱う必要が出てきます。<br />　Webアプリケーションにかぎらず、データの操作を行う処理は、プログラムの基本部分といってよいくらい重要な部分です。そのような重要な部分に、非Python的な手法を使わなければならないとすると、プログラムは手軽に書けなくなってしまいます。インスタンスの生成、アトリビュートへの代入やメソッド呼び出しなど、Python的な手法を使ってデータベースを操作できれば、もっと手軽に、かつ簡潔にプログラムが書けるようになるはずです。<br />　<strong>O/Rマッパー</strong>は、データベースとオブジェクト指向言語の間にあるギャップを埋める役割でよく利用される仕組みです。「O」は「オブジェクト」、「R」は「リレーショナル」を意味します。オブジェクト指向言語で利用されるオブジェクトと、リレーショナルデータベースのデータをうまくマッピングし、間を取り持ってくれる仕組みのことを指します。<br />O/Rマッパーにはたくさんの種類があり、マッピングの手法もいろいろとあります。O/Rマッパー全体に共通しているのは、<strong>データベース上のデータをオブジェクトとして扱える</strong>という特徴です。データを取り出したり、データを更新するために、SQL文字列を作る必要がほとんどありません。数値や文字列など、ごく普通のデータと同じように、データベース上のデータを扱えるのです。<br />　O/Rマッパーを使っても、データベースと通信するためにはどこかで誰かがSQL文字列を作る必要があります。データベースとの実際の通信はO/Rマッパーが裏側で密かに実行しています。O/Rマッパー自体に、便利なメソッドが定義してあったり、演算子のオーバーライドといった手法を活用して、SQL文字列を組み立てｍ適切にデータベースと更新を行うような作りになっているわけです。</p>
+</blockquote>
+
+<p>PythonをJavaScriptに脳内補完すればなんとなくイメージはつかめると思う。</p>
+
+<ul>
+<li><a href='http://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E9%96%A2%E4%BF%82%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0' title='オブジェクト関係マッピング - Wikipedia'>オブジェクト関係マッピング - Wikipedia</a></li>
+
+<li><a href='https://lindoc.jp/docs/1163' title='みんなのPython Webアプリ編 | Lindoc'>みんなのPython Webアプリ編 | Lindoc</a></li>
+</ul>
+
+<h2 id='321_'>3.2.1 プロトタイプによる継承</h2>
+
+<blockquote>
+<p>ここでは、ORMの作成にObject.create()という関数を利用することにします。これは1章で紹介した例（クラスをベースにしています）とは少し異なります。コンストラクタ関数とキーワードnewを使う場合と比べて、Object.create()を使うとプロトタイプによる継承が可能になるというメリットがあります。</p>
+</blockquote>
+
+<p>正直Object.create()ってあんま実務で使ってこなかった。</p>
+
+<blockquote>
+<p>Object.create()に引数としてプロトタイプオブジェクトを渡すと、そのプロトタイプに基づくオブジェクトが新たに生成されて返されます。言い換えると、渡したオブジェクトを継承した新しいオブジェクトが返されます。</p>
+</blockquote>
+
+<p>ちなみにIEは対応してないため、下記を設定して追加してやる必要がある。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>ちなみに上記はDouglas Crockfordの下記記事を元にしている。</p>
+
+<ul>
+<li><a href='http://javascript.crockford.com/prototypal.html' title='Prototypal Inheritance'>Prototypal Inheritance</a></li>
+</ul>
+
+<p>で、出来上がったのが下記コード。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Object.create()を使い慣れていないと、このコードは奇妙なものに思えるかもしれません。細かく分割しながら見ていきましょう。この関数はModelオブジェクトを継承した新しいオブジェクトを返すので、これを新たなモデルを生成する際に使用することにします。したがって、init()関数はModel.prototypeから継承した新しいオブジェクトを返すことになります。例えば以下のように、Modelオブジェクトのインスタンスを取得できます。</p>
+</blockquote>
+
+<p>もうちょっと細かく説明して欲しかったけど要するに、<strong>Model.prototypeから継承した新しいオブジェクトを返す</strong>っことね。<br />prototypeオブジェクトを内包してるのって確かにあまり馴染みがないから奇妙？に見えた。</p>
+
+<h2 id='322_orm'>3.2.2 ORMのプロパティを追加する</h2>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>jQuery.extend()というのは、forループを使ってすべてのプロパティを追加することを表す短縮記法であり、上記のload()関数とほぼ等価です。</p>
+</blockquote>
+
+<p>これは1章でも出てきたやり方でプロパティを追加してるだけ。</p>
+
+<blockquote>
+<p>これから多数のプロパティを追加することになるので、以下のようにextend()とinclude()をModelオブジェクトの一部にしてしまいましょう。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='323_'>3.2.3 レコードの永続化</h2>
+
+<blockquote>
+<p>レコードは何らかの手段で永続化しなければなりません。言い換えると、生成されたインスタンスへの参照を保存し、後でアクセスできるようにする必要があります。ここでは、Modelオブジェクトが持つrecordsというオブジェクトを通じて永続化を行います。ここにはインスタンスを保存する際に参照が追加され、インスタンスを削除する際に参照も合わせて削除されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>インスタンスが変更された場合は、以下のようにrecordsが保持している参照も更新されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ここで補助的な関数を用意し、インスタンスの保存状態や保存する必要の有無をチェックせずに済むようにします。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>また、find()関数にID値を渡すと該当するオブジェクトが返されるようにします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>ここまでのコードでちょっとまとめてみたのが下記。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/HWvJm/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<h1 id='33_id'>3.3 ID値の割り当て</h1>
+
+<blockquote>
+<p>現状のコードでは、レコードを保存する際には自分でIDの値を指定する必要があり非常に面倒です。これを自動化してみましょう。まず、GUID（Globally Unique Identifier）ジェネレータを使ってID値を生成します。技術的には、JavaScriptではAPIの制限もあり本来の意味でのGUIDを生成することはできず、擬似的な値しか生成できません。真にランダムなGUIDを生成するというのは非常に難しく、オペレーティングシステムではMACアドレスやマウスの位置、BIOSのチェックサム、電気的なノイズの量や放射線崩壊の測定値、ひいてはラバランプ（液体の中をかたまりが浮遊するインテリア用品）の状態などを元にしてGUIDを算出することもあります。しかし本書の目的に関する限り、JavaScriptにネイティブで用意されているMath.random()によって生成される擬似乱数でも十分です。</p>
+</blockquote>
+
+<p>放射線崩壊の測定値とかそこまでやるんだ。<br />JavaScript関係ないけど勉強になります。</p>
+
+<blockquote>
+<p>Robert KiefferはMath.random()を利用した使いやすく簡潔なGUIDジェネレータを公開しています（<a href='http://www.broofa.com/2008/09/javascript-uuid-function/' title='Broofa.com  &amp;raquo; Blog Archive   &amp;raquo; Javascript UUID Function'>Broofa.com &#187; Blog Archive &#187; Javascript UUID Function</a>）。以下に示すとおり、コードはとてもシンプルです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>実際リンク先のコードを見るとtoUpperCase()関数がなかったり、基数や文字列を指定できたりするコードも追加されてるみたいだった。 また、ジェネレータには上記以外にも下記リンクもある。</p>
+
+<ul>
+<li><a href='https://gist.github.com/1308368' title='generate random v4 UUIDs (107 bytes) &amp;mdash; Gist'>generate random v4 UUIDs (107 bytes) &#8212; Gist</a></li>
+</ul>
+
+<p>で、ORMにもGUIDジェネレータを組み込んでみる。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>ちなみに本ではクラスメソッドにGUID生成の処理を入れてたけどこれをインスタンスメソッドで追加。 組み込んでみると正しく動作してるのを確認できた。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/sSGtW/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<h1 id='34_'>3.4 参照の管理</h1>
+
+<blockquote>
+<p>すでに気づかれている読者も多いと思われますが、ここまでのコードには参照の扱い方に関して明白な問題点が存在します。それは、インスタンスを保存するときやfind()が検索結果を返す際にインスタンスのクローンを作成していないという点です。そのため、プロパティを変更すると保存されているインスタンスも変更されてしまうことになります。これはupdate()関数が呼ばれた場合にのみ保存されているインスタンスを更新するという方針に反しています（以下のコードを参照）。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>そこでfind()関数が検索結果を返す際には新規生成されたオブジェクトを返すことにします。レコードが生成あるいは更新された場合にも、オブジェクトの複製を行います。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>問題点はもう1つあります。Model.recordsオブジェクトがすべてのモデルの間で共有されてしまっています。このことを示したのが以下のコードです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>共有されることによって、以下のコードのようにすべてのレコードが混在してしまうという副作用が発生します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>新しいモデルを定義するたび、新しいrecordsオブジェクトを生成することによってこの問題は解消できます。生成時にコールバック関数Model.created()が呼び出されるので、この中でモデルに固有のオブジェクトをセットできます。具体的には以下のようにします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='35_'>3.5 データの読み込み</h1>
+
+<blockquote>
+<p>複数のページに区切られたリストを表示させるなら、ぜひ次のページを先読みするようにしましょう。よりよいやり方としては、ユーザーがリストをスクロールするのに合わせて自動的にデータを読み込んで表示させるというものがあります（Infinite Scrollパターンと呼ばれます）。いずれにせよ、ユーザーが感じる遅延をより少なくすることが望まれます。</p>
+</blockquote>
+
+<p>大抵初期表示用のデータだけ取得して表示ってパターンが多いからこの次のページの先読みってのが目から鱗だった。<br />まあケースバイケースだとは思うけども。</p>
+
+<blockquote>
+<p>データを取得する際に、UIが停止しないようにしましょう。読み込み中であることを表すインジケータを表示させるとともに、その間もUIが引き続き利用可能なようにするべきです。UIの停止が必要とされるようなシナリオはほとんど考えられません。</p>
+</blockquote>
+
+<p>ローダーの実装って実はすごく大事だっていう。ローダーの挙動って突き詰めると結構深かったりするし。 画像なし、CSS3（IE6はフォールバックでVML）を使用してローダーを実装できる<a href='http://fgnass.github.com/spin.js/' title='spin.js'>spin.js</a>とか効果的に使いたい。</p>
+
+<blockquote>
+<p>ページ上のデータは最初に読み込まれるページに含まれているか、AjaxあるいはJSONPを使ったHTTPリクエストによって事後的に読み込まれます。筆者としては後者のアプローチがお勧めです。多くのデータを初期表示のページに埋め込むことはページサイズの増大をもたらしますが、Ajax、JSONPによるリクエストは並列処理が可能であり高速です。またAjaxやJSONPを使って取得したページ自体とは別にキャッシュでき、リクエストのたびにページ全体を描画しなおす必要があります。</p>
+</blockquote>
+
+<p>これスクリプト無効時の事を考えると必ずしも上記のようには出来ない（初期表示時のみサーバーサイドで初期表示用のデータを含んだHTML吐き出し）けど、そういうの考えなくていいならこうすべきなのかな。</p>
+
+<h2 id='351_'>3.5.1 初期表示のページヘの埋め込み</h2>
+
+<p>WEBアプリケーションじゃなければこれは全然いいと思う。</p>
+
+<h2 id='352_ajax'>3.5.2 Ajaxによるデータの読み込み</h2>
+
+<p>まずはjQueryのAjaxのAPIの解説。<br />ただ内部で何をやってるか知っておく必要はあるのでMozilla Developerの記事にも目を通しておいたほうがよい。</p>
+
+<ul>
+<li><a href='https://developer.mozilla.org/ja/Ajax/Getting_Started' title='Getting Started - MDN'>Getting Started - MDN</a></li>
+
+<li><a href='http://api.jquery.com/category/ajax/' title='Ajax &amp;#8211; jQuery API'>Ajax &#8211; jQuery API</a></li>
+</ul>
+
+<blockquote>
+<p>Ajaxには同一生成元ポリシー（Same Origin Policy）という制約があります。これは、Ajaxリクエストの送信元はリクエスト元のページと同じドメインとサブドメインそしてポート番号の組み合わせを持っていなければならないというものです。このような制約の背景には、リクエストの際に対象ドメインのCookie情報が送信されてしまうという事情があります。つまり、リクエストを受け取ったサーバーはそれをログイン済みのユーザーからのものであると解釈してしまいます。同一生成元ポリシーがなかったとしたら、悪意を持ったアプリケーションはGmailのメールを盗み見したり、Facebookのステータスを勝手に変更したり、無断でTwitterのフォロワーにダイレクトメッセージを送ったりできてしまいます。このような事態を避けるために同一生成元ポリシーが適用されているのです。</p>
+</blockquote>
+
+<p>ほうほう。</p>
+
+<blockquote>
+<p>Adobe FlashやJavaなどのテクノロジーではドメイン間アクセス向けのポリシーファイルを定義することによってこの問題を回避しています。近年ではAjaxの側でも、標準規格CORS（Cross-Origin Resource Sharing）によって他ドメインへのアクセスを認めようという動きがあります（<a href='http://www.w3.org/TR/access-control/' title='Cross-Origin Resource Sharing'>Cross-Origin Resource Sharing</a>）。</p>
+</blockquote>
+
+<p>ただIE8未満は対応していない（IE8以降でも利用は出来るっぽいけどコンテンツタイプとしてtext/plainしかサポートしていない、認証、カスタムヘッダも利用できない等割りと酷いことになってるっぽい）。</p>
+
+<h2 id='353_jsonp'>3.5.3 JSONP</h2>
+
+<p>JSONPについての解説。実務レベルでクロスドメインリクエストを実装って考えると前項のCORSよりJSONPが一般的かと。</p>
+
+<p>話は少しそれるけど、</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>叩くと上記のようなものが返って来るとすると、</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>jsonpCallbackオプションでコールバック関数名を指定できる。</p>
+
+<h2 id='354_'>3.5.4 ドメイン間リクエストのセキュリティ</h2>
+
+<blockquote>
+<p>CORSやJSONPで任意のドメインからのアクセスを許可している場合は、以下のような点が非常に重要です。</p>
+</blockquote>
+
+<p>1. いかなるセンシティブな情報（メールアドレスなど）も公開してはなりません。 2. いかなるアクション（Twitterでのフォローなど）も許可してはなりません。</p>
+
+<blockquote>
+<p>これらの対策の代替として、接続を許可するドメインのリスト（ホワイトリスト）を定義したり、OAuthによる認証を必須にするといったものが考えられます。</p>
+</blockquote>
+
+<p>この辺りの問題は古いのもあるけど下記参考リンク内の記事を読むと分かりやすかった。</p>
+
+<ul>
+<li><a href='http://d.hatena.ne.jp/tkng/20100918/1284792040' title='なぜJSONPだとクロスドメイン制約を超えられるのか？ - 射撃しつつ前転'>なぜJSONPだとクロスドメイン制約を超えられるのか？ - 射撃しつつ前転</a></li>
+
+<li><a href='http://gihyo.jp/dev/serial/01/web20sec' title='ここが危ない！Web2.0のセキュリティ：第2回　Same-Originポリシーと迂回技術｜gihyo.jp … 技術評論社'>ここが危ない！Web2.0のセキュリティ：第2回　Same-Originポリシーと迂回技術｜gihyo.jp … 技術評論社</a></li>
+</ul>
+
+<h1 id='36_'>3.6 データの配置</h1>
+
+<blockquote>
+<p>ORMへのデータの配置は簡単に行えます。サーバーからデータを取得し、モデルのレコードを更新するだけです。Modelオブジェクトにpopulate()関数を追加し、取得したそれぞれのデータを元にインスタンスを生成し、recordsオブジェクトを更新するようにします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>このModel.populate()関数は、以下のようにしてサーバから受け取ったデータとともに呼び出します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='37_'>3.7 データのローカル保存</h1>
+
+<p>HTML5のWebStorage（セッションストレージ、ローカルストレージ）APIについての解説。</p>
+
+<p>これまではCookieをストレージとして使用してきたけどHTML5でWebStorageが登場してからはこちらが主流に。ただIE8以上でないと使用出来ないのでターゲットブラウザによるけどやっぱり実務的には厳しいところもある。polyfillとしてCookieは必須なのかも。</p>
+
+<ul>
+<li><a href='http://dev.classmethod.jp/ria/html5/p19676/' title='HTML5 × CSS3 × jQueryを真面目に勉強してみる ? #2 WebStorage ｜ Classmethod.dev()'>HTML5 × CSS3 × jQueryを真面目に勉強してみる ? #2 WebStorage ｜ Classmethod.dev()</a></li>
+
+<li><a href='http://public-blog-dev.s3.amazonaws.com/wp-content/uploads/2012/02/storage_sample2.html' title='Web Storage Sample'>Web Storage Sample</a></li>
+</ul>
+
+<h2 id='371_orm'>3.7.1 ORMでのローカル保存</h2>
+
+<blockquote>
+<p>これまでに作ってきたORMに、ローカルストレージを利用するための変更を行います。この変更によって、ページが再読み込みされてもレコードが保持されるようになります。localStorageオブジェクトを利用するには、レコードをJSON形式の文字列へとシリアライズする必要があります。しかし、単純にシリアライズすると以下の様な文字列が生成されてしまいます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>そこで、モデルがシリアライズされる際の処理内容を上書きする必要があります。まず、シリアライズするべきプロパティとそうでないものを区別します。Modelオブジェクトにattributesという配列を追加し、それぞれのモデルが属性すなわちプロパティを指定できるようにします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>属性はモデルごとに異なり、複数のモデルが1つのattributes配列を共有することはできません。そのため、この配列はModelに直接追加するのではなく、モデルがインスタンス化されるたびに新しく生成するようにしています。これはrecordsオブジェクトの場合と同じアプローチです。<br />次にattributes()関数を定義します。この関数はそれぞれの属性とその値からなるオブジェクトを返します。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>モデルが持つattributes配列には以下のようにして値をセットします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>このコードで指定された内容に基づき、attributes()関数はシリアライズの必要があるプロパティだけを正しく返します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>シリアライズの処理を行うコード（JSON.stringify()）の側では、変更の必要があるのはモデルのインスタンスが持つtoJSON関数だけです。JSONのライブラリは、与えられたオブジェクトをそのままシリアライズするのではなく、この関数を通じてシリアライズ対象のオブジェクトを取得しているのです。変更は以下のようにして行います。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ここまでのコードを使い、再びシリアライズを行なってみましょう。今度は必要なプロパティだけがシリアライズされているはずです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>正しいJSON形式の文字列を生成できたので、後はローカルストレージを利用するためのコードを追加するだけです。ここではModelにsaveLocal()とloadLocal()という2つの関数を追加します。保存時にはModel.recordsオブジェクトを配列へと変換してからシリアライズし、生成された文字列をlocalStorageに格納します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>レコードの取り出しはページの読み込み時に行い、ページが閉じられたらレコードを格納するのがよいでしょう。この部分のコードの作成については読者への宿題としておきます。</p>
+</blockquote>
+
+<h1 id='38_'>3.8 新規レコードのサーバへの送信</h1>
+
+<p>前節で作成したattributes()関数を使用して下記のようにしてレコードをサーバへ送信できる。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>REST（Representative State Transfer）のルールに従うなら、レコードを新規作成する際にはPOST形式のリクエストを行い、レコードを更新する際にはPUT形式を利用するべきです。以下のように、ModelのインスタンスにcreateRemote()とupdateRemote()という2つの関数を追加し、それぞれ適切な形式のリクエストを行うようにします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Assetインスタンスに対してcreateRemote()を呼び出すだけで、レコードの内容がサーバへとPOST形式で送信されるようになりました。利用例を以下に示します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>後半サンプルコードの全体像が分からなくなってちょっと疑問点残る箇所があるけど何となく掴めた。<br />この辺りは後々復習していこうかと。</p>
+
+<p>次はMVCのC、コントローラ。</p></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-07-02-stateful-javascript.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-07-20-stateful-javascript.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

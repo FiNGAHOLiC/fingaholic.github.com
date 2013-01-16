@@ -1,0 +1,203 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="初心者のためのSpine.js その1 | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-08-09-spinejs.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="自分自身が初心者のくせになんというタイトル。ステートフルJavaScript写経しただけじゃいまいち入ってこないので1から作ってみた。やっぱコード書いてなんぼの世界だし。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>初心者のためのSpine.js その1 | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="09 Aug 2012">09 Aug 2012</time></p>
+		<h1>初心者のためのSpine.js その1</h1>
+	</header>
+	<section class="mod-postmain"><p><strong>多分コードも説明もおかしいのであんま参考にしないで下さい。あくまでも初心者である自分の勉強用なので。</strong></p>
+
+<p>ステートフルJavaScriptを写経しながら何となくMVC（MVVCとかMVPとかまだなんのこっちゃ分からん）っぽい概念は分かったけどいざ自分でコード書くとなるといまいちフローが分かないので、汚コードだろうがなんだろうがとにかく自分で考えながらコード書いてみた。徐々に機能を追加、リファクタリングしていく。</p>
+
+<p>ちなみにどうしても自分で考えても分からなくなった時には下記ソースを見ながら進めた。</p>
+
+<ul>
+<li><a href='http://maccman.github.com/spine.todos/' title='Todos'>Todos</a></li>
+</ul>
+
+<h1 id='1_html'>1. HTMLを用意する</h1>
+
+<p>JavaScriptありきのHTMLってのはないと思うのでまずは兎にも角にもHTMLを用意。これを元に作っていく。<br />最新の<a href='https://raw.github.com/maccman/spine/master/lib/spine.js' title='Spine.js'>Spine.js</a>も読み込んでおく。 また、jQueryも最新版を使用する。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='2_'>2. モデルを用意する</h1>
+
+<p>ローカルストレージを使用してデータを永続化して使用する前提なので<a href='https://raw.github.com/maccman/spine/master/lib/local.js' title='local.js'>local.js</a>を読み込む。<br />ここにユーザーが入力したデータを内部的にもローカルストレージにも保存する。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<ul>
+<li><a href='http://spinejs.com/api/models' title='Models API - API - Spine'>Models API - API - Spine</a></li>
+</ul>
+
+<h1 id='3_'>3. モデルをハンドリングするコントローラを用意する</h1>
+
+<p>ユーザーのデータをモデルに追加したりモデルに変化があった場合にビューに反映したりするコントローラを用意する。名前はモデルの名前を複数形にするのが通例っぽいのでTasksにした。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<ul>
+<li><a href='http://spinejs.com/api/controllers' title='Controllers - API - Spine'>Controllers - API - Spine</a></li>
+</ul>
+
+<h1 id='4_'>4. アプリ全体をハンドリングする？コントローラを起動する</h1>
+
+<blockquote>
+<p>ビューごとにコントローラを1つずつ用意するというのが、よく使われているパターンです。</p>
+</blockquote>
+
+<p>と、ステートフルJavaScriptにあるのでTasksコントローラが個々のタスクのビューを管理するものならば、Appコントローラ（名前はTaskAppとかのほうがよかったかも）は全体のビューを管理するものって考えで良いのだろうか？ちょっとこの辺りまだモヤモヤしてる。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<ul>
+<li><a href='http://spinejs.com/api/controllers' title='Controllers - API - Spine'>Controllers - API - Spine</a></li>
+</ul>
+
+<h1 id='5_domapp'>5. DOM構築後にAppコントローラをインスタンス化</h1>
+
+<p>コントローラはDOM要素を利用するのでDOM構築後にインスタンス化。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='6_appel'>6. Appコントローラのインスタンス化時にel要素を渡す</h1>
+
+<p>どのDOM要素をコントローラで管理？するか示すためel要素を指定。<br />ちなみにnewするとinitが叩かれるので初期化処理はAppコントローラのinitに記述する。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='7_'>7. イベントの委譲</h1>
+
+<p>テキストフィールドに文字が入力されており（空の場合はreturn）、createボタンが押下されればcreateメソッドを叩く。<br />ちなみにプロパティとしてアクセス出来るようにelementsにinputを設定しておく。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='8_'>8. 新規モデルを作成</h1>
+
+<p>createボタンが押されればモデルに新規レコードを作成して欲しいのでcreateメソッド内で新規レコードを作成。<br />また、作成時にtaskプロパティにテキストフィールドの値を渡す。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='9_'>9. バインディング</h1>
+
+<p>レコードが作成（create）されればcreateイベントが発行されるのでその際の処理（ビューをレンダリング）をインスタンス化時にモデルに対して登録しておく。<br />ちなみにモデル（Task）からメソッドを叩くのでコンテキストを制御するためにproxy関数を利用して叩く。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='10_tasks'>10. Tasksコントローラの生成</h1>
+
+<p>レコードを元にビューを作ってレンダリングするためにレコードを渡しつつTasksコントローラを作成する。<br />また、書き出し先をプロパティとして使用したいのでelementsに設定しておく。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='11_'>11. レンダリング</h1>
+
+<p>el要素はインスタンス化時に何も渡さなければ空のdiv要素が生成されるがここではliタグを生成して欲しいので、tagプロパティにliを設定。renderメソッドではインスタンス化時に設定したレコード（item）とテンプレートを利用してHTMLを生成、el要素に追加する。<br />また、メソッドチェーン用に自身をreturnしておく。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='12_html'>12. テンプレート用のHTMLを用意する</h1>
+
+<p>テンプレートは<a href='https://raw.github.com/jquery/jquery-tmpl/master/jquery.tmpl.min.js' title='jQuery.tmpl'>jQuery.tmpl</a>を使用。わすれずに読み込んでおくこと。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='13_1'>13. 訪問時の挙動1</h1>
+
+<p>とりあえず入力データを保存するところまでは実装できたけどこのままじゃ訪問時に何も表示されないので、Appコントローラ初期化時にモデルのクラスメソッドであるfetchメソッドを使用して訪問時にローカルストレージからデータを取得する処理を実装する。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='14_2'>14. 訪問時の挙動2</h1>
+
+<p>データを読み込んだだけでは何も処理されないので、fetch後に発行されるrefreshイベントを監視し、モデルのクラスメソッドであるeachメソッドを利用して全レコードを書き出す処理を実装する。<br />ちなみにモデル（Task）からメソッドを叩くのでコンテキストを制御するためにproxy関数を利用して叩く。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>ここまでの実装例は下記。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/2BpES/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<p>次回は今回のソースを元に削除ボタンを追加してみる。</p></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-08-08-escape-liquid-template-tags.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-09-10-svg.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

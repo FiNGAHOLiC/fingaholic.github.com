@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="Jekyllでliquidテンプレートタグをエスケープする | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-08-08-escape-liquid-template-tags.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="コードハイライト内でjQuery.tmpl()のテンプレートタグ書いてたらliquidテンプレートタグと解釈されたっぽくて表示されなかったけど解決したからメモ。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>Jekyllでliquidテンプレートタグをエスケープする | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="08 Aug 2012">08 Aug 2012</time></p>
+		<h1>Jekyllでliquidテンプレートタグをエスケープする</h1>
+	</header>
+	<section class="mod-postmain"><p>どうもマークダウン内でif文書くとliquidテンプレートタグと解釈されるっぽい。</p>
+
+<p>下記は何も表示されないけど、</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>こっちだと表示される。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>解決法はググると載ってた。</p>
+
+<p><a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags' title='How to escape liquid template tags? - Stack Overflow'>How to escape liquid template tags? - Stack Overflow</a></p>
+
+<p><strong>{の前に{{&#34;を加え、ステートメントである単語の後ろに&#34;}}を加える</strong>って感じらしい。</p>
+
+<p>なんというややこしさ。多分すぐ忘れる。</p>
+
+<p>これが煩わしい場合はプラグインもあるみたい。</p>
+
+<p><a href='https://gist.github.com/1020852' title='Raw tag for jekyll. &amp;mdash; Gist'>Raw tag for jekyll. &#8212; Gist</a></p></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-08-07-stateful-javascript.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-08-09-spinejs.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

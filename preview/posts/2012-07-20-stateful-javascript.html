@@ -1,0 +1,361 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="ステートフルJavaScript 4章 | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-07-20-stateful-javascript.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="ステートフルJavaScript4章の備考録、っていうか写経。コントローラ。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>ステートフルJavaScript 4章 | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="20 Jul 2012">20 Jul 2012</time></p>
+		<h1>ステートフルJavaScript 4章</h1>
+	</header>
+	<section class="mod-postmain"><blockquote>
+<p>そもそも、コントローラとは一体何でしょうか。簡単に言うなら、コントローラはアプリケーションの中でビューとモデルとをつなぐ接着剤の役割を果すものです。ビューとモデルの双方に関与しているコンポーネントはコントローラだけです。ページが読み込まれると、コントローラはビューにイベントハンドラを関連付け、コールバックを適切に処理し、必要に応じてモデルとのやり取りも行います。<br />便利なライブラリも存在しますが、コントローラの作成にライブラリは必須ではありません。コントローラにとって必要なのは、モジュール性を持ち独立した存在であるということだけです。疎結合度の高いコンポーネントとしてふるまうべきであり、グローバル変数を定義したりすることは可能な限り避けなければなりません。これを実現するための優れた手法がModuleパターンです。</p>
+</blockquote>
+
+<h1 id='41_module'>4.1 Moduleパターン</h1>
+
+<blockquote>
+<p>ロジックをカプセル化してグローバル変数の衝突による汚染を避ける上で、Moduleパターンは非常に効果的です。これを可能にするのが、おそらくjavaScriptが持つ最も優れた機能であろう匿名関数です。以下のコードのように、作成した匿名関数は直後に実行してしまいます。匿名関数によって、その内部のコードをクロージャとして実行でき、変数をローカルでプライベートな環境内に置くことができます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>この辺りは「<a href='http://www.oreilly.co.jp/books/9784873114880/' title='JavaScriptパターン'>JavaScriptパターン</a>」見るといいかも。<br />古い記事だけど下記リンクも参考になる。</p>
+
+<ul>
+<li><a href='http://archiva.jp/web/javascript/writing_style.html' title='JavaScriptの巧い書き方 - Archiva'>JavaScriptの巧い書き方 - Archiva</a></li>
+</ul>
+
+<h2 id='411_'>4.1.1 グローバル変数のインポート</h2>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>グローバル変数よりローカル変数なので高速で効率的なので、匿名関数への引数としてグローバル変数を渡して、ローカル変数で使いましょうねと。ちなみにjQueryでもやってる。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>undefinedに関しては下記リンク先に書いてあるとおり、JavaScriptのundefinedは上書きが可能な値なので、ローカルスコープ内でundefinedはundefinedと保証させるために設定している。</p>
+
+<p>で、windowとdocumentに関してはJSのminifierのためらしい。JSのminifierはローカルスコープで一文字の変数に置き換えるのでちょっと軽くなるとの事。まあ体感で感じることはないんだろうけども。</p>
+
+<ul>
+<li><a href='http://hamalog.tumblr.com/post/4047986427/jsscope' title='JSでローカルスコープ作るときのアレの意味 - Takazudo hamalog'>JSでローカルスコープ作るときのアレの意味 - Takazudo hamalog</a></li>
+</ul>
+
+<h2 id='412_'>4.1.2 グローバル変数のエクスポート</h2>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>インポートの逆。windowオブジェクトをモジュール内にインポートしてプロパティをセット。</p>
+
+<h1 id='42_'>4.2 コンテキストの定義</h1>
+
+<p>そもそもコンテキストってなんなのか？<a href='http://www.sophia-it.com/content/%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88' title='コンテキストとは (context)： - IT用語辞典バイナリ'>コンテキストとは (context)： - IT用語辞典バイナリ</a>で調べてみると、</p>
+
+<blockquote>
+<p>コンテキストとは、プログラムの実行に必要な各種情報のことである。<br />「context」（コンテキスト）は、「文脈」、「前後関係」などと訳されるが、IT用語としては意味がイメージしづらく、単にコンテキストとある場合は、何らかの制御情報と考える方がわかりやすいことが多い。</p>
+</blockquote>
+
+<p>とある。どうもイメージしづらい。<a href='http://wikiwiki.jp/webapp/?cmd=read&amp;page=ECMAScript%2F%BC%C2%B9%D4%A5%B3%A5%F3%A5%C6%A5%AD%A5%B9%A5%C8' title='ECMAScript 実行コンテキスト - Web Application Programming Wiki'>ECMAScript 実行コンテキスト - Web Application Programming Wiki</a>を読むと、実行コンテキストは、</p>
+
+<blockquote>
+<p>thisの値<br />スコープチェイン<br />変数オブジェクト</p>
+</blockquote>
+
+<p>の情報を持つとある。まだ完全に把握は出来ないけど上記をイメージして読むと何となく意味は掴めた。要はざっくりとthisとその有効範囲ってニュアンスでいいのかな？</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>このコードでは、contextFunction()関数の中でのコンテキストはmodオブジェクトというローカルなものになります。ここでは、誤ってグローバル変数を作成してしまうことはないので、安心してthisを利用できます。実際の使われ方を明確に示すために、このコードを具体化してみます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>本に記載されているサンプルコードだとload()関数内のコールバックを$関数で実行してるけどなんか気持ち悪いのは自分だけだろうか？$.proxy(func, this)();でもよかったような気がする。</p>
+
+<h2 id='421_'>4.2.1 ライブラリへの抽象化</h2>
+
+<blockquote>
+<p>ここまでのコードをライブラリとして抽象化し、他のモジュールやコントローラでも利用できるようにしましょう。先ほどのload()関数を追加するとともに、proxy()やinclude()といった新しい関数も加えます。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>本のコードだと動作しないので<a href='https://github.com/maccman/book-assets/blob/master/ch04/modules.html' title='Github上のサンプルコード'>Github上のサンプルコード</a>を実行したのが下記。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/DXpc9/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<blockquote>
+<p>ローカル変数の代わりにコンテキストを利用する場合、thisというキーワードを毎回記述しなければならずコードは若干増大します。しかし、コンテキストによってコードの再利用の可能性が大幅に高まります。例えば、以下のようにコントローラのプロトタイプにプロパティをセットすることによって、すべてのControllerインスタンスに関数を追加できます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='422_'>4.2.2 ドキュメントの後にコントーラを読み込む</h2>
+
+<blockquote>
+<p>現状のコードでは、本書のコントローラの一部はDOMよりも先に読み込まれる一方、ページのドキュメントが読み込まれた後で呼び出されるコールバックも存在します。このことは、コントローラのロジックが異なる内部状態のもとで実行されるという意味であり、ドキュメントの読み込み時のコールバックが複雑化することになります。</p>
+</blockquote>
+
+<p>これを修正したのが下記コード。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>新しいコードでは、Controller.create()関数を使ってコントローラを生成します。この際にインスタンスプロパティをオブジェクトとして渡すこともできます。</p>
+</blockquote>
+
+<p>下記が実行例。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/PnLNV/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<blockquote>
+<p>大きな変更点はもう一つあり、コントローラのインスタンス化時にview要素を渡しています。以前のコードではコントローラ内で要素を取得していました。コントローラを異なる要素に対しても利用でき、コードの重複を最小限にできるという点で、この変更には大きな意味があります。</p>
+</blockquote>
+
+<h2 id='423_'>4.2.3 ビューへのアクセス</h2>
+
+<blockquote>
+<p>ビュー毎にコントローラを1つずつ用意するというのが、よく使われているパターンです。ビューはID値を持っており、用意に取り出してコントローラに渡せます。一方ビューの中では、他のビューの要素との競合を防ぐためにID値ではなくクラスが使われます。一般的にはこのパターンがアプリケーションに良い構造をもたらしてくれるのですが、固執する必要はありません。<br />ここまでのコードではjQuery()あるいは$()のセレクタを使ってビューにアクセスし、コントローラ内のローカルにビューへの参照を保持していました。ビュー内の要素を取り出す（以下のコードを参照）際にビュー外を探索せずに済むのが効率的です。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>一方このアプローチでは、コントローラにセレクタが多数記述され、DOM内の探索が頻繁に行われることになります。そこで、セレクタと変数名の対応を表す表をコントローラの中に設けることにします。コードは下記のとおりです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>コントローラがインスタンス化される際に、それぞれのセレクタに対応する要素が取り出され、変数this.searchFormとthis.searchInputへと確実にセットされます。これらは通常のjQueryのオブジェクトなので、イベントハンドラの設定や属性値の取り出しなども通常どおり行えます。<br />この機能をコントローラにも追加し、すべてのセレクタからローカル変数を生成することにします。この処理は、コントローラの初期化時に呼び出されるinit()関数の中で以下のようにして行います。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>refreshElements()はコントローラから現在の要素を表すプロパティelを受け取り、セレクタによる探索をこの要素の中で行います。refreshElements()が呼び出されると、this.searchFormとthis.searchInputの書くプロパティに対応する要素がコントローラ内にセットされ、イベントの関連づけやDOMの操作などに利用できるようになります。</p>
+</blockquote>
+
+<p>下記が実行例。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/yN292/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<p>大分分離できて汎用的に使いまわせそうになってきたけどthis.searchForm.submit(this.proxy(this.search));が気になるよねと。</p>
+
+<h2 id='424_'>4.2.4 イベント処理の委託</h2>
+
+<blockquote>
+<p>イベントの関連づけをすべて解除したり中継したりするといったことも可能です。このためにはeventsというオブジェクトを用意し、イベントの種類とセレクタそしてコールバックとの対応を記述します。eventsのデータ構造はelementsオブジェクトによく似ており、以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>この仕組みをSearchViewコントローラにも適用します。refreshElements()と同様に、delegateEvents()という関数を用意してコントローラの初期化時に呼び出されるようにします。この関数はコントローラのeventsオブジェクトの内容を調べ、イベントのコールバックを設定します。具体的には、ビュー内のフォームが送信された際にsearch()関数を呼び出します。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>delegateEvents()の中で、delegate()とbind()の各関数を利用しています。セレクタが指定されていない場合、イベントハンドラはelの指す要素に直接セットされます。その他の場合は、イベント委譲（<a href='http://api.jquery.com/delegate' title='.delegate() &amp;#8211; jQuery API'>.delegate() &#8211; jQuery API</a>）され、セレクタで指定された要素で該当のイベントが発生するとハンドラが呼び出されます。委譲を利用することによって、記述しなければならないイベントリスナの数を削減できることがしばしばあります。イベントにはバブリングの性質があるため、親要素でもイベントを補足でき、個々の子要素でイベントリスナを設定する必要はありません。</p>
+</blockquote>
+
+<p>下記が実行例。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/vbJSc/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<h1 id='43_'>4.3 状態機械</h1>
+
+<blockquote>
+<p>状態機械（state machine）はより正確には有限状態機械（finite state machineあるいはFSM）と言い、UIをプログラムする際に役立ちます。状態機械を使うと複数のコントローラを管理したり、ビューの表示あるいは非表示の切り替えを容易に行えます。状態機械とは、状態（state）と遷移（transition）の2つから構成されます。複数の状態の中で1つだけがアクティブであり、その他はパッシブです。状態が切り替わる際に、2つの状態の間の遷移が遷移が呼び出されます。<br />この概念を実際のプログラムに当てはめてみましょう。それぞれ独立して表示されるビュー（連絡先の内容表示とその編集など）があるとします。これらのビューは排他表示であり、片方が表示されたらもう片方は非表示になる必要があります。このように、常にどれか1つのビューだけがアクティブであるというシナリオは状態機械にぴったりです。状態機械を取り入れていれば、他のビュー（設定画面など）を追加するのも簡単です。<br />状態機械の実装方法を把握するために、例を1つ紹介します。この例はとてもシンプルであり複数の種類の遷移には対応していないのですが、実装の概要を理解するためには十分でしょう。まず、jQueryのイベントAPI（2章参照）を使ったEventsオブジェクトを定義し、状態機械上でのイベントに対して関連付けを行ったりイベントを発生させたりできるようにします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Eventsオブジェクトは本質的に、DOM外でのイベントというjQueryの機能を拡張し、ライブラリの中で利用できるようにしただけのものです。続いて、状態機械を表すStateMachineクラスを定義します。ここには以下のように、add()というメインとなる関数が用意されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>add()関数は、受け取ったコントローラを内部状態のリストに追加し、active()関数を定義します。このactive()が呼び出されると、対象のコントローラへとアクティブな状態が遷移します。そしてアクティブなコントローラに対してactivate()を呼び出し、その他すべてのコントローラに対してdeactivate()を呼び出します。以下のコードでは、実際のふるまいを確認するために、コントローラを2つ作成して状態機械に追加しています。そして1つ目のコントローラをアクティブ化しています。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>状態機械のadd()関数は、changeイベントのコールバックを作成し、その中でactivate()とdeactivate()のうち適切なほうを呼び出します。active()関数を呼び出す他に、以下のように、自分でchangeイベントを発生させても状態遷移を行えます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>コントローラのactivate()関数の中で、ビューのセットアップや表示、要素の追加などを行えます。同様に、deactivate()関数の中ではビューの非表示化に関連する処理を行えます。ビューの表示と非表示の操作にはCSSクラスを利用するのが便利です。次のように、ビューがアクティブになったら何らかのクラス（例えば.activeなど）を追加し、アクティブでなくなったらそのクラスを削除します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>そしてスタイルシートでは、このクラスが指定されている要素を表示し、指定されていない要素は非表示にします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>下記が実行例。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/sY79V/embedded/' style='width: 100%; height: 450px'>sample</iframe>
+<h1 id='44_'>4.4 ルーティング</h1>
+
+<blockquote>
+<p>内部状態が変化したらURLも変化し、URLが変更されたらそれに合わせて内部状態も更新します。初回のページ読み込み時にURLをチェックし、それに対応する内部状態をセットアップします。</p>
+</blockquote>
+
+<h2 id='441_url'>4.4.1 URLのハッシュ</h2>
+
+<blockquote>
+<p>ページの基底URLはページを再読み込みしなければ変化しませんが、再読み込みが発生するのは望ましくありません。これを回避する方法はいくつか考えられていますが、中でも長く使われてきているのがURLのハッシュ（#以降の文字列）を変更するというものです。ハッシュの値はサーバに送信されないため、ページの再読み込みを発生させることなしに変更できます。例えば筆者のTwitterページを表す以下のURLで、#!/maccmanの部分がハッシュです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>location.hashオブジェクトを使うと、以下のようにしてページのハッシュを取得し変更することができます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>URLにハッシュが含まれていない場合、location.hashの値は空文字列になります。それ以外の場合は、location.hashの値はURLのうちハッシュを表す部分（#も含みます）の文字列になります。<br />ハッシュの値を頻繁に変更すると、（特にモバイルブラウザでは）大幅な処理速度の低下を招くことがあります。したがって、（例えばリスト表示のスクロールに合わせて内部状態を変更するなどのように）何度もハッシュを変更する必要が有る場合は、代替えとしてスロットリング（帯域制限）などの手法を検討するべきです。</p>
+</blockquote>
+
+<p>スロットリングがちょっとよく分からんかった。。。</p>
+
+<h2 id='442_'>4.4.2 ハッシュの変化の検知</h2>
+
+<p>IE8以上、Firefox3.6以上、Chrome全バージョン、Safariバージョン8以上、Operaバージョン10.6以上なら、</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>で検知可能。IE8以下ならjQueryプラグイン（<a href='http://benalman.com/projects/jquery-hashchange-plugin/' title='http://benalman.com/projects/jquery-hashchange-plugin/'>http://benalman.com/projects/jquery-hashchange-plugin/</a>）が用意されているので、下記のようにして使用する。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>なお、このイベントはハッシュが変更された場合のみ発生し、ページの読み込み時には発生しません。したがって、ハッシュに基づくルーティングを行うなら、以下のようにしてページの読み込み時にhashchangeイベントを自分で発生させるとよいでしょう。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='443_ajax_crawling'>4.4.3 Ajax Crawling</h2>
+
+<p>ハッシュを監視してガリガリ動くWebアプリケーションはGoogle等の検索エンジンに対してどの様にインデックスされるかを解説している。この辺りは5509さんの記事が非常にわかり易かったので下記3記事に目を通しておけば良さげ。</p>
+
+<ul>
+<li><a href='http://5509.me/log/making-crawrable-contents-with-ajax' title='SEOにも強いクローラブルなAJAXコンテンツを作成するために  ::  5509'>SEOにも強いクローラブルなAJAXコンテンツを作成するために :: 5509</a></li>
+
+<li><a href='http://5509.me/log/to-make-ajax-contents' title='SEOやJSオフ環境にも配慮したAjaxコンテンツを制作するためにできること  ::  5509'>SEOやJSオフ環境にも配慮したAjaxコンテンツを制作するためにできること :: 5509</a></li>
+
+<li><a href='http://5509.me/log/ikenkudasai' title='AjaxコンテンツとGooglebot、インデックスの話  ::  5509'>AjaxコンテンツとGooglebot、インデックスの話 :: 5509</a></li>
+</ul>
+
+<p>ポイントは何でもかんでもハッシュをシバン（hash=#、bang=!、合わせてshebang=シバンらしい）にする必要はなくて、<strong>GoogleのAjax Crawlingという仕様に準拠している場合にのみ使用</strong>するものだということ。結局サーバーサイドでUgly URL（_escaped_fragment_に置換されたURL）対応でHTML Snapshotを返す等の作業が出来ない場合は意味がない。</p>
+
+<p>ちなみに現在のTwitterは一部を除いてシバンによる管理じゃなくなってた。</p>
+
+<h2 id='444_html5history_api'>4.4.4 HTML5のHistory API</h2>
+
+<p>前節を解決？する方法として最近実装も増えてきたHistory APIについての解説。この辺りはググればいっぱい出てくる。「pjax」（pushState + ajax）プラグインもありブラウザ間の挙動の差異を許容してくれるクライアントや案件ならぜひ実装したいところ。ただ問題点もあるのでその辺りはtakazudoさんの記事が参考になる。</p>
+
+<ul>
+<li><a href='http://hamalog.tumblr.com/post/8177396934/davis-js-history-api' title='Davis.jsでHistory APIを比較的お手軽に使う - Takazudo hamalog'>Davis.jsでHistory APIを比較的お手軽に使う - Takazudo hamalog</a></li>
+</ul>
+
+<p>その他pjaxに関する参考リンクは下記から。</p>
+
+<ul>
+<li><a href='https://github.com/defunkt/jquery-pjax/' title='defunkt/jquery-pjax'>defunkt/jquery-pjax</a></li>
+
+<li><a href='http://d.hatena.ne.jp/punitan/20110404/1301895279' title='pjax こそが pushState + Ajax の本命 - punitan (a.k.a. punytan) のメモ'>pjax こそが pushState + Ajax の本命 - punitan (a.k.a. punytan) のメモ</a></li>
+
+<li><a href='http://blog.monoweb.info/article/2011050321.html' title='pjaxで実現する超高速Web | monoの開発ブログ'>pjaxで実現する超高速Web | monoの開発ブログ</a></li>
+
+<li><a href='http://www.slideshare.net/KensakuKOMATSU/19html5' title='第19回html5とか勉強会 pjax'>第19回html5とか勉強会 pjax</a></li>
+
+<li><a href='http://www.jmuk.org/diary/index.php/2011/06/03/pjax/' title='githubのURLをうまく扱うオシャレなアレ = pjax  @  val it: α → α = fun'>githubのURLをうまく扱うオシャレなアレ = pjax @ val it: α → α = fun</a></li>
+</ul>
+
+<p>お次はMVCのV、ビューとテンプレートについて。</p></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-07-17-stateful-javascript.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-07-23-stateful-javascript.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

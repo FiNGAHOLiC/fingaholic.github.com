@@ -1,0 +1,205 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="ステートフルJavaScript 6章 | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-07-25-stateful-javascript.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="ステートフルJavaScript6章の備考録、っていうか写経。MVCから一旦離れて管理方法について。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>ステートフルJavaScript 6章 | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="25 Jul 2012">25 Jul 2012</time></p>
+		<h1>ステートフルJavaScript 6章</h1>
+	</header>
+	<section class="mod-postmain"><blockquote>
+<p>依存性管理の仕組みが求められる背景には、手動管理の困難さだけでなく処理速度の問題も存在します。ブラウザはscriptタグで指定されているJavaScriptファイルのそれぞれに対してHTTPリクエストを行います。リクエストは並列して行えますが、多数の接続を行うというのは非常にコストのかかる処理です。接続の1つ1つについて、CookieをはじめとするHTTPヘッダの送受信やTCPハンドシェイクなどの付加が強いられます。SSL経由でアプリケーションが提供されている場合、事態はさらに悪化します。</p>
+</blockquote>
+
+<p>モバイル対応も考えるとリソースの削減は必須。</p>
+
+<h1 id='61_commonjs'>6.1 CommonJS</h1>
+
+<p>名前は聞いたことあるけどあまり意識したことなかった。お恥ずかしい。。。</p>
+
+<p>そもそもCommonJSとは</p>
+
+<blockquote>
+<p>JavaScriptでいろんなアプリケーションを作るための標準仕様。（を策定するプロジェクト）</p>
+</blockquote>
+
+<p>と下記スライドにあった。</p>
+
+<blockquote>
+<p>CommonJSというライブラリはこの世に存在しない。あくまで仕様を決めているだけ。</p>
+</blockquote>
+
+<p>実はずっとライブラリだと思ってました。お恥ずかしい。。。</p>
+
+<p>その他CommonJSについての概要や仕様は下記スライドが分かりやすかったのでぜひに。もともとはサーバーサイドJSのための仕様だったのね。</p>
+
+<ul>
+<li><a href='http://www.slideshare.net/terurou/common-js' title='CommonJSの話'>CommonJSの話</a></li>
+</ul>
+
+<h2 id='611_'>6.1.1 モジュールの宣言</h2>
+
+<blockquote>
+<p>CommonJSを使ってモジュールを宣言するのは簡単です。ここでは名前空間の仕組みが直接取り込まれています。モジュールは個別にファイルに記述し、共有したい変数はインタプリタによって定義されるexportsオブジェクトに対して公開します。コード例は以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>モジュールの中で定義されている関数を呼び出したい場合に必要なコードはrequire()のみであり、ここにモジュールのファイルを指定します。読み込んだ内容はローカル変数に保存されます。この例では、math.jsで公開されている関数はすべてMaths関数を通じて利用可能です。ここでのポイントは、モジュールが名前空間の中に置かれることと、Narwhal（<a href='https://github.com/tlrobinson/narwhal' title='https://github.com/tlrobinson/narwhal'>https://github.com/tlrobinson/narwhal</a>）やNode.jsといったCommonJS準拠のすべてのJavaScriptインタプリタ上で動作するという点です。</p>
+</blockquote>
+
+<h2 id='612_'>6.1.2 モジュールとブラウザ</h2>
+
+<blockquote>
+<p>以上のような仕組みがクライアント側でのJavaScript開発にとってどのような意味を持つのか考えてみましょう。クライアント側でモジュールを使うことの問題点すなわち、CommonJSのモジュールは同期形式で読み込まれる必要があるということについて多くの開発者がきづいています。サーバー側で実行されるJavaScriptではこのことは大きな問題になりませんが、クライアント側では読み込みの間UIを利用できず、しかも避けるべきeval()によるスクリプトの解釈が必要になってしまいます。この問題に対処するため、CommonJSの開発チームはModule Transport Format（<a href='http://wiki.commonjs.ofg/wiki/Modules/Transport' title='http://wiki.commonjs.ofg/wiki/Modules/Transport'>http://wiki.commonjs.ofg/wiki/Modules/Transport</a>）という仕様を提案しています。この仕様で定義されている形式に基づいてCommonJSのモジュールはコールバックとともにラップされ、クライアント側での非同期形式の読み込みが可能になっています。<br />先ほどの例に戻り、Module Transport Formatを使ってモジュールをラップします。これによってモジュールは非同期形式で読み込まれ、ブラウザとの相性の良いモジュールが実現されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>このモジュールはモジュールローダーのライブラリによって取得され、ブラウザ上で実行されます。このことが持つ意味は小さくありません。優れたアプリケーションに欠かせないモジュール形式のコンポーネントを実現出来るだけでなく、依存性の管理や有効範囲の隔離、名前空間の指定なども可能になっています。実際に、このモジュールはブラウザだけでなくサーバーやデスクトップアプリケーションなどでも、CommonJSに準拠さえしていればどの様な環境でも動作が可能です。言い換えると、同じコードをサーバーとクライアントの両方で利用できるのです。</p>
+</blockquote>
+
+<h1 id='62_'>6.2 モジュールローダー</h1>
+
+<blockquote>
+<p>CommonJSモジュールをクライアント側で利用するには、モジュールを読み込むためのモジュールローダーと呼ばれるライブラリが必要です。多数のモジュールローダーが知られており、それぞれに長所も短所もあります。ここでは主なものをいくつか取り上げるので、読者の判断材料にしてください。</p>
+</blockquote>
+
+<h2 id='621_yabble'>6.2.1 Yabble</h2>
+
+<p>多分使わないので割愛。</p>
+
+<ul>
+<li><a href='https://github.com/jbrantly/yabble/' title='jbrantly/yabble'>jbrantly/yabble</a></li>
+</ul>
+
+<h2 id='622_requirejs'>6.2.2 RequireJS</h2>
+
+<blockquote>
+<p>Yabbleに対抗する有力な選択肢がRequireJS（<a href='http://requirejs.org/' title='RequireJS'>RequireJS</a>）であり、最も広く利用されているモジュールローダーの1つです。RequireJSでのモジュールの読み込み方法は他と少し異なり、AMD（Asynchronous Module Definition。<a href='http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition' title='http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition'>http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition</a>）という形式に従っています。利用の際に留意するべきなのは、依存性の評価が（必要になる前に）積極的に行われるという点です。しかし、実質的にはRequireJSとCommonJSのモジュールは完全に互換性があり、ラップするトランスポートが異なるだけです。</p>
+</blockquote>
+
+<p>RequireJSはjQueryを内包してるバージョンがあって一時期使ってた。ただアプリというか通常のサイトで使用しようとするとページごとにJS読み込ませたい時とかにちょっとした問題があって結局使うのをやめた（URL dispatcherとかで分岐させればページごとも可能っちゃ可能？）。ちょっと古いけどtakazudoさんも記事にしていた。まあアプリなら選択肢として考えてもいいかと思う。</p>
+
+<ul>
+<li><a href='http://hamalog.tumblr.com/post/4780725429/script-loading-solution-yepnope-js' title='script loading solution? yepnope.js !? - Takazudo hamalog'>script loading solution? yepnope.js !? - Takazudo hamalog</a></li>
+</ul>
+
+<p>使用方法については割愛。</p>
+
+<h1 id='63_'>6.3 複数のモジュールとラッピング</h1>
+
+<blockquote>
+<p>ここまで依存性の管理と名前空間について学んできましたが、多数のHTTPリクエストが発生してしまうよいう問題点はまだ解決されていません。依存先のモジュールのそれぞれについて、ネットワーク経由の読み込みが必要になります。たとえ非同期形式で行ったとしても、読み込みには無視できないオーバーヘッドが生じ、アプリケーションの起動にかかる時間が長くなってしまいます。</p>
+</blockquote>
+
+<p>本ではサーバー側でminifyとありますが、ここはgrunt一択。</p>
+
+<ul>
+<li><a href='/posts/2012-05-02-grunt.html' title='gruntをインストールする - Windows Vista'>gruntをインストールする - Windows Vista</a></li>
+
+<li><a href='/posts/2012-05-01-grunt.html' title='gruntをインストールする - Mac OSX Lion'>gruntをインストールする - Mac OSX Lion</a></li>
+</ul>
+
+<h1 id='64_'>6.4 その他の依存性管理ツール</h1>
+
+<p>Sprocketsについては割愛。</p>
+
+<h2 id='641_labjs'>6.4.1 LABjs</h2>
+
+<p>KAYACさんのサイトで使用されてる。ラッパー作ってそこで分岐してからページごとに読み込ませてる。</p>
+
+<ul>
+<li><a href='http://www.kayac.com/' title='面白法人カヤック'>面白法人カヤック</a></li>
+</ul>
+
+<h1 id='65_fubc'>6.5 FUBC</h1>
+
+<blockquote>
+<p>どんなスクリプトローダーを利用する場合でも、ページの読込中にユーザーがFUBC（flash of unbehaviored content。ふるまいが設定されていないコンテンツの一時的な表示）を目にする可能性があるという点に注意が必要です。これは、JavaScriptが実行される前の状態のページが一瞬表示されてしまうという問題です。初期状態のページに対して、JavaScriptを使った操作やスタイル設定を行なっていない場合は問題ありません。もし行なっているなら、CSSを使ってスタイルの初期設定を行う、要素を非表示にする、読込中であることを表すスプラッシュスクリーンを用意する、などの対策が必要です。</p>
+</blockquote>
+
+<p>FUBCっていうのか。知らんかった。</p></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-07-23-stateful-javascript.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-08-01-stateful-javascript.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

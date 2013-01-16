@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="IE7のborder-style、border-widthのバグ | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-11-21-border.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="IE7で2辺以上にそれぞれborder-width、border-styleが違うスタイルを適用するとdottedを指定したborderのドット幅がおかしくなる。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>IE7のborder-style、border-widthのバグ | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="21 Nov 2012">21 Nov 2012</time></p>
+		<h1>IE7のborder-style、border-widthのバグ</h1>
+	</header>
+	<section class="mod-postmain"><p>ちょっと分かりづらいので実例を。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/VFN2f/embedded/result,html/' style='width: 100%; height: 150px'>sample</iframe>
+<p>border-top、border-bottomともに同じborder-widthならborder-styleが違っても普通に問題ない。<br />ところがborder-topとborder-bottomの値が同一でない場合、dottedを指定したborderのドット幅がおかしくなる。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/mxH3y/embedded/result,html/' style='width: 100%; height: 150px'>sample</iframe>
+<p>IE系のバグは大抵hasLayoutプロパティをtrueにすれば解決するけどこれに関しては解決策はないっぽい。<br />border-widthを同一にするかコンテナ作ってtop、bottomを分けるくらいしかなさそう。<br />他に解決方法あれば知りたい。</p>
+
+<ul>
+<li><a href='http://css-happylife.com/archives/2007/1101_0128.php' title='IE7のborder-styleの不思議 - CSS HappyLife'>IE7のborder-styleの不思議 - CSS HappyLife</a></li>
+
+<li><a href='http://blog.livedoor.jp/s_s11/archives/541266.html' title='Web design memo : IE7のborder-styleでdottedの間隔が広くなる - livedoor Blog（ブログ）'>Web design memo : IE7のborder-styleでdottedの間隔が広くなる - livedoor Blog（ブログ）</a></li>
+</ul></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-09-19-isfunction.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-11-21-hosts.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="ステートフルJavaScript 11章 その2 | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-08-07-stateful-javascript.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="ステートフルJavaScript11章の備考録、MVCライブラリSpineを使ったWebアプリケーション制作実践編。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>ステートフルJavaScript 11章 その2 | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="07 Aug 2012">07 Aug 2012</time></p>
+		<h1>ステートフルJavaScript 11章 その2</h1>
+	</header>
+	<section class="mod-postmain"><h1 id='116_'>11.6 連絡先管理アプリケーションの作成</h1>
+
+<p>いよいよ実践編。ソースコードは下記からダウンロード可能。</p>
+
+<ul>
+<li><a href='https://github.com/maccman/book-assets/tree/master/ch11/spine.contacts' title='book-assets/ch11/spine.contacts at master ・ maccman/book-assets'>book-assets/ch11/spine.contacts at master ・ maccman/book-assets</a></li>
+</ul>
+
+<p>また、コードは違うけどデモは下記から確認出来る。</p>
+
+<ul>
+<li><a href='http://spine-contacts.herokuapp.com' title='App'>App</a></li>
+</ul>
+
+<p><strong>Githubのサンプルコードは1年以上前のもので、2012年8月7日時点で<a href='http://spinjs.com/' title='最新版のSpine.js'>最新版のSpine.js</a>の記法と違ってるので注意。あくまでもモデルやコントローラの連携部分を確認する程度に留めておいたほうがよさげ。また、本の中の解説とサンプルコードだと機能に少し違いがあり、ユーティリティ関数も混在してて見通しが悪かったのでMVC部分を重点に確認できるようにサンプルコードから関数を削ったり機能を省いたりしたりしてる。</strong></p>
+
+<p>関係なくなった機能部分については引用を省いてHTMLは下記のように変更した。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1161_contact'>11.6.1 Contactモデル</h2>
+
+<blockquote>
+<p>連絡先を表すContactモデルは正味5、6行程度のコードで定義されており、とてもシンプルです。ここにはfirst_name、last_name、emailという3つの属性が用意されています。テンプレートからの呼び出しを想定し、連絡先のフルネームを返すヘルパ関数も定義します。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ここではSpine.Model.Localがモデルに追加されています。これによってレコードがブラウザのローカルストレージに保存され、後で再びこのアプリケーションにアクセスしたときにも同じ連絡先を利用できます。</p>
+</blockquote>
+
+<p><strong>ちなみにspine.model.local.jsも古いので最新版のspine.model.local.jsで作業する場合は使用方法については特別変更ないが念のため注意すること。</strong></p>
+
+<h2 id='1162_sidebar'>11.6.2 Sidebarコントローラ</h2>
+
+<blockquote>
+<p>このコントローラは、連絡先の一覧表示と現在選択されている項目の管理に責任を持ちます。連絡先が変更されると、コントローラは表示を更新して変更内容を反映させます。また、サイドバーには[新規連絡先]ボタンが表示され、コントローラはそのclickイベントを監視します。イベントが発生すると、空の連絡先が新規に作成されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>コントローラのinit()関数の中で、見慣れないSpine.Listというクラスが利用されています。これはユーティリティのコントローラであり、レコードの一覧を作成するのに適しています。しかもSpine.Listには現在選択されている項目を管理する機能も用意されています。ユーザーが別の項目を選択すると、changeイベントが発生してイベントリスナに通知されます。<br />ここでは、連絡先が作成あるいは変更されるとリスト全体が再描画されます。これによってコードはシンプルになりますが、処理速度が遅いと感じられたら修正が必要になるでしょう。<br />template()の中で参照されている#contactsTemplateは以下のようなscript要素です。ここには、リスト中の個々の連絡先のためのテンプレートが記述されています。</p>
+</blockquote>
+
+<p><strong>ちなみにspine.list.jsも古いので最新版のspine.list.jsで作業する場合は注意すること。</strong></p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Spine.Listはこのテンプレートを使ってそれぞれの連絡先を描画し、現在選択されている項目のli要素にはcurrentというクラスを追加しています。</p>
+</blockquote>
+
+<h2 id='1163_contacts'>11.6.3 Contactsコントローラ</h2>
+
+<blockquote>
+<p>Sidebarコントローラが連絡先の一覧を表示しつつ選択対象の項目を管理する一方、Contactsコントローラは選択されている連絡先の内容を表示します。コードは以下のとおりです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>サイドバーでいずれかの連絡先が選択されると、グローバルなshow:contactイベントが発生します。Contactsコントローラはこのイベントを監視し、イベントの発生時には選択された連絡先のオブジェクトを渡してshow()関数を呼び出します。そしてshowContentが指すdiv要素を再描画し、選択された連絡先の情報で表示を置き換えます。<br />このコードでは#contactTemplateというテンプレートが参照されています。これはContactsの中で選択されている連絡先の内容を表示するために使われます。テンプレートは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>これで連絡先の情報を表示できるようになりましたが、編集や破棄はまだできません。そこで、Contactsコントローラを少し手直しします。.optEditと.optSaveの各要素がクリックされたときに表示モードと編集モードとの間で切り替えを行うというのが主な変更点です。また、#editContactTemplateというテンプレートを追加します。レコードを保存する際に、編集モードのフォームのinput要素を調べてレコードの属性を更新します。新しいコードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ここで使われている#editContactTemplateのテンプレートは以下のようになります。このテンプレートもページ内に記述する必要があります。#editContactTemplateと#contactTemplateは本質的によく似ており、異なるのは#editContactTemplateがinput要素を使ってレコードを表示しているという点だけです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1164_app'>11.6.4 Appコントローラ</h2>
+
+<blockquote>
+<p>SidebarとContactsの各コントローラによって、Contactレコードの表示や選択あるいは編集などが可能になりました。後は、これらのコントローラをインスタンス化するためのAppコントローラだけです。インスタンス化の際に、それぞれのコントローラが必要としている要素を渡します。コードは以下のとおりです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>下記が実装例。</p>
+<iframe allowfullscreen='allowfullscreen' frameborder='0' src='http://jsfiddle.net/FiNGAHOLiC/qSrJg/embedded/' style='width: 100%; height: 450px'>sample</iframe></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-08-01-stateful-javascript.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-08-08-escape-liquid-template-tags.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>

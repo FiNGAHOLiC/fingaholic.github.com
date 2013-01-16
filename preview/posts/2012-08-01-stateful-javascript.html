@@ -1,0 +1,555 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="All doggs wanna be a Geek">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:title" content="ステートフルJavaScript 11章 その1 | jekylog">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://fingaholic.github.com/posts/2012-08-01-stateful-javascript.html">
+	<meta property="og:image" content="http://fingaholic.github.com/img/logo1.png">
+	<meta property="og:site_name" content="jekylog">
+	<meta property="og:description" content="ステートフルJavaScript11章の備考録、っていうか写経。MVCライブラリSpineの解説。">
+	<meta property="fb:app_id" content="414280305262678">
+	<title>ステートフルJavaScript 11章 その1 | jekylog</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="alternate" href="/atom.xml" type="application/rss+xml" title="jekylog">
+	<link rel="stylesheet" href="/css/all.min.css">
+	<script src="/js/modernizr-2.5.3.min.js"></script>
+	<script>if(!Modernizr.mq('only all')) Modernizr.load('/js/respond.min.js');</script>
+	<script src="//typesquare.com/accessor/script/typesquare.js?4K0leOFaobI%3D"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/js/all.min.js"></script>
+</head>
+
+	<body>
+		<div class="area-body">
+			<header class="area-header">
+	<div class="mod-header">
+		<hgroup>
+			<h1><a href="/">jekylog</a></h1>
+			<h2>All doggs wanna be a Geek</h2>
+		</hgroup>
+	</div>
+	<div class="mod-gnavi">
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/archive.html">Archive</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+			<div class="area-main"><article class="mod-postdetail">
+	<header>
+		<p><time datatime="01 Aug 2012">01 Aug 2012</time></p>
+		<h1>ステートフルJavaScript 11章 その1</h1>
+	</header>
+	<section class="mod-postmain"><p>まずはSpineの概要と使用方法。</p>
+
+<p><strong>Githubのサンプルコードは1年以上前のもので、2012年8月7日時点で<a href='http://spinjs.com/' title='最新版のSpine.js'>最新版のSpine.js</a>の記法と違ってるので注意。あくまでもモデルやコントローラの連携部分を確認する程度に留めておいたほうがよさげ。</strong></p>
+
+<blockquote>
+<p>Spine（<a href='http://spinjs.com/' title='http://spinjs.com/'>http://spinjs.com/</a>）はJavaScriptアプリケーション開発のための軽量なライブラリであり、本書で紹介した概念の多く（MVC、イベント、クラス）を実際に活用しています。本当に軽量であり、最小化と圧縮を経た500行程度のライブラリはわずか2キロバイトほどです。しかし軽量だからといって機能が乏しいわけではなく、クリーンで疎結合なコードによって高機能なJavaScriptアプリケーションを作成できます。</p>
+</blockquote>
+
+<p>著者であるmaccman（Alex MacCaw）氏が開発したMVCフレームワーク。IE6、IE7のようなネイティブでJSONをサポートしていない古いブラウザでも動作させる場合にはクロックフォード御大謹製の<a href='https://github.com/douglascrockford/JSON-js/' title='JSON2ライブラリ'>JSON2ライブラリ</a>が必要。</p>
+
+<blockquote>
+<p>Spineはデータをユーザー向けに表示するための方法については何も規定していません。Spineでの力点は柔軟さとシンプルさの実現にあります。Spineは骨組みの部分だけを提供し、アプリケーションロジックの実現という開発者にとっての楽しみには干渉しません。</p>
+</blockquote>
+
+<p>骨組みの部分、まさにBackboneを担うライブラリ。</p>
+
+<blockquote>
+<p>Spineには継承をサポートしたクラスライブラリ（Spine.Class）、イベントモジュール（Spine.Events）、ORM（Spine.Model）、そしてコントローラ（Spine.Controller）が含まれています。その他必要なライブラリ（テンプレートやDOM操作など）については使い慣れたものを利用できます。ただし、jQueryとZepto.jsについてはこれらを保管する機能を用意しています。</p>
+</blockquote>
+
+<p>Zepto.jsはjQueryライクに使用出来るわずか軽量のJavaScriptライブラリ。その軽さからモバイル向けに力を発揮するみたいだけどもちろんPC向けにも使用出来る。モダンブラウザ向けのライブラリなのでIE全般には対応しておらず、使用する際には注意する必要がある。</p>
+
+<ul>
+<li><a href='http://zeptojs.com/' title='Zepto.js: the aerogel-weight jQuery-compatible JavaScript library'>Zepto.js: the aerogel-weight jQuery-compatible JavaScript library</a></li>
+</ul>
+
+<h1 id='111_'>11.1 セットアップ</h1>
+
+<blockquote>
+<p>Spineの機能はすべてSpineという名前空間の中に存在するため、他の変数と競合することはありません。したがって、jQueryやZepto.jsあるいはPrototypeなどのライブラリがインクルードされていても問題は発生しないはずです。</p>
+</blockquote>
+
+<p><a href='/posts/2012-07-17-stateful-javascript.html' title='3章'>3章</a>で述べられてたやつも当然盛り込んでますよと。</p>
+
+<h1 id='112_'>11.2 クラス</h1>
+
+<blockquote>
+<p>新しいクラスを定義するには、Spine.Class.create(instanceProperties, classProperties)を呼び出します。各プロパティは省略可能です。呼び出し例を示します。</p>
+</blockquote>
+
+<p>まずは親クラスUserを作成。ちなみに初期化時にnameプロパティを設定。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>子クラスFriendを作成するには再度create関数で。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>親クラスのプロパティも継承されてる。</p>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1121_'>11.2.1 インスタンス化</h2>
+
+<blockquote>
+<p>コンストラクタ関数の代わりに純粋なプロトタイプオブジェクトと継承が使われているため、Spineではインスタンスの生成にnew演算子は利用できません。代わりに以下のようなinit()関数が用意されています。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>inti()で指定した引数はすべて、クラスが持つ初期化のための関数init()に渡されます。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1122_'>11.2.2 クラスの拡張</h2>
+
+<blockquote>
+<p>クラスプロパティとインスタンスプロパティを追加できるのはクラスの定義時だけではなく、それぞれinclude()とextend()を使ってもプロパティの追加が可能です。これらの関数にはプロパティをオブジェクトリテラルとして渡します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>この辺りも<a href='/posts/2012-06-27-stateful-javascript.html' title='1章'>1章</a>、<a href='/posts/2012-07-17-stateful-javascript.html' title='3章'>3章</a>あたりを読んでいると実装方法に違いがないのが分かる。</p>
+
+<blockquote>
+<p>include()とextend()によって、複数箇所で最利用可能なモジュールを実現できるようになります。利用例は以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>include()やextend()が呼び出された際のコールバックを定義することもできます。このコードでは、User.extend()が呼び出された際にUserというコンテキストのもとでextended()コールバックが呼び出されます。同様に、モジュールにincludedという定義がされていれば、include()が呼び出された際にこのプロパティがコールバック関数として呼び出されます。<br />継承はプロトタイプに基づいているため、クラスに対して追加されたプロパティは子クラスへも動的に反映されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>子クラスで上書きされたプロパティは、親クラスに影響を及ぼしません。しかし、子クラスが持つオブジェクト（配列など）を変更すると、その変更は継承関係を持つクラス全体に影響します。特定のクラスあるいはインスタンスに固有のオブジェクトを定義するには、クラスあるいはインスタンスが最初に初期化される際に定義を行う必要があります。このために用意された関数がcreated()であり、下記のように利用します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1123_'>11.2.3 コンテキスト</h2>
+
+<blockquote>
+<p>コンテキストの変更はjavaScriptのプログラムの中で頻繁に行われており、Spine.Classでもコンテキストすなわち有効範囲の制御のためのユーティリティ関数をいくつか用意しています。まずは例として、正しく機能しないコードを紹介します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>このコードでは、イベントが発生すると（Controllerではなく）#destroyという要素をコンテキストとしてdestroy()関数が呼び出されてしまいます。この問題に対処するには、コンテキストの中継を行い期待するコンテキストへと置き換える必要があります。Spineではこのためにproxy()関数が用意されています。利用例は以下のとおりです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<p>これまた<a href='/posts/2012-06-27-stateful-javascript.html' title='1章'>1章</a>、<a href='2012-07-20-stateful-javascript.html' title='4章'>4章</a>と同様の実装。</p>
+
+<blockquote>
+<p>コンテキストの中継を何度も記述するのは面倒に思われるかも知れません。このような場合は、以下のようにproxyAll()関数を利用できます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>proxyAll()には複数の関数の名前を配列として指定します。proxyAll()が実行されると、指定されている関数が書き換えられ、適切なコンテキストのもとで処理が行われるようになります。この例では、destroy()とrender()がローカルなコンテキストのもとで実行されるようになります。</p>
+</blockquote>
+
+<p>この辺りの処理は後々解説するMVCフレームワーク、Backbone.jsとほぼほぼ違いはない。</p>
+
+<h1 id='113_'>11.3 イベント</h1>
+
+<blockquote>
+<p>イベントはSpineにとって非常に重要であり、内部的にも多用されています。Spineでのイベント関連機能はSpine.Eventsモジュールに含まれています。このモジュールはどこでも利用でき、例えば以下のようにSpineのクラスにもイベントの機能を追加できます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Spine.Eventsにはイベント処理のための関数が3つ用意されています。</p>
+</blockquote>
+
+<ul>
+<li>bind(eventName, callback)</li>
+
+<li>trigger(eventName, [*data])</li>
+
+<li>unbind(eventName, [callback])</li>
+</ul>
+
+<blockquote>
+<p>jQueryのイベントAPIを使ったことがあるなら、これらの関数に違和感を覚えることはないはずです。Userクラスに対してイベントの関連付けを行い、そしてイベントを発生させてみましょう。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>複数のイベントを1つのコールバックで処理したい場合は、以下のようにイベント名を空白で区切って指定します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>trigger()には、イベント名とコールバックに渡される引数（省略可能）を指定します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Spineのイベントが最も使われるのはデータバインディング関連の処理です。ここではアプリケーションのモデルとビューが協調して動作します。これについては「11.6 連絡先管理アプリケーションの作成」で詳しく開設します。</p>
+</blockquote>
+
+<h1 id='114_'>11.4 モデル</h1>
+
+<blockquote>
+<p>Spineのソースコードを見ると、その大部分がモデル関連の記述に費やされていることがわかります。モデルはMVCアプリケーションで中心的な役割を果たし、データの操作や保管を受け持ちます。Spineには完全な機能を持ったORMが用意されており、これらの作業を簡素化してくれます。<br />create()という関数はすでに使われているため、新しいモデルの作成にはSpine.Model.setup(name, attrs)という関数を使います。ここにはモデルの名前と、属性名の配列を引数として渡します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>インスタンスプロパティやクラスプロパティを追加するには、それぞれ以下のようにinclude()とextend()を利用します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>レコードをインスタンス化するには、プロパティの初期値を表すオブジェクトを指定してinit()関数を呼び出します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>属性値の読み書きは通常のオブジェクトのプロパティと同様に行えます。また、attributes()関数はレコードが持つ属性をすべてオブジェクトリテラルとして返します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>レコードの保管には、それが新規であっても既存のものであってもsave()関数を利用します。レコードを新規保管する際にはID値が生成されます。保管されたレコードはローカルのメモリ上に保持されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>レコードを取得するにはモデルのfind()関数を利用します。以下のように、引数としてレコードのIDを指定します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>指定されたIDに対応するレコードが存在しない場合、例外が発生します。exists()関数を使えば、レコードが存在するかどうかを調べることができます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>destroy()関数はローカルに存在するレコードを削除します。コードは以下のとおりです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1141_'>11.4.1 レコードの検索</h2>
+
+<blockquote>
+<p>ID以外にもレコードの検索を行う手段が用意されています。一般的に、すべてのレコードを取り出したり、指定された条件に適合するレコードだけを取り出したりするという操作がよく行われます。Spineではこれらのためにall()、select()、each()という関数が用意されています。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>また、属性の値に基づいてレコードを取得するためのヘルパ関数もいくつか存在します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1142_'>11.4.2 モデルのイベント</h2>
+
+<blockquote>
+<p>モデルのイベントに対してコールバックを関連づけ、レコードが変更された際に呼び出されるようにできます。コードは以下のようになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>レコードに変化が生じると、そのレコードがコールバックに渡されます。モデルに対してイベントリスナを設定すると、どのレコードへの変更についてもリスナが呼び出されます。以下のように、特定のレコードに対してのみリスナを設定することもできます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>イベントには以下のような種類があります。trigger()を使えば独自のイベントを定義することもできます。</p>
+</blockquote>
+
+<dl>
+<dt>save</dt>
+
+<dd>レコードが保管（新規作成または更新）されると発生</dd>
+
+<dt>update</dt>
+
+<dd>レコードが更新されると発生</dd>
+
+<dt>create</dt>
+
+<dd>レコードが新規作成されると発生</dd>
+
+<dt>destroy</dt>
+
+<dd>レコードが破棄されると発生</dd>
+
+<dt>change</dt>
+
+<dd>以上のいずれかの操作で発生</dd>
+
+<dt>refresh</dt>
+
+<dd>すべてのレコードが無効化され置き換えられると発生</dd>
+
+<dt>error</dt>
+
+<dd>データの検証に失敗すると発生</dd>
+</dl>
+
+<blockquote>
+<p>モデルのイベントはアプリケーションに不可欠です。モデルとビューを組み合わせる際には特に重要です。</p>
+</blockquote>
+
+<h2 id='1143_'>11.4.3 データの検証</h2>
+
+<blockquote>
+<p>データの検証（バリデーション）は、モデルインスタンスのvalidate()関数を上書きするという極めてシンプルな形で実現されています。レコードが保管される際には必ずvalidate()が呼び出されます。この関数から何か値が返されたら、検証は失敗したということを意味します。何も返されなかった場合は処理が続行され、レコードは正しく保管されます。validate()の例を紹介します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>検証に失敗した場合、失敗の理由を表す文字列が返されます。この文字列を使い、エラーの内容や修正方法についてユーザーに知らせることができます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>検証に失敗するとモデルのerrorイベントも発生します。コールバックにはレコードとエラーメッセージが渡されます。</p>
+</blockquote>
+
+<h2 id='1144_'>11.4.4 永続化</h2>
+
+<blockquote>
+<p>Spineでのレコードは常にメモリ上に保持されますが、HTML5のローカルストレージやAjaxリクエストなどをバックエンドとして選択することもできます。<br />ローカルストレージは非常に簡単に利用できます。spine.model.local.jsというJavaScriptファイルをインクルードし、以下のようにしてSpine.Model.Localモジュールをモデルに追加します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ブラウザのローカルストレージからレコードを自動的に取り出すことはできず、fetch()関数を使って既存のデータを一括して取り出すことになります。この処理はアプリケーションの初期化処理がモデル以外についてすべて完了してから呼ばれることが多いでしょう。モデルに新しいデータがセットされるとrefetchが発生します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Ajaxを使った永続化も同様に行えます。spine.mode.ajax.jsをインクルードし、Spine.Model.Ajaxモジュールをモデルに追加します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>デフォルトでは、モデル名を複数形にしたものを元にしてURLが決定されます。したがって、この例ではTaskモデルのURLは/tasksになります。このデフォルトの設定を変更するには、クラスのURLプロパティを以下のように上書きします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>Task.fetch()が呼び出されると、SpineによってGET形式のAjaxリクエストが/tasksに対して送信されます。ここではすべてのTaskオブジェクトを配列として含むJSON形式のレスポンスが想定されています。サーバが正当なレスポンスを返すとレコードが読み込まれ、refreshイベントが発生します。<br />レコードの生成や更新あるいは破棄のたびにAjaxリクエストがサーバーに送信され、サーバとクライアントの間でデータの同期が保たれるようにしています。この際、サーバ側ではRESTに従ったリクエストを受付可能でなければなりません。これによって他種のクライアントからもシームレスなアクセスが可能になりますが、もちろん独自のリクエストを受け付けるようなカスタマイズをすることもできます。デフォルトでは以下のようなエンドポイントが想定されています。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>クライアント側でのレコードが作成されると、POST形式のリクエストが送信されます。このリクエストにはレコードのJSON表現が含まれます。「卵を買う」というTaskインスタンスが作成されたとすると、以下のようなリクエストが発生することになります。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>同様に、レコードを破棄するとDELETE形式のリクエストが送信され、レコードを更新するとPUT形式のリクエスト（以下のコードを参照）が送信されます。PUTとDELETEについては、レコードのIDがURLの中で指定されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>SpineではAjaxを使った同期について、他の多くのライブラリとは異なる方式で処理を行なっています。クライアント側にレコードが保管された後でリクエストが送信されるため、クライアントがレスポンスを待つことはありません。これによってクライアントとサーバを完全に疎結合の状態に保つことができ、たとえサーバーが利用できなくても処理を続行できます。 サーバとの疎結合の関係には3つの大きなメリットがあります。まず、ユーザーにとってインターフェースが高速でしかも停止せず、処理の完了を待つ必要がなくなります。また、コードをシンプルなものにできます。例えばサーバからのレスポンスを待つ間レコードを編集不可の状態にするといった処理の必要はありません。さらに、必要ならオフライン状態での操作にも対応できるようになります。<br />サーバ側でデータの検証を行うのかと疑問に思った読者がいるかもしれません。Spineでは、検証はすべてクライアント側で行うと想定しています。サーバからエラーが返されるのは、サーバー側のプログラム自体に何らかの問題があるという特殊な場合に限られます。<br />サーバがエラーのレスポンスを返した場合、モデル上でajaxErrorイベントが発生します。イベントハンドラには、レコード、XMLHttpRequestオブジェクト、Ajaxの設定、エラーを表すオブジェクトが渡されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h1 id='115_'>11.5 コントローラ</h1>
+
+<blockquote>
+<p>最後に紹介するコンポーネントがコントローラです。コントローラはアプリケーション全体を結びつける役割を果たします。一般的に、コントローラはDOMにイベントハンドラを追加し、テンプレートの描画を行い、そしてビューとモデルの同期を保ってくれます。コントローラを作成するには、以下のようにcreate()を呼び出すことによってSpine.Controllerの子クラスを定義します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>ページの状態変化の影響を受けないようにするために、コントローラはページ上の他の部分よりも後で読み込むのがよいでしょう。Spineを使ったサンプルコードでは、jQuery()への呼び出しの内部でコントローラが定義されています。こうすることによって、ドキュメントの準備ができてからコントローラが作成されることになります。<br />Spineでのコントローラの名前は、関連するモデルの名前を複数形にして先頭を大文字にしたものというルールを定めます。ほとんどのコントローラはインスタンスプロパティだけを持ちます。これらはもっぱらインスタンス化の後で使われるためです。他のクラスト同様に、コントローラも以下のようにinit()関数を呼び出すことによってインスタンス化できます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>コントローラにはDOMの要素が関連づけられており、elプロパティを通じてアクセスできます。以下のようにしてインスタンス化時に要素を指定することもできますが、デフォルトではdiv要素が自動生成されます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>この要素は、テンプレートの追加やビューの描画の際に内部的に使われます。以下に例用例を示します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>また、init()関数に渡された引数はすべてコントローラのプロパティとしてセットされます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1151_'>11.5.1 プロキシ</h2>
+
+<blockquote>
+<p>「11.2.3 コンテキスト」で、イベントのコールバックをthis.proxy()でラップすることによってコールバックを適切なコンテキストのもとで実行するというコード例を紹介しました。これは非常に多用されるパターンであり、Spineではproxiedというショートカットを用意しています。コントローラのコンテキストで実行したい関数の名前を配列として記述し、proxiedプロパティにセットします。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>こうすると、指定された関数は常に適切なコンテキストで実行されるようになります。コンテキストについて心配することなしに、render()などのコールバックをイベントハンドラとして設定できます。</p>
+</blockquote>
+
+<h2 id='1152_'>11.5.2 要素</h2>
+
+<blockquote>
+<p>コントローラ配下の要素に、ローカルなプロパティとしてアクセスできると便利なことがあります。Spineではこのためのショートカットとしてelementsが用意されています。セレクタとプロパティ名との関係を指定したオブジェクトを、コントローラのelementsプロパティにセットします。以下の例では、セレクタform input<span>type=text</span>にマッチする要素がthis.inputという変数として扱えるようになります。セレクタの評価はコントローラの要素elを基準として行われ、ページ全体が対象になるわけではない点に注意が必要です。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>コントローラのelが持つHTMLを置き換えた場合、要素への参照を更新するためにrefreshElements()を呼び出す必要があります。</p>
+</blockquote>
+
+<h2 id='1153_'>11.5.3 イベントの委譲</h2>
+
+<blockquote>
+<p>eventsプロパティを使うと、イベントリスナを一括して追加でき便利です。Spineの内部ではイベントのバブリング（「2.2 イベントの発生順序」参照）が行われており、コントローラの要素elに1つだけイベントリスナが設定されています。eventsプロパティと同様に、すべてのイベントの委譲も有効範囲はel内です。<br />eventsプロパティで指定するイベントハンドラは<strong>&#34;eventName selector&#34;: &#34;callback&#34;</strong>の形式で記述します。selectorは省略可能であり、省略されている場合はelに直接登録されます。省略されていない場合はイベント処理が委譲（<a href='http://api.jquery.com/delegate/' title='http://api.jquery.com/delegate/'>http://api.jquery.com/delegate/</a>参照）され、セレクタにマッチする子要素でイベントが発生した場合にイベントハンドラが呼び出されるようになります。この処理は動的に行われるため、elのコンテンツが変更されても正しく処理されます。利用例を以下に示します。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>この例では、セレクタにマッチするinput要素でkeydownイベントが発生したときにコントローラのコールバックkeydown()が呼び出されます。コールバックは適切なコンテキストのもとで呼び出されることがSpineによって保証されているため、ここではプロキシ関数を利用する必要はありません。<br />コールバックにはeventオブジェクトが渡されます。この例ではこのオブジェクトから、どのキーが押されたかなどの情報が取り出されることになります。イベントの発生元の要素はeventのtargetプロパティにセットされています。</p>
+</blockquote>
+
+<h2 id='1154_'>11.5.4 コントローラのイベント</h2>
+
+<blockquote>
+<p>イベントの委譲に加え、コントローラはカスタムイベントにも対応しています。デフォルトでコントローラはSpine.Eventsをextend()しているため、bind()やtrigger()といったイベント関連の関数も利用できます。この仕組によってコントローラ間の独立性を保ったり、コントローラの内部構造としてこの仕組みを活用したりできます。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>この例では別のコントローラからSidebarのchangeイベントに関連付けを行なっており、イベントを発生させることも可能です。2章でも紹介しましたが、カスタムイベントはアプリケーションの内部構造を定義する際に非常に有用であり、たとえ外部でイベントがまったく使われないとしてもその有用性は変わりません。</p>
+</blockquote>
+
+<h2 id='1155_'>11.5.5 グローバルなイベント</h2>
+
+<blockquote>
+<p>Spineではグローバルにイベントへの関連づけを行ったり、イベントを発生させたりできます。これは一種のパブリッシュ／サブスクライブであり、複数のコントローラが互いについて知らない場合でもコミュニケーションを行えるようになります。同時にコントローラ間の疎結合の関係も保たれます。これはグローバルなオブジェクトSpine.Appを通じて実現されます。どんなオブジェクトもこのSpine.Appに対してイベントの関連付けや発生を行えます。以下のようにして使います。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>SpineのコントローラによってSpine.Appにthis.Appという別名が与えられており、タイピングの量を少しだけ削減できます。このコードでは、Sidebarコントローラがchangeというグローバルなイベントに関連付けを行なっています。他のコントローラやスクリプトが以下のようにしてこのイベントを発生させ、必要なデータを渡すことが可能です。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<h2 id='1156_render'>11.5.6 Renderパターン</h2>
+
+<blockquote>
+<p>コントローラで利用可能なオブションの主なものについてここまで紹介してきたので、ここでは一般的な利用例について見てみましょう。<br />モデルとビューを関連づける上でRenderパターンはとても有効です。コントローラがインスタンス化される際に、関連するモデルに対してイベントリスナを設定します。このイベントリスナはモデルが再読み込みあるいは変更された場合にコールバックとして呼び出されます。そしてイベントリスナは要素elを更新します。多くの場合、テンプレートによって描画された内容を元にelのコンテンツが置き換えられます。以上の処理を記述したのが以下のコードです。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>この方法はシンプルですがやや乱暴であり、レコードが1つでも変更されると表示全体が更新されてしまいます。単純な短いリストについてはこの方法でも十分ですが、個々の要素に対してより詳細な制御を行いたい場合もあります。例えばそれぞれの項目にイベントハンドラを設定したい場合などですが、このようなときに活用できるのがElementパターンです。</p>
+</blockquote>
+
+<h2 id='1157_element'>11.5.7 Elementパターン</h2>
+
+<blockquote>
+<p>Elementパターンの機能は基本的にはRenderパターンと同一ですが、より細かな処理が可能です。ここではコントローラが2つ使われます。1つは項目の集合を管理し、もう1つは個々の項目を扱います。以下のコードを見れば、このパターンの仕組みをより良く理解できるでしょう。</p>
+</blockquote>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
+<blockquote>
+<p>このコードで、Tasksはレコードが新規作成された際の追加に責任を持ち、TasksItemは個々のレコードに対する変更や破棄のイベントに対する処理（必要に応じてレコードの再描画を行います）に責任を持ちます。コードは複雑になりましたが、いくつかの点でRenderパターンよりも優れています。<br />まず、ElementパターンはRenderパターンよりも効率的です。項目が1つ変更されただけでリスト全体が再描画されてしまうようなことはなくなりました。また、個々の項目に対してはるかに詳細な制御が可能になりました。イベントハンドラ（例ではclick()）を設定したり、個々の項目単位で描画を行ったりできます。</p>
+</blockquote></section>
+</article>
+<div class="mod-socialbutton">
+	<div class="tw-like"><a href="https://twitter.com/share" class="twitter-share-button" data-via="FiNGAHOLiC" data-lang="ja">ツイート</a></div>
+	<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana"></div>
+</div>
+
+
+	<div class="mod-pagenation">
+		
+			<div class="prev"><a href="/posts/2012-07-25-stateful-javascript.html">&#171; Previous Entry</a></div>
+		
+		
+			<div class="next"><a href="/posts/2012-08-07-stateful-javascript.html">Next Entry &#187;</a></div>
+		
+	</div>
+
+</div>
+			<footer class="area-footer">
+	<div class="mod-footer">
+		<p><small>Copyright &#xA9; 2012 fingaholic</small></p>
+	</div>
+</footer>
+
+		</div>
+		<script type="text/javascript">
+	var _gaq = _gaq || [['_setAccount', 'UA-30944384-1'], ['_trackPageview']];
+	(function(d, t){
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true;
+		g.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s);
+	})(document, 'script');
+</script>
+
+
+		<div id="fb-root"></div>
+		<div class="mod-github"><a href="http://github.com/fingaholic"><img src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a></div>
+	</body>
+</html>
