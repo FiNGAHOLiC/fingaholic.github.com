@@ -49,7 +49,8 @@ $typo-family-chunkfive:'ChunkFiveRegular';
 $typo-family-serif:'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
 $typo-family-sanserif:'Meiryo', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', Helvetica, Arial, sans-serif;
 $typo-family-gothicmb101:'ゴシックMB101 L', 'Gothic MB101 Light';
-$typo-family-shingo:'新ゴ L','Shin Go Light';
+$typo-family-shingo-l:'新ゴ L','Shin Go Light';
+$typo-family-shingo-m:'新ゴ M','Shin Go Medium';
 $typo-family-multilingual:Helvetica, Arial, sans-serif;
 
 
@@ -83,7 +84,7 @@ $typo-family-multilingual:Helvetica, Arial, sans-serif;
 .snp-font-serif{ font-family:$typo-family-serif; }
 .snp-font-sanserif{ font-family:$typo-family-sanserif; }
 .snp-font-gothicmb101{ font-family:$typo-family-gothicmb101; }
-.snp-font-shingo{ font-family:$typo-family-shingo; }
+.snp-font-shingo-l{ font-family:$typo-family-shingo-l; }
 .snp-font-multilingual{ font-family:$typo-family-multilingual; }
 
 .snp-clearfix{
@@ -380,7 +381,7 @@ body{
 			}
 			h1{
 				@extend .snp-font-26;
-				@extend .snp-font-shingo;
+				@extend .snp-font-shingo-l;
 				font-weight:normal;
 				@media screen and (max-width:480px){
 					font-size:153.9%; // 20px
@@ -446,7 +447,7 @@ body{
 		}
 		h1{
 			@extend .snp-font-26;
-			@extend .snp-font-shingo;
+			@extend .snp-font-shingo-l;
 			font-weight:normal;
 			@media screen and (max-width:480px){
 				font-size:153.9%; // 20px
@@ -461,12 +462,12 @@ body{
 	}
 	h1{
 		@extend .snp-font-18;
-		@extend .snp-font-shingo;
+		@extend .snp-font-shingo-l;
 		margin-top:40px;
 	}
 	h2,h3,h4,h5,h6{ 
 		@extend .snp-font-14;
-		@extend .snp-font-shingo;
+		@extend .snp-font-shingo-m;
 	}
 	p,ul,ol,dl,table,blockquote,ins,.highlight{
 		@extend .snp-font-14;
@@ -546,7 +547,7 @@ body{
 		.title{
 			width:660px;
 			float:left;
-			@extend .snp-font-shingo;
+			@extend .snp-font-shingo-l;
 			@media screen and (max-width:840px){
 				width:470px;
 			}
