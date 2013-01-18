@@ -820,8 +820,11 @@ tt {
 .snp-font-gothicmb101 {
   font-family: "ゴシックMB101 L", "Gothic MB101 Light"; }
 
-.snp-font-shingo, .mod-postlist section header h1, .mod-postdetail header h1, .mod-postmain h1, .mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6, .mod-archive .posts .title {
+.snp-font-shingo-l, .mod-postlist section header h1, .mod-postdetail header h1, .mod-postmain h1, .mod-archive .posts .title {
   font-family: "新ゴ L", "Shin Go Light"; }
+
+.snp-font-shingo-m, .mod-postmain h2, .mod-postmain h3, .mod-postmain h4, .mod-postmain h5, .mod-postmain h6 {
+  font-family: "新ゴ M", "Shin Go Medium"; }
 
 .snp-font-multilingual {
   font-family: Helvetica, Arial, sans-serif; }
