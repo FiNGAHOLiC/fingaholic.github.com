@@ -60,7 +60,7 @@ kramdown:
 # see : https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /posts/:year-:month-:day-:title.html
 
-# all variables can be refered in templates
+# all variables can be referred in templates
 title: jekylog
 author: fingaholic
 ga: UA-30944384-1
