@@ -1,16 +1,14 @@
-# Usage: rake watch
-desc "Grunt watch"
-task :watch do
-	sh "grunt watch"
-end
-
 # Usage: rake preveiw
 desc "Build files and launch preview environment"
 task :preview do
-	sh "grunt"
 	sh "jekyll --server --auto"
 end
-
+#
+# Usage: rake watch
+desc "Grunt watch"
+task :watch do
+	sh "grunt"
+end
 
 # Usage: rake publish
 desc "Pushing repository to Github"
