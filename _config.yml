@@ -15,7 +15,21 @@ lsi: false
 pygments: true
 markdown: maruku
 permalink: date
-exclude: [scss, README.md, Rakefile, gruntTasks, grunt.js]
+exclude: 
+        - .git
+        - .gitignore
+        - .sass-cache
+        - .DS_STORE
+        - _posts
+        - _layouts
+        - _includes
+        - _config.yml
+        - scss
+        - Rakefile
+        - Gruntfile.js
+        - node_modules
+        - package.json
+        - README.md
 paginate : 10
 
 maruku:
