@@ -1,7 +1,7 @@
 # Usage: rake preveiw
 desc "Build files and launch preview environment"
 task :preview do
-	sh "jekyll --server --auto"
+	sh "jekyll serve"
 end
 #
 # Usage: rake watch

@@ -15,13 +15,13 @@ CSS3でアニメさせた後にはtransitionEndイベントが発火するので
 3. 再度「animation start」を押下し、アニメ中に「hide」ボタンを押下すると5秒経ってもtransitionEndは発火することはない。
 4. 「show」を押下して表示させるとアニメーションはスキップされて最終座標まで移動している。
 
-<iframe style="width: 100%; height: 400px" src="http://jsfiddle.net/FiNGAHOLiC/3Yq9D/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
+<iframe style="width: 100%; height: 400px" src="http://jsfiddle.net/FiNGAHOLiC/3Yq9D/embedded/result.html/" allowfullscreen="allowfullscreen" frameborder="0">sample</iframe>
 
 まあ非表示の要素にtransitionEndが発火しないのはなんとなく分かるけどアニメーションがスキップされるのはなんだろう。この辺りMDN見ても載ってなかったんでドキュメント探し中（教えてエロイ人）。
 
 調べてみると、他にも気になってる人がいた。どうやらバグとして報告してるっぽい。
 
-*[transitionend doesn\'t fire if parent element gets display: none before transition completes](http://labs.silverorange.com/files/webkit-bug/ 'transitionend doesn\'t fire if parent element gets display: none before transition completes')
+* [transitionend doesn\'t fire if parent element gets display: none before transition completes](http://labs.silverorange.com/files/webkit-bug/ 'transitionend doesn\'t fire if parent element gets display: none before transition completes')
 
 兎にも角にもサイトの仕様にもよるけど**transitionEnd後のみに初期化処理なり次の処理を書くだけじゃなく、アニメ途中に自身または親要素を非表示する処理がある場合はそっちにも処理を書きましょうね**、という備忘録。
 
