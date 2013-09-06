@@ -1,7 +1,7 @@
 # Usage: rake preveiw
 desc "Build files and launch preview environment"
 task :preview do
-	sh "jekyll serve"
+	sh "jekyll serve --watch"
 end
 #
 # Usage: rake watch
