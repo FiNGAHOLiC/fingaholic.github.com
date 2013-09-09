@@ -1,7 +1,7 @@
 ---
 layout: post
 category: rubyonrails
-title: VagrantでCentOS上にRuby On Railsをインストールする
+title: VagrantでCentOS上にRailsをインストールする
 date: 2013-09-09
 summary: Ruby On Railsを勉強するためにVagrantでCentOS上にインストールするまでのメモ。
 ---
