@@ -2,7 +2,7 @@
 layout: post
 category: rubyonrails
 title: Ruby On Railsでタスク管理アプリを作ってみる
-date: 2013-09-10
+date: 2013-09-09
 summary: Ruby On Railsでタスク管理アプリを作るための備忘録。
 ---
 
