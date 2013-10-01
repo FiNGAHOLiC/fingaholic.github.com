@@ -8,7 +8,7 @@ summary: SWFの関数を$.isFunctionで判定しようとしたらダメだっ�
 
 下記のようにスクロールするごとにSWFの関数を叩くコードを作ってた（わかりやすくするために色々省いた）。
 
-{% highlight javascript %}
+```javascript
 var swf = null,
     onEmbedSWFHandler = function(){
     	swf = $('#flashcontents')[0];
@@ -25,7 +25,7 @@ var swf = null,
     	};
     };
 swfobject.embedSWF('.main.swf', 'flashcontents', 100, 100, '10', '', {}, {}, {}, onEmbedSWFHandler);
-{% endhighlight %}
+```
 
 流れとしては、
 
@@ -39,7 +39,7 @@ swfobject.embedSWF('.main.swf', 'flashcontents', 100, 100, '10', '', {}, {}, {},
 
 とりあえず下記のように$.isFunction使わず素直にtypeofで判定だといける。
 
-{% highlight javascript %}
+```javascript
 var swf = null,
     onEmbedSWFHandler = function(){
     	swf = $('#flashcontents')[0];
@@ -56,17 +56,17 @@ var swf = null,
     	};
     };
 swfobject.embedSWF('.main.swf', 'flashcontents', 100, 100, '10', '', {}, {}, {}, onEmbedSWFHandler);
-{% endhighlight %}
+```
 
 原因を突き止めるべくjQueryの$.isFunction()関数を見てみるとreturn $.type(obj) === 'function'しているだけだったので$.type()関数の処理を見てみた。
 
-{% highlight javascript %}
+```javascript
 type: function( obj ) {
 	return obj == null ?
 		String( obj ) :
 		class2type[ core_toString.call(obj) ] || "object";
 },
-{% endhighlight %}
+```
 
 どうやらcore_toString.call(obj)部分、Object.prototype.toString(obj)で[object Fucntion]が返り値として期待される箇所で[object NPMethod]が返ってきているのが原因っぽい。class2typeにはNPMethod型は登録されてないので'object'が代入され、'object' === 'function'で結果的にfalseが返ってくると。
 

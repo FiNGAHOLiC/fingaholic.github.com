@@ -20,7 +20,7 @@ summary: ステートフルJavaScript11章の備考録、MVCライブラリSpine
 
 関係なくなった機能部分については引用を省いてHTMLは下記のように変更した。
 
-{% highlight html %}
+```html
 <div id="sidebar">
 	<ul class="items"></ul>
 		<footer>
@@ -42,13 +42,13 @@ summary: ステートフルJavaScript11章の備考録、MVCライブラリSpine
 		<div class="content"></div>
 	</div>
 </div>
-{% endhighlight %}
+```
 
 ## 11.6.1 Contactモデル
 
 > 連絡先を表すContactモデルは正味5、6行程度のコードで定義されており、とてもシンプルです。ここにはfirst_name、last_name、emailという3つの属性が用意されています。テンプレートからの呼び出しを想定し、連絡先のフルネームを返すヘルパ関数も定義します。コードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 // Spineの最新版だと設定方法は変更されているので注意
 var Contact = Spine.Model.setup('Contact', ['first_name', 'last_name', 'email']);
 
@@ -63,7 +63,7 @@ Contact.include({
 		return (this.first_name + ' ' + this.last_name);
 	}
 });
-{% endhighlight %}
+```
 
 > ここではSpine.Model.Localがモデルに追加されています。これによってレコードがブラウザのローカルストレージに保存され、後で再びこのアプリケーションにアクセスしたときにも同じ連絡先を利用できます。
 
@@ -73,7 +73,7 @@ Contact.include({
 
 > このコントローラは、連絡先の一覧表示と現在選択されている項目の管理に責任を持ちます。連絡先が変更されると、コントローラは表示を更新して変更内容を反映させます。また、サイドバーには\[新規連絡先\]ボタンが表示され、コントローラはそのclickイベントを監視します。イベントが発生すると、空の連絡先が新規に作成されます。
 
-{% highlight javascript %}
+```javascript
 var Sidebar = Spine.Controller.create({
 
 	// インスタンス変数を追加
@@ -147,7 +147,7 @@ var Sidebar = Spine.Controller.create({
 
 	}
 });
-{% endhighlight %}
+```
 
 > コントローラのinit()関数の中で、見慣れないSpine.Listというクラスが利用されています。これはユーティリティのコントローラであり、レコードの一覧を作成するのに適しています。しかもSpine.Listには現在選択されている項目を管理する機能も用意されています。ユーザーが別の項目を選択すると、changeイベントが発生してイベントリスナに通知されます。  
 > ここでは、連絡先が作成あるいは変更されるとリスト全体が再描画されます。これによってコードはシンプルになりますが、処理速度が遅いと感じられたら修正が必要になるでしょう。  
@@ -155,7 +155,7 @@ var Sidebar = Spine.Controller.create({
 
 **ちなみにspine.list.jsも古いので最新版のspine.list.jsで作業する場合は注意すること。**
 
-{% highlight html %}
+```html
 <script type="text/x-jquery-tmpl" id="contactsTemplate">
 	<li class="item">
 		{{"{{if fullName()"}}}}
@@ -165,7 +165,7 @@ var Sidebar = Spine.Controller.create({
 		{{"{{/if"}}}}
 	</li>
 </script>
-{% endhighlight %}
+```
 
 > Spine.Listはこのテンプレートを使ってそれぞれの連絡先を描画し、現在選択されている項目のli要素にはcurrentというクラスを追加しています。
 
@@ -173,7 +173,7 @@ var Sidebar = Spine.Controller.create({
 
 > Sidebarコントローラが連絡先の一覧を表示しつつ選択対象の項目を管理する一方、Contactsコントローラは選択されている連絡先の内容を表示します。コードは以下のとおりです。
 
-{% highlight javascript %}
+```javascript
 var Contacts = Spine.Controller.create({
 
 	// インスタンス変数を追加
@@ -224,12 +224,12 @@ var Contacts = Spine.Controller.create({
 	}
 
 });
-{% endhighlight %}
+```
 
 > サイドバーでいずれかの連絡先が選択されると、グローバルなshow:contactイベントが発生します。Contactsコントローラはこのイベントを監視し、イベントの発生時には選択された連絡先のオブジェクトを渡してshow()関数を呼び出します。そしてshowContentが指すdiv要素を再描画し、選択された連絡先の情報で表示を置き換えます。  
 > このコードでは#contactTemplateというテンプレートが参照されています。これはContactsの中で選択されている連絡先の内容を表示するために使われます。テンプレートは以下のようになります。
 
-{% highlight html %}
+```html
 <script type="text/x-jquery-tmpl" id="contactTemplate">
 	<dl>
 		<dt>名前</dt>
@@ -242,11 +242,11 @@ var Contacts = Spine.Controller.create({
 		{{"{{/if"}}}}
 	</dl>
 </script>
-{% endhighlight %}
+```
 
 > これで連絡先の情報を表示できるようになりましたが、編集や破棄はまだできません。そこで、Contactsコントローラを少し手直しします。.optEditと.optSaveの各要素がクリックされたときに表示モードと編集モードとの間で切り替えを行うというのが主な変更点です。また、#editContactTemplateというテンプレートを追加します。レコードを保存する際に、編集モードのフォームのinput要素を調べてレコードの属性を更新します。新しいコードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 var Contacts = Spine.Controller.create({
 
 	// インスタンス変数を追加
@@ -343,11 +343,11 @@ var Contacts = Spine.Controller.create({
 	}
 
 });
-{% endhighlight %}
+```
 
 > ここで使われている#editContactTemplateのテンプレートは以下のようになります。このテンプレートもページ内に記述する必要があります。#editContactTemplateと#contactTemplateは本質的によく似ており、異なるのは#editContactTemplateがinput要素を使ってレコードを表示しているという点だけです。
 
-{% highlight html %}
+```html
 <script type="text/x-jquery-tmpl" id="editContactTemplate">
 	<dl>
 		<dt>ファーストネーム</dt>
@@ -358,13 +358,13 @@ var Contacts = Spine.Controller.create({
 		<dd><input type="text" name="email" value="${email}"></dd>
 	</dl>
 </script>
-{% endhighlight %}
+```
 
 ## 11.6.4 Appコントローラ
 
 > SidebarとContactsの各コントローラによって、Contactレコードの表示や選択あるいは編集などが可能になりました。後は、これらのコントローラをインスタンス化するためのAppコントローラだけです。インスタンス化の際に、それぞれのコントローラが必要としている要素を渡します。コードは以下のとおりです。
 
-{% highlight javascript %}
+```javascript
 var App = Spine.Controller.create({
 
 	// el要素を設定
@@ -396,7 +396,7 @@ var App = Spine.Controller.create({
 $(function(){
 	App.init();
 });
-{% endhighlight %}
+```
 
 下記が実装例。
 

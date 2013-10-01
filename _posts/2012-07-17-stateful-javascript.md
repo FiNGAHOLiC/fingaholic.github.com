@@ -13,20 +13,20 @@ summary: ステートフルJavaScript3章の備考録、っていうか写経。
 これはなかなか実践出来てないところ。  
 プラグイン化して管理、連携してるとモデルもビューもコントローラも混ぜ混ぜで書いてた。
 
-{% highlight javascript %}
+```javascript
 var User = {
 	records: [ /* ... */ ]
 };
-{% endhighlight %}
+```
 
 > ユーザーの配列にUser.recordsという名前空間を与えることができました。ユーザーについての処理を行う関数も、Userモデル配下の名前空間に関連づけることにします。例えば以下のように、ユーザーのデータをサーバから取得するためのfetchRemoteという関数を定義します。
 
-{% highlight javascript %}
+```javascript
 var User = {
 	records: [],
 	fetchRemote: function(){ /* ... */ }
 };
-{% endhighlight %}
+```
 
 > モデルが持つプロパティをすべて名前空間の中に置くと、プロパティ名の競合を避けることができ。同時にMVCへの準拠を確実なものにできます。また、複雑に絡まり合った関数やコールバックでコードが収拾のつかない状況に陥るのを防ぐこともできます。
 
@@ -34,29 +34,29 @@ var User = {
 
 > 名前空間の考え方をさらに一歩進めて、Userのインスタンスに特有の関数をすべてUserオブジェクトに持たせることも可能です。例えば、ユーザーを削除するための関数destroy()があるとします。この関数はユーザーのオブジェクトを参照しているため、以下のようにUserインスタンスに対して呼び出せるようにするべきです。
 
-{% highlight javascript %}
+```javascript
 var user = new User;
 user.destroy();
-{% endhighlight %}
+```
 
 > これを実現するには、Userを単なるオブジェクトでなくクラスとして定義します。コードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 var User = function(atts){
 	this.attributes = atts || {};
 };
 User.prototype.destroy = function(){
 	/* ... */
 };
-{% endhighlight %}
+```
 
 > 特定のユーザーとの関連を持たない関数や変数については、以下のようにUserオブジェクト直下のプロパティとして宣言します。
 
-{% highlight javascript %}
+```javascript
 User.fetchRemote = function(){
 	/* ... */
 };
-{% endhighlight %}
+```
 
 いわゆるクラスメソッドでクラスから生成されたオブジェクト間で共通で使用出来るメソッドとして設定してやると。
 
@@ -97,7 +97,7 @@ PythonをJavaScriptに脳内補完すればなんとなくイメージはつか�
 > Object.create()に引数としてプロトタイプオブジェクトを渡すと、そのプロトタイプに基づくオブジェクトが新たに生成されて返されます。言い換えると、渡したオブジェクトを継承した新しいオブジェクトが返されます。
 ちなみにIEは対応してないため、下記を設定して追加してやる必要がある。
 
-{% highlight javascript %}
+```javascript
 if(typeof Objext.create !== 'function'){
 	Object.create = function(o){
 		var F = function(){};
@@ -105,7 +105,7 @@ if(typeof Objext.create !== 'function'){
 		return new F();
 	};
 };
-{% endhighlight %}
+```
 
 ちなみに上記はDouglas Crockfordの下記記事を元にしている。
 
@@ -113,7 +113,7 @@ if(typeof Objext.create !== 'function'){
 
 で、出来上がったのが下記コード。
 
-{% highlight javascript %}
+```javascript
 var Model = {
 	inherited: function(){},
 	created: function(){},
@@ -135,7 +135,7 @@ var Model = {
 		return instance;
 	}
 };
-{% endhighlight %}
+```
 
 > Object.create()を使い慣れていないと、このコードは奇妙なものに思えるかもしれません。細かく分割しながら見ていきましょう。この関数はModelオブジェクトを継承した新しいオブジェクトを返すので、これを新たなモデルを生成する際に使用することにします。したがって、init()関数はModel.prototypeから継承した新しいオブジェクトを返すことになります。例えば以下のように、Modelオブジェクトのインスタンスを取得できます。
 
@@ -144,7 +144,7 @@ prototypeオブジェクトを内包してるのって確かにあまり馴染�
 
 ## 3.2.2 ORMのプロパティを追加する
 
-{% highlight javascript %}
+```javascript
 // オブジェクトプロパティを追加します。
 jQuery.extend(Model, {
 	find: function(){}
@@ -161,7 +161,7 @@ jQuery.extend(Model.prototype, {
 		};
 	}
 });
-{% endhighlight %}
+```
 
 > jQuery.extend()というのは、forループを使ってすべてのプロパティを追加することを表す短縮記法であり、上記のload()関数とほぼ等価です。
 
@@ -169,7 +169,7 @@ jQuery.extend(Model.prototype, {
 
 > これから多数のプロパティを追加することになるので、以下のようにextend()とinclude()をModelオブジェクトの一部にしてしまいましょう。
 
-{% highlight javascript %}
+```javascript
 var Model = {
 
 	/* ... */
@@ -199,13 +199,13 @@ Model.include({
 
 // オブジェクトを新規生成するのと同時に属性を追加
 var asset = Asset.init({ name: 'foo.png' });
-{% endhighlight %}
+```
 
 ## 3.2.3 レコードの永続化
 
 > レコードは何らかの手段で永続化しなければなりません。言い換えると、生成されたインスタンスへの参照を保存し、後でアクセスできるようにする必要があります。ここでは、Modelオブジェクトが持つrecordsというオブジェクトを通じて永続化を行います。ここにはインスタンスを保存する際に参照が追加され、インスタンスを削除する際に参照も合わせて削除されます。
 
-{% highlight javascript %}
+```javascript
 // 保存されたインスタンスへの参照
 Model.records = {};
 
@@ -219,38 +219,38 @@ Model.include({
 		delete this.parent.records[this.id];
 	}
 });
-{% endhighlight %}
+```
 
 > インスタンスが変更された場合は、以下のようにrecordsが保持している参照も更新されます。
 
-{% highlight javascript %}
+```javascript
 Model.include({
 	update: function(){
 		this.parent.records[this.id] = this;
 	}
 });
-{% endhighlight %}
+```
 
 > ここで補助的な関数を用意し、インスタンスの保存状態や保存する必要の有無をチェックせずに済むようにします。コードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 // オブジェクトを連想配列recordsに格納し、参照を保持します
 Model.include({
 	save: function(){
 		this.newRecord ? this.create() : this.update();
 	}
 });
-{% endhighlight %}
+```
 
 > また、find()関数にID値を渡すと該当するオブジェクトが返されるようにします。
 
-{% highlight javascript %}
+```javascript
 Model.extend({
 	find: function(id){
 		return this.records[id] || throw('該当なし');
 	}
 });
-{% endhighlight %}
+```
 
 ここまでのコードでちょっとまとめてみたのが下記。
 
@@ -265,14 +265,14 @@ JavaScript関係ないけど勉強になります。
 
 > Robert KiefferはMath.random()を利用した使いやすく簡潔なGUIDジェネレータを公開しています（[Broofa.com  &raquo; Blog Archive   &raquo; Javascript UUID Function](http://www.broofa.com/2008/09/javascript-uuid-function/ 'Broofa.com  &raquo; Blog Archive   &raquo; Javascript UUID Function')）。以下に示すとおり、コードはとてもシンプルです。
 
-{% highlight javascript %}
+```javascript
 Math.guid = function() {
 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
 		return v.toString(16);
 	}).toUpperCase();
 };
-{% endhighlight %}
+```
 
 実際リンク先のコードを見るとtoUpperCase()関数がなかったり、基数や文字列を指定できたりするコードも追加されてるみたいだった。
 また、ジェネレータには上記以外にも下記リンクもある。
@@ -281,7 +281,7 @@ Math.guid = function() {
 
 で、ORMにもGUIDジェネレータを組み込んでみる。
 
-{% highlight javascript %}
+```javascript
 Model.include({ // 本ではextendだけど
 	create: function(){
 		if(!this.id) this.id = Math.guid();
@@ -289,7 +289,7 @@ Model.include({ // 本ではextendだけど
 		this.parent.records[this.id] = this;
 	}
 });
-{% endhighlight %}
+```
 
 ちなみに本ではクラスメソッドにGUID生成の処理を入れてたけどこれをインスタンスメソッドで追加。
 組み込んでみると正しく動作してるのを確認できた。
@@ -300,7 +300,7 @@ Model.include({ // 本ではextendだけど
 
 > すでに気づかれている読者も多いと思われますが、ここまでのコードには参照の扱い方に関して明白な問題点が存在します。それは、インスタンスを保存するときやfind()が検索結果を返す際にインスタンスのクローンを作成していないという点です。そのため、プロパティを変更すると保存されているインスタンスも変更されてしまうことになります。これはupdate()関数が呼ばれた場合にのみ保存されているインスタンスを更新するという方針に反しています（以下のコードを参照）。
 
-{% highlight javascript %}
+```javascript
 var asset = new Asset({ name: 'foo' }); // Asset.init({ name: 'foo' });と同義？
 asset.save();
 
@@ -312,11 +312,11 @@ asset.name = 'wem';
 
 // おっと、nameの値はwemになっているのでアサーションは失敗します
 assertEqual(Asset.find(asset.id).name, 'foo');
-{% endhighlight %}
+```
 
 > そこでfind()関数が検索結果を返す際には新規生成されたオブジェクトを返すことにします。レコードが生成あるいは更新された場合にも、オブジェクトの複製を行います。
 
-{% highlight javascript %}
+```javascript
 Asset.extend({
 	find: function(id){
 		var record = this.records[id];
@@ -337,32 +337,32 @@ Asset.include({
 		return jQuery.extend(true, {}, this);
 	}
 });
-{% endhighlight %}
+```
 
 > 問題点はもう1つあります。Model.recordsオブジェクトがすべてのモデルの間で共有されてしまっています。このことを示したのが以下のコードです。
 
-{% highlight javascript %}
+```javascript
 assertEqual(Asset.records, Person.records);
-{% endhighlight %}
+```
 
 > 共有されることによって、以下のコードのようにすべてのレコードが混在してしまうという副作用が発生します。
 
-{% highlight javascript %}
+```javascript
 var asset = Asset.init();
 asset.save();
 
 assert(asset in Perosn.records);
-{% endhighlight %}
+```
 
 > 新しいモデルを定義するたび、新しいrecordsオブジェクトを生成することによってこの問題は解消できます。生成時にコールバック関数Model.created()が呼び出されるので、この中でモデルに固有のオブジェクトをセットできます。具体的には以下のようにします。
 
-{% highlight javascript %}
+```javascript
 Model.extend({
 	created: function(){
 		this.records = {};
 	}
 });
-{% endhighlight %}
+```
 
 # 3.5 データの読み込み
 
@@ -406,24 +406,24 @@ JSONPについての解説。実務レベルでクロスドメインリクエス
 
 話は少しそれるけど、
 
-{% highlight javascript %}
+```javascript
 coolJsonpFunc({
 	prop1: value1,
 	prop2: value2,
 	prop3: value3
 })
-{% endhighlight %}
+```
 
 叩くと上記のようなものが返って来るとすると、
 
-{% highlight javascript %}
+```javascript
 $.ajax({
 	type: 'GET',
 	url: url,
 	dataType: 'jsonp',
 	jsonpCallback: coolJsonpFunc
 });
-{% endhighlight %}
+```
 
 jsonpCallbackオプションでコールバック関数名を指定できる。
 
@@ -445,7 +445,7 @@ jsonpCallbackオプションでコールバック関数名を指定できる。
 
 > ORMへのデータの配置は簡単に行えます。サーバーからデータを取得し、モデルのレコードを更新するだけです。Modelオブジェクトにpopulate()関数を追加し、取得したそれぞれのデータを元にインスタンスを生成し、recordsオブジェクトを更新するようにします。
 
-{% highlight javascript %}
+```javascript
 Model.extend({
 	populate: function(values){
 		// モデルとレコードをリセットします
@@ -458,15 +458,15 @@ Model.extend({
 		};
 	}
 });
-{% endhighlight %}
+```
 
 > このModel.populate()関数は、以下のようにしてサーバから受け取ったデータとともに呼び出します。
 
-{% highlight javascript %}
+```javascript
 jQuery.getJSON('/assets', function(result){
 	Asset.populate(result);
 });
-{% endhighlight %}
+```
 
 # 3.7 データのローカル保存
 
@@ -481,14 +481,14 @@ HTML5のWebStorage（セッションストレージ、ローカルストレー�
 
 > これまでに作ってきたORMに、ローカルストレージを利用するための変更を行います。この変更によって、ページが再読み込みされてもレコードが保持されるようになります。localStorageオブジェクトを利用するには、レコードをJSON形式の文字列へとシリアライズする必要があります。しかし、単純にシリアライズすると以下の様な文字列が生成されてしまいます。
 
-{% highlight javascript %}
+```javascript
 var json = JSON.stringify(Asset.init({ name: 'foo' }));
 json //=> '{'parent':{'parent':{'prototype':{}},'records':[]},'name':'foo'}'
-{% endhighlight %}
+```
 
 > そこで、モデルがシリアライズされる際の処理内容を上書きする必要があります。まず、シリアライズするべきプロパティとそうでないものを区別します。Modelオブジェクトにattributesという配列を追加し、それぞれのモデルが属性すなわちプロパティを指定できるようにします。
 
-{% highlight javascript %}
+```javascript
 Model.extend({
 	created: function(){
 		this.records = {};
@@ -497,12 +497,12 @@ Model.extend({
 });
 
 Asset.attributes = ['name', 'ext'];
-{% endhighlight %}
+```
 
 > 属性はモデルごとに異なり、複数のモデルが1つのattributes配列を共有することはできません。そのため、この配列はModelに直接追加するのではなく、モデルがインスタンス化されるたびに新しく生成するようにしています。これはrecordsオブジェクトの場合と同じアプローチです。  
 > 次にattributes()関数を定義します。この関数はそれぞれの属性とその値からなるオブジェクトを返します。コードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 Model.include({
 	attributes: function(){
 		var result = {};
@@ -514,41 +514,41 @@ Model.include({
 		return result;
 	}
 });
-{% endhighlight %}
+```
 
 > モデルが持つattributes配列には以下のようにして値をセットします。
 
-{% highlight javascript %}
+```javascript
 Asset.attributes = ['name', 'ext'];
-{% endhighlight %}
+```
 
 > このコードで指定された内容に基づき、attributes()関数はシリアライズの必要があるプロパティだけを正しく返します。
 
-{% highlight javascript %}
+```javascript
 var asset = Asset.init({ name: 'document', ext: '.txt' });
 asset.attributes(); //=> { name: 'document', ext: '.txt' };
-{% endhighlight %}
+```
 
 > シリアライズの処理を行うコード（JSON.stringify()）の側では、変更の必要があるのはモデルのインスタンスが持つtoJSON関数だけです。JSONのライブラリは、与えられたオブジェクトをそのままシリアライズするのではなく、この関数を通じてシリアライズ対象のオブジェクトを取得しているのです。変更は以下のようにして行います。
 
-{% highlight javascript %}
+```javascript
 Model.include({
 	toJSON: function(){
 		return (this.attributes());
 	}
 });
-{% endhighlight %}
+```
 
 > ここまでのコードを使い、再びシリアライズを行なってみましょう。今度は必要なプロパティだけがシリアライズされているはずです。
 
-{% highlight javascript %}
+```javascript
 var json = JSON.stringify(Asset.records);
 json //- '{'7B2A9E8D...':'{'name':'document','ext':'.txt','id':'7B2A9E8D...'}'}'
-{% endhighlight %}
+```
 
 > 正しいJSON形式の文字列を生成できたので、後はローカルストレージを利用するためのコードを追加するだけです。ここではModelにsaveLocal()とloadLocal()という2つの関数を追加します。保存時にはModel.recordsオブジェクトを配列へと変換してからシリアライズし、生成された文字列をlocalStorageに格納します。
 
-{% highlight javascript %}
+```javascript
 var Model.localStorage = {
 	saveLocal: function(){
 		// レコードを配列に変換
@@ -565,7 +565,7 @@ var Model.localStorage = {
 };
 
 Asset.extend(Model.LocalStorage);
-{% endhighlight %}
+```
 
 > レコードの取り出しはページの読み込み時に行い、ページが閉じられたらレコードを格納するのがよいでしょう。この部分のコードの作成については読者への宿題としておきます。
 
@@ -573,15 +573,15 @@ Asset.extend(Model.LocalStorage);
 
 前節で作成したattributes()関数を使用して下記のようにしてレコードをサーバへ送信できる。
 
-{% highlight javascript %}
+```javascript
 jQuery.post('', asset.attributes(), function(result){
 	/* AjaxによるPOSTリクエストが成功しました */
 });
-{% endhighlight %}
+```
 
 > REST（Representative State Transfer）のルールに従うなら、レコードを新規作成する際にはPOST形式のリクエストを行い、レコードを更新する際にはPUT形式を利用するべきです。以下のように、ModelのインスタンスにcreateRemote()とupdateRemote()という2つの関数を追加し、それぞれ適切な形式のリクエストを行うようにします。
 
-{% highlight javascript %}
+```javascript
 Model.include({
 	createRemote: function(url, callback){
 		$.post(url, this.attributes(), callback);
@@ -595,14 +595,14 @@ Model.include({
 		});
 	}
 });
-{% endhighlight %}
+```
 
 > Assetインスタンスに対してcreateRemote()を呼び出すだけで、レコードの内容がサーバへとPOST形式で送信されるようになりました。利用例を以下に示します。
 
-{% highlight javascript %}
+```javascript
 // 使い方
 Asset.init({ name: 'json.txt' }).createRemote('/assets');
-{% endhighlight %}
+```
 
 後半サンプルコードの全体像が分からなくなってちょっと疑問点残る箇所があるけど何となく掴めた。  
 この辺りは後々復習していこうかと。

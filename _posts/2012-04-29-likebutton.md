@@ -12,7 +12,7 @@ summary: Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
 
 [facebook]: /posts/2012-04-26-facebook.html 'FacebookのLikeボタンを設置する'
 
-{% highlight html %}
+```html
 <!-- mixi -->
 <div 
     data-plugins-type="mixi-favorite"
@@ -37,13 +37,13 @@ summary: Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
     data-layout="button_count"
     data-show-faces="false"
     data-font="verdana"></div>
-{% endhighlight %}
+```
 
 ちなみにmixiに関しては下記ページにログインしてmixi Pluginから新規サービスを作成、対象となるページを登録してservice-keyを発行する必要がある。
 
 * [mixi Developer Center](http://developer.mixi.co.jp/ 'mixi Developer Center')
 
-{% highlight javascript %}
+```javascript
 ;(function($, window, document, undefined){
 
 	$(function(){
@@ -68,7 +68,7 @@ summary: Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
 	});
 
 }(jQuery, window, this.document));
-{% endhighlight %}
+```
 
 Facebookに関してはロケールを明示的に示したかったので**パスをen_USからja_JP**に変更した。  
 また、appIdを発行している、する場合はinit時にappIdを渡す必要がある。

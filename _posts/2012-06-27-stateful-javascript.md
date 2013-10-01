@@ -43,19 +43,19 @@ TwitterからTweet引っ張ってきてゴニョゴニョって場合だとTweet
 
 いわゆる疎結合ってやつですね。
 
-{% highlight javascript %}
+```javascript
 var user = users['foo'];
 destroyUser(user);
-{% endhighlight %}
+```
 
 上記はダメな例。  
 destroyUserが名前空間で保護されていない（グローバル関数になっている）ので、  
 同じ名前の関数があったら競合してしまう。
 
-{% highlight javascript %}
+```javascript
 var user = User.find('foo');
 user.destroy();
-{% endhighlight %}
+```
 
 上記は良い例。  
 destroy関数はUserインスタンスを通じて名前空間が限定されている。  
@@ -68,7 +68,7 @@ destroy関数はUserインスタンスを通じて名前空間が限定されて
 
 ビューもモデルと同様他の部分から切り離されているべきだと。
 
-{% highlight html %}
+```html
 <div>
 	<script>
 		function formatDate(date){
@@ -77,25 +77,25 @@ destroy関数はUserインスタンスを通じて名前空間が限定されて
 		${ formatDate(this.date) }
 	</script>
 </div>
-{% endhighlight %}
+```
 
 上記はダメな例。  
 formatDate関数をビューの中に記述しているので保守が困難。
 
 javascript
 
-{% highlight javascript %}
+```javascript
 var helper = {};
 helper.formatDate = function(){ /* ... */ };
-{% endhighlight %}
+```
 
 html
 
-{% highlight html %}
+```html
 <div>
 	${ helper.formatDate(this.date) }
 </div>
-{% endhighlight %}
+```
 
 上記は良い例。
 helperという名前空間で保護されているし、ロジックを外部に隔離出来ている。
@@ -106,7 +106,7 @@ helperという名前空間で保護されているし、ロジックを外部�
 
 仲介するだけでやっぱりコントローラも分離してる。
 
-{% highlight javascript %}
+```javascript
 var Controller = {};
 (Controller.users = function($){
 	var nameClick = function(){
@@ -116,7 +116,7 @@ var Controller = {};
 		$('#view .name').click(nameClick);
 	});
 })(jQuery);
-{% endhighlight %}
+```
 
 これちょっと分からんかった。匿名関数いるのかな？jQuery用？nameClickって匿名関数無くてもプライベートになってる気がするけど。
 
@@ -124,7 +124,7 @@ var Controller = {};
 
 JavaScriptのクラスやイベント等の基本的な概念をおさらい。
 
-{% highlight javascript %}
+```javascript
 var Person = function(name){
 	this.name = name;
 };
@@ -134,11 +134,11 @@ var alice = new Person('alice');
 
 // インスタンスをチェック
 assert(alice instanceof Person);
-{% endhighlight %}
+```
 
 慣習的にコンストラクタ関数の先頭は大文字に、必ずnew演算子と組み合わせて呼び出す。
 
-{% highlight javascript %}
+```javascript
 var Class = function(){
 	var klass = function(){
 		this.init.apply(this, arguments);
@@ -155,7 +155,7 @@ Person.prototype.init = function(){
 
 // 使い方
 var Person = new Person();
-{% endhighlight %}
+```
 
 上記は新しいクラスをセットアップするための関数。  
 今後これをペースにクラスライブラリを作るみたい。
@@ -164,29 +164,29 @@ var Person = new Person();
 
 ## クラス関数
 
-{% highlight javascript %}
+```javascript
 Person.find = function(){ /* ... */ };
 var person = Person.find(1);
-{% endhighlight %}
+```
 
 ## インスタンス関数
 
-{% highlight javascript %}
+```javascript
 Person.prototype.breath = function(){ /* ... */ };
 var person = new Person;
 person.breath();
-{% endhighlight %}
+```
 
 ## prototypeのエイリアスを使う
 
-{% highlight javascript %}
+```javascript
 Person.fn = Person.prototype;
 Person.fn.run = function(){ /* ... */ };
-{% endhighlight %}
+```
 
 # 1.6 クラスライブラリへのメソッドの追加
 
-{% highlight javascript %}
+```javascript
 var Class = function(){
 	var klass = function(){
 		this.init.apply(this, arguments);
@@ -218,12 +218,12 @@ var Class = function(){
 	};
 	return klass;
 };
-{% endhighlight %}
+```
 
 クラスライブラリにクラスプロパティを追加するextend関数と、  
 インスタンスプロパティを追加するinclude関数を追加。
 
-{% highlight javascript %}
+```javascript
 var Person = new Class;
 
 Person.extend({
@@ -232,11 +232,11 @@ Person.extend({
 });
 
 var person = Person.find(1);
-{% endhighlight %}
+```
 
 上記がextend関数の使用例。
 
-{% highlight javascript %}
+```javascript
 var Person = new Class;
 
 Person.include({
@@ -246,17 +246,17 @@ Person.include({
 
 var person = new Person;
 person.save();
-{% endhighlight %}
+```
 
 上記がinclude関数の使用例。
 
-{% highlight javascript %}
+```javascript
 Person.extend({
 	extended: function(klass){
 		console.log(klass, "が拡張されました！");
 	}
 });
-{% endhighlight %}
+```
 
 上記がコールバック（拡張が行われた時点で呼ばれる）の使用例。
 
@@ -264,7 +264,7 @@ Person.extend({
 
 > JavaScriptはプロトタイプベースの言語であり、（クラスとインスタンスを区別するのではなく）プロトタイプすなわち原型というオブジェクトの概念を持ちます。プロトタイプオブジェクトとは、新しく生成されるオブジェクトに対して初期プロパティを与えるテンプレートのような役割を果たします。
 
-{% highlight javascript %}
+```javascript
 var Animal = function(){};
 
 Animal.prototype.breath = function(){
@@ -283,11 +283,11 @@ Dog.prototype.wag = function(){
 var dog = new Dog;
 dog.wag();
 dog.breath(); // 継承されたプロパティ
-{% endhighlight %}
+```
 
 # 1.8 クラスライブラリに継承を追加する
 
-{% highlight javascript %}
+```javascript
 var Class = function(parent){
 	var klass = function(){
 		this.init.apply(this, arguments);
@@ -311,11 +311,11 @@ var Class = function(parent){
 
 	return klass;
 };
-{% endhighlight %}
+```
 
 ちなみに__proto__にブラウザ間の互換性が無いので注意。
 
-{% highlight javascript %}
+```javascript
 var Animal = new Class;
 
 Animal.include({
@@ -329,25 +329,25 @@ var Cat = new Class(Animal);
 // 使い方
 var tommy = new Cat;
 tommy.breath();
-{% endhighlight %}
+```
 
 # 1.9 関数呼び出し
 
 ## apply関数
 
-{% highlight javascript %}
+```javascript
 function.apply(this, [1, 2, 3]);
-{% endhighlight %}
+```
 
 ## call関数
 
-{% highlight javascript %}
+```javascript
 function.call(this, 1, 2, 3);
-{% endhighlight %}
+```
 
 ## 元のコンテキストを保持する関数（jQueryなら$.proxy()）
 
-{% highlight javascript %}
+```javascript
 var porxy = function(func, thisObject){
 	return (function(){
 		return func.apply(thisObject, arguments);
@@ -363,7 +363,7 @@ var clicky = {
 		$('.clicky').click(proxy(this.wasClicked, this));
 	}
 };
-{% endhighlight %}
+```
 
 この辺りは下記参考リンクが分かりやすい。
 
@@ -373,7 +373,7 @@ var clicky = {
 
 クラスライブラリにproxy関数を追加。
 
-{% highlight javascript %}
+```javascript
 var Class = function(parent){
 	var klass = function(){
 		this.init.apply(this, arguments);
@@ -394,11 +394,11 @@ var Class = function(parent){
 
 	return klass;
 };
-{% endhighlight %}
+```
 
 下記使用例。
 
-{% highlight javascript %}
+```javascript
 var Button = new Class;
 Button.include({
 	init: function(element){
@@ -409,11 +409,11 @@ Button.include({
 	},
 	click: function(){ /* ... */ }
 });
-{% endhighlight %}
+```
 
 ちなみにES5ならbindが使える。
 
-{% highlight javascript %}
+```javascript
 Button.include({
 	init: function(element){
 		this.element = jQuery(element);
@@ -423,11 +423,11 @@ Button.include({
 	},
 	click: function(){ /* ... */ }
 });
-{% endhighlight %}
+```
 
 古いブラウザ用のbindフォールバック
 
-{% highlight javascript %}
+```javascript
 if(!Function.prototype.bind){
 	Function.prototype.bind = function(obj){
 		var slice = [].slice;
@@ -442,7 +442,7 @@ if(!Function.prototype.bind){
 		return bound;
 	};
 };
-{% endhighlight %}
+```
 
 下記参考リンク。
 
@@ -455,7 +455,7 @@ if(!Function.prototype.bind){
 
 ちょっとしたサイトなら工数の都合もあるからいいと思うけどWEBアプリではご法度。
 
-{% highlight javascript %}
+```javascript
 var Person = function(){};
 (function(){
 	var findById = function(){ /* ... */ };
@@ -465,7 +465,7 @@ var Person = function(){};
 		};
 	};
 }());
-{% endhighlight %}
+```
 
 上記ではfindById関数がプライベートになっている。
 
@@ -475,7 +475,7 @@ Spineってクラスライブラリもあるんすか。
 
 # 1章で制作したクラスライブラリ
 
-{% highlight javascript %}
+```javascript
 var Class = function(parent){
 	var klass = function(){
 		this.init.apply(this, arguments);
@@ -512,4 +512,4 @@ var Class = function(parent){
 	klass.fn.proxy = klass.proxy;
 	return klass;
 };
-{% endhighlight %}
+```

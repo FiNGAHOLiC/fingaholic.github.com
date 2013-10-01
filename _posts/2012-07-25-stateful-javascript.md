@@ -32,7 +32,7 @@ summary: ステートフルJavaScript6章の備考録、っていうか写経。
 
 > CommonJSを使ってモジュールを宣言するのは簡単です。ここでは名前空間の仕組みが直接取り込まれています。モジュールは個別にファイルに記述し、共有したい変数はインタプリタによって定義されるexportsオブジェクトに対して公開します。コード例は以下のようになります。
 
-{% highlight javascript %}
+```javascript
 // math.js
 exports.per = function(value, total){
 	return ((value / total) * 100);
@@ -41,7 +41,7 @@ exports.per = function(value, total){
 // application.js
 var Maths = require('./maths');
 assertEqual(Maths.per(50, 100), 50);
-{% endhighlight %}
+```
 
 > モジュールの中で定義されている関数を呼び出したい場合に必要なコードはrequire()のみであり、ここにモジュールのファイルを指定します。読み込んだ内容はローカル変数に保存されます。この例では、math.jsで公開されている関数はすべてMaths関数を通じて利用可能です。ここでのポイントは、モジュールが名前空間の中に置かれることと、Narwhal（[https://github.com/tlrobinson/narwhal](https://github.com/tlrobinson/narwhal 'https://github.com/tlrobinson/narwhal')）やNode.jsといったCommonJS準拠のすべてのJavaScriptインタプリタ上で動作するという点です。
 
@@ -50,7 +50,7 @@ assertEqual(Maths.per(50, 100), 50);
 > 以上のような仕組みがクライアント側でのJavaScript開発にとってどのような意味を持つのか考えてみましょう。クライアント側でモジュールを使うことの問題点すなわち、CommonJSのモジュールは同期形式で読み込まれる必要があるということについて多くの開発者がきづいています。サーバー側で実行されるJavaScriptではこのことは大きな問題になりませんが、クライアント側では読み込みの間UIを利用できず、しかも避けるべきeval()によるスクリプトの解釈が必要になってしまいます。この問題に対処するため、CommonJSの開発チームはModule Transport Format（[http://wiki.commonjs.ofg/wiki/Modules/Transport](http://wiki.commonjs.ofg/wiki/Modules/Transport 'http://wiki.commonjs.ofg/wiki/Modules/Transport')）という仕様を提案しています。この仕様で定義されている形式に基づいてCommonJSのモジュールはコールバックとともにラップされ、クライアント側での非同期形式の読み込みが可能になっています。  
 > 先ほどの例に戻り、Module Transport Formatを使ってモジュールをラップします。これによってモジュールは非同期形式で読み込まれ、ブラウザとの相性の良いモジュールが実現されます。
 
-{% highlight javascript %}
+```javascript
 // math.js
 require.define('maths', function(require, exports){
 	exports.per = function(){
@@ -63,7 +63,7 @@ require.define('application', function(){
 	var per = require('./maths').per;
 	assertEqual(per(50, 100), 50);
 }, ['./maths']); // 依存関係（maths.js）を列挙します
-{% endhighlight %}
+```
 
 > このモジュールはモジュールローダーのライブラリによって取得され、ブラウザ上で実行されます。このことが持つ意味は小さくありません。優れたアプリケーションに欠かせないモジュール形式のコンポーネントを実現出来るだけでなく、依存性の管理や有効範囲の隔離、名前空間の指定なども可能になっています。実際に、このモジュールはブラウザだけでなくサーバーやデスクトップアプリケーションなどでも、CommonJSに準拠さえしていればどの様な環境でも動作が可能です。言い換えると、同じコードをサーバーとクライアントの両方で利用できるのです。
 

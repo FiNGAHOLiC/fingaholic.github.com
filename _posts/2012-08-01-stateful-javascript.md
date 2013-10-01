@@ -36,39 +36,39 @@ Zepto.jsはjQueryライクに使用出来るわずか軽量のJavaScriptライ�
 
 まずは親クラスUserを作成。ちなみに初期化時にnameプロパティを設定。
 
-{% highlight javascript %}
+```javascript
 var User = Spine.Class.create({
 	name: 'Caroline'
 });
-{% endhighlight %}
+```
 
 子クラスFriendを作成するには再度create関数で。
 
-{% highlight javascript %}
+```javascript
 var Friend = User.create();
-{% endhighlight %}
+```
 
 親クラスのプロパティも継承されてる。
 
-{% highlight javascript %}
+```javascript
 assertEqual(Friend.prototype.name, 'Caroline');
-{% endhighlight %}
+```
 
 ## 11.2.1 インスタンス化
 
 > コンストラクタ関数の代わりに純粋なプロトタイプオブジェクトと継承が使われているため、Spineではインスタンスの生成にnew演算子は利用できません。代わりに以下のようなinit()関数が用意されています。
 
-{% highlight javascript %}
+```javascript
 var user = User.init();
 assertEqual(user.name, 'Caroline');
 
 user.name = 'Trish';
 assertEqual(user.name, 'Trish');
-{% endhighlight %}
+```
 
 > inti()で指定した引数はすべて、クラスが持つ初期化のための関数init()に渡されます。コードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 var User = Spine.Class.create({
 	init: function(name){
 		this.name = name;
@@ -77,13 +77,13 @@ var User = Spine.Class.create({
 
 var user = User.init('Martina');
 assertEqual(user.name, 'Martina');
-{% endhighlight %}
+```
 
 ## 11.2.2 クラスの拡張
 
 > クラスプロパティとインスタンスプロパティを追加できるのはクラスの定義時だけではなく、それぞれinclude()とextend()を使ってもプロパティの追加が可能です。これらの関数にはプロパティをオブジェクトリテラルとして渡します。
 
-{% highlight javascript %}
+```javascript
 User.include({
 	// インスタンスプロパティ
 });
@@ -91,13 +91,13 @@ User.include({
 User.extend({
 	// クラスプロパティ
 });
-{% endhighlight %}
+```
 
 この辺りも[1章](/posts/2012-06-27-stateful-javascript.html '1章')、[3章](/posts/2012-07-17-stateful-javascript.html '3章')あたりを読んでいると実装方法に違いがないのが分かる。
 
 > include()とextend()によって、複数箇所で最利用可能なモジュールを実現できるようになります。利用例は以下のようになります。
 
-{% highlight javascript %}
+```javascript
 var ORM = {
 	extended: function(){
 		// extend()が実行された際に呼び出されます
@@ -108,12 +108,12 @@ var ORM = {
 };
 
 User.extend(ORM);
-{% endhighlight %}
+```
 
 > include()やextend()が呼び出された際のコールバックを定義することもできます。このコードでは、User.extend()が呼び出された際にUserというコンテキストのもとでextended()コールバックが呼び出されます。同様に、モジュールにincludedという定義がされていれば、include()が呼び出された際にこのプロパティがコールバック関数として呼び出されます。  
 > 継承はプロトタイプに基づいているため、クラスに対して追加されたプロパティは子クラスへも動的に反映されます。
 
-{% highlight javascript %}
+```javascript
 var Friend = User.create();
 
 User.include({
@@ -121,11 +121,11 @@ User.include({
 });
 
 assertEqual(Friend.init().email, 'info@eribium.org');
-{% endhighlight %}
+```
 
 > 子クラスで上書きされたプロパティは、親クラスに影響を及ぼしません。しかし、子クラスが持つオブジェクト（配列など）を変更すると、その変更は継承関係を持つクラス全体に影響します。特定のクラスあるいはインスタンスに固有のオブジェクトを定義するには、クラスあるいはインスタンスが最初に初期化される際に定義を行う必要があります。このために用意された関数がcreated()であり、下記のように利用します。
 
-{% highlight javascript %}
+```javascript
 // records配列はクラス固有にします
 var User = Spine.Class.create({
 	// インスタンス化時に呼ばれます
@@ -138,13 +138,13 @@ var User = Spine.Class.create({
 		this.records = [];
 	}
 });
-{% endhighlight %}
+```
 
 ## 11.2.3 コンテキスト
 
 > コンテキストの変更はjavaScriptのプログラムの中で頻繁に行われており、Spine.Classでもコンテキストすなわち有効範囲の制御のためのユーティリティ関数をいくつか用意しています。まずは例として、正しく機能しないコードを紹介します。
 
-{% highlight javascript %}
+```javascript
 var Controller = Spine.Class.create({
 	init: function(){
 		// イベントリスナを追加します
@@ -157,24 +157,24 @@ var Controller = Spine.Class.create({
 		assertEqual(this, Controller.fn);
 	}
 });
-{% endhighlight %}
+```
 
 > このコードでは、イベントが発生すると（Controllerではなく）#destroyという要素をコンテキストとしてdestroy()関数が呼び出されてしまいます。この問題に対処するには、コンテキストの中継を行い期待するコンテキストへと置き換える必要があります。Spineではこのためにproxy()関数が用意されています。利用例は以下のとおりです。
 
-{% highlight javascript %}
+```javascript
 var Controller = Spine.Class.create({
 	init: function(){
 		$('#destroy').click(this.proxy(this.destroy));
 	},
 	destroy: function(){}
 });
-{% endhighlight %}
+```
 
 これまた[1章](/posts/2012-06-27-stateful-javascript.html '1章')、[4章](2012-07-20-stateful-javascript.html '4章')と同様の実装。
 
 > コンテキストの中継を何度も記述するのは面倒に思われるかも知れません。このような場合は、以下のようにproxyAll()関数を利用できます。
 
-{% highlight javascript %}
+```javascript
 var Controller = Spine.Class.create({
 	init: function(){
 		this.proxyAll('destroy', 'render');
@@ -185,7 +185,7 @@ var Controller = Spine.Class.create({
 	destroy: function(){},
 	render: function(){},
 });
-{% endhighlight %}
+```
 
 > proxyAll()には複数の関数の名前を配列として指定します。proxyAll()が実行されると、指定されている関数が書き換えられ、適切なコンテキストのもとで処理が行われるようになります。この例では、destroy()とrender()がローカルなコンテキストのもとで実行されるようになります。
 
@@ -195,10 +195,10 @@ var Controller = Spine.Class.create({
 
 > イベントはSpineにとって非常に重要であり、内部的にも多用されています。Spineでのイベント関連機能はSpine.Eventsモジュールに含まれています。このモジュールはどこでも利用でき、例えば以下のようにSpineのクラスにもイベントの機能を追加できます。
 
-{% highlight javascript %}
+```javascript
 var User = User.Class.create();
 User.extend(Spine.Events);
-{% endhighlight %}
+```
 
 > Spine.Eventsにはイベント処理のための関数が3つ用意されています。
 
@@ -208,27 +208,27 @@ User.extend(Spine.Events);
 
 > jQueryのイベントAPIを使ったことがあるなら、これらの関数に違和感を覚えることはないはずです。Userクラスに対してイベントの関連付けを行い、そしてイベントを発生させてみましょう。
 
-{% highlight javascript %}
+```javascript
 User.bind('create', function(){ /* ... */ });
 User.trigger('create');
-{% endhighlight %}
+```
 
 > 複数のイベントを1つのコールバックで処理したい場合は、以下のようにイベント名を空白で区切って指定します。
 
-{% highlight javascript %}
+```javascript
 User.bind('create update', function(){ /* ... */ });
-{% endhighlight %}
+```
 
 > trigger()には、イベント名とコールバックに渡される引数（省略可能）を指定します。
 
-{% highlight javascript %}
+```javascript
 User.bind('countChange', function(count){
 	// countの値はtrigger()から渡されます
 	assertEqual(count, 5);
 });
 
 User.trigger('countChnage', 5);
-{% endhighlight %}
+```
 
 > Spineのイベントが最も使われるのはデータバインディング関連の処理です。ここではアプリケーションのモデルとビューが協調して動作します。これについては「11.6 連絡先管理アプリケーションの作成」で詳しく開設します。
 
@@ -237,14 +237,14 @@ User.trigger('countChnage', 5);
 > Spineのソースコードを見ると、その大部分がモデル関連の記述に費やされていることがわかります。モデルはMVCアプリケーションで中心的な役割を果たし、データの操作や保管を受け持ちます。Spineには完全な機能を持ったORMが用意されており、これらの作業を簡素化してくれます。  
 > create()という関数はすでに使われているため、新しいモデルの作成にはSpine.Model.setup(name, attrs)という関数を使います。ここにはモデルの名前と、属性名の配列を引数として渡します。
 
-{% highlight javascript %}
+```javascript
 // Taskモデルを作成します
 var Task = Spine.Model.setup('Task', ['name', 'done']);
-{% endhighlight %}
+```
 
 > インスタンスプロパティやクラスプロパティを追加するには、それぞれ以下のようにinclude()とextend()を利用します。
 
-{% highlight javascript %}
+```javascript
 Task.extend({
 	// 終了したタスクを返します
 	done: function(){ /* ... */ }
@@ -258,60 +258,60 @@ Task.include({
 		this.done = !this.done;
 	}
 });
-{% endhighlight %}
+```
 
 > レコードをインスタンス化するには、プロパティの初期値を表すオブジェクトを指定してinit()関数を呼び出します。
 
-{% highlight javascript %}
+```javascript
 var task = Task.init({ name: '犬の散歩' });
 assertEqual(task.name, '犬の散歩');
-{% endhighlight %}
+```
 
 > 属性値の読み書きは通常のオブジェクトのプロパティと同様に行えます。また、attributes()関数はレコードが持つ属性をすべてオブジェクトリテラルとして返します。
 
-{% highlight javascript %}
+```javascript
 var task = Task.init();
 task.name = '新聞を読む';
 assertEqual(task.attributes(), {name: '新聞を読む'});
-{% endhighlight %}
+```
 
 > レコードの保管には、それが新規であっても既存のものであってもsave()関数を利用します。レコードを新規保管する際にはID値が生成されます。保管されたレコードはローカルのメモリ上に保持されます。
 
-{% highlight javascript %}
+```javascript
 var task = Task.init({ name: '本を完成させる' });
 task.save();
 task.id //=> '44E1DB33-2455-4728-AEA2-ECBD724B5E7B'
-{% endhighlight %}
+```
 
 > レコードを取得するにはモデルのfind()関数を利用します。以下のように、引数としてレコードのIDを指定します。
 
-{% highlight javascript %}
+```javascript
 var task = Taks.find('44E1DB33-2455-4728-AEA2-ECBD724B5E7B');
 assertEqual(task.name, '本を完成させる');
-{% endhighlight %}
+```
 
 > 指定されたIDに対応するレコードが存在しない場合、例外が発生します。exists()関数を使えば、レコードが存在するかどうかを調べることができます。
 
-{% highlight javascript %}
+```javascript
 var tastExists = Task.exists('44E1DB33-2455-4728-AEA2-ECBD724B5E7B');
 assert(taskExists);
-{% endhighlight %}
+```
 
 > destroy()関数はローカルに存在するレコードを削除します。コードは以下のとおりです。
 
-{% highlight javascript %}
+```javascript
 var task = Task.create({ name: '魚をありがとう' });
 
 assert(task.exists());
 task.destroy();
 assertEqual(task.exists(), false);
-{% endhighlight %}
+```
 
 ## 11.4.1 レコードの検索
 
 > ID以外にもレコードの検索を行う手段が用意されています。一般的に、すべてのレコードを取り出したり、指定された条件に適合するレコードだけを取り出したりするという操作がよく行われます。Spineではこれらのためにall()、select()、each()という関数が用意されています。
 
-{% highlight javascript %}
+```javascript
 // すべてのタスクを返します。
 Task.all(); //=> [Object]
 
@@ -324,37 +324,37 @@ var pending = Task.select(function(task){
 Task.each(function(task){
 	/* ... */
 });
-{% endhighlight %}
+```
 
 > また、属性の値に基づいてレコードを取得するためのヘルパ関数もいくつか存在します。
 
-{% highlight javascript %}
+```javascript
 // 指定された属性の値を持つ最初のタスクを返します
 Task.findByAttribute(name, value); //=> Object
 
 // 指定された属性の値を持つタスクをすべて返します
 Task.findAllByAttribute(name, value); //=> [Object]
-{% endhighlight %}
+```
 
 ## 11.4.2 モデルのイベント
 
 > モデルのイベントに対してコールバックを関連づけ、レコードが変更された際に呼び出されるようにできます。コードは以下のようになります。
 
-{% highlight javascript %}
+```javascript
 Task.bind('save', function(record){
 	console.log(record.name, 'は保存されました！');
 });
-{% endhighlight %}
+```
 
 > レコードに変化が生じると、そのレコードがコールバックに渡されます。モデルに対してイベントリスナを設定すると、どのレコードへの変更についてもリスナが呼び出されます。以下のように、特定のレコードに対してのみリスナを設定することもできます。
 
-{% highlight javascript %}
+```javascript
 Task.first().bind('save', function(){
 	console.log(this.name + 'は保存されました！');
 });
 
 Task.first().updateAttributes({ name: '女王様とのお茶会' });
-{% endhighlight %}
+```
 
 > イベントには以下のような種類があります。trigger()を使えば独自のイベントを定義することもできます。
 
@@ -385,22 +385,22 @@ error
 
 > データの検証（バリデーション）は、モデルインスタンスのvalidate()関数を上書きするという極めてシンプルな形で実現されています。レコードが保管される際には必ずvalidate()が呼び出されます。この関数から何か値が返されたら、検証は失敗したということを意味します。何も返されなかった場合は処理が続行され、レコードは正しく保管されます。validate()の例を紹介します。
 
-{% highlight javascript %}
+```javascript
 Task.include({
 	validate: function(){
 		if(!this.name) return '名前は必須です';
 	}
 });
-{% endhighlight %}
+```
 
 > 検証に失敗した場合、失敗の理由を表す文字列が返されます。この文字列を使い、エラーの内容や修正方法についてユーザーに知らせることができます。
 
-{% highlight javascript %}
+```javascript
 Task.bind('error', function(record, msg){
 	// 簡単なエラー通知
 	alert('タスクは保存されませんでした: ' + msg);
 });
-{% endhighlight %}
+```
 
 > 検証に失敗するとモデルのerrorイベントも発生します。コールバックにはレコードとエラーメッセージが渡されます。
 
@@ -409,31 +409,31 @@ Task.bind('error', function(record, msg){
 > Spineでのレコードは常にメモリ上に保持されますが、HTML5のローカルストレージやAjaxリクエストなどをバックエンドとして選択することもできます。  
 > ローカルストレージは非常に簡単に利用できます。spine.model.local.jsというJavaScriptファイルをインクルードし、以下のようにしてSpine.Model.Localモジュールをモデルに追加します。
 
-{% highlight javascript %}
+```javascript
 // ローカルストレージに保存します
 Task.extend(Spine.Model.Local);
 Task.fetch();
-{% endhighlight %}
+```
 
 > ブラウザのローカルストレージからレコードを自動的に取り出すことはできず、fetch()関数を使って既存のデータを一括して取り出すことになります。この処理はアプリケーションの初期化処理がモデル以外についてすべて完了してから呼ばれることが多いでしょう。モデルに新しいデータがセットされるとrefetchが発生します。
 
-{% highlight javascript %}
+```javascript
 Task.bind('refresh', function(){
 	// タスクがすべて更新されました
 	renderTemplate(Task.all());
 });
-{% endhighlight %}
+```
 
 > Ajaxを使った永続化も同様に行えます。spine.mode.ajax.jsをインクルードし、Spine.Model.Ajaxモジュールをモデルに追加します。
 
-{% highlight javascript %}
+```javascript
 // サーバー側に保存します
 Task.extend(Spine.Model.Ajax);
-{% endhighlight %}
+```
 
 > デフォルトでは、モデル名を複数形にしたものを元にしてURLが決定されます。したがって、この例ではTaskモデルのURLは/tasksになります。このデフォルトの設定を変更するには、クラスのURLプロパティを以下のように上書きします。
 
-{% highlight javascript %}
+```javascript
 // カスタムURLを追加します
 Task.extend({
 	url: '/tasks'
@@ -441,21 +441,21 @@ Task.extend({
 
 // サーバから新しいタスクを取得します
 Task.fetch();
-{% endhighlight %}
+```
 
 > Task.fetch()が呼び出されると、SpineによってGET形式のAjaxリクエストが/tasksに対して送信されます。ここではすべてのTaskオブジェクトを配列として含むJSON形式のレスポンスが想定されています。サーバが正当なレスポンスを返すとレコードが読み込まれ、refreshイベントが発生します。  
 > レコードの生成や更新あるいは破棄のたびにAjaxリクエストがサーバーに送信され、サーバとクライアントの間でデータの同期が保たれるようにしています。この際、サーバ側ではRESTに従ったリクエストを受付可能でなければなりません。これによって他種のクライアントからもシームレスなアクセスが可能になりますが、もちろん独自のリクエストを受け付けるようなカスタマイズをすることもできます。デフォルトでは以下のようなエンドポイントが想定されています。
 
-{% highlight console %}
+```console
 新規作成 => POST   /collection  
 読み込み => GET    /collection  
 更新     => PUT    /collection/id  
 破棄     => DELETE /collection/id
-{% endhighlight %}
+```
 
 > クライアント側でのレコードが作成されると、POST形式のリクエストが送信されます。このリクエストにはレコードのJSON表現が含まれます。「卵を買う」というTaskインスタンスが作成されたとすると、以下のようなリクエストが発生することになります。
 
-{% highlight console %}
+```console
 POST /tasks HTTP/1.0
 Host: localhost:3000
 Origin: http://localhost:3000
@@ -463,11 +463,11 @@ Content-Length: 66
 Content-Type: application/json
 
 { 'id': '44E1DB33-2455-4728-AEA2-ECBD724B5E7B', 'name': '卵を買う' }
-{% endhighlight %}
+```
 
 > 同様に、レコードを破棄するとDELETE形式のリクエストが送信され、レコードを更新するとPUT形式のリクエスト（以下のコードを参照）が送信されます。PUTとDELETEについては、レコードのIDがURLの中で指定されます。
 
-{% highlight console %}
+```console
 PUT /tasks/44E1DB33-2455-4728-AEA2-ECBD724B5E7B HTTP/1.0
 
 Host: localhost:3000
@@ -476,48 +476,48 @@ Content-Length: 71
 Content-Type: application/json
 
 { 'id': '44E1DB33-2455-4728-AEA2-ECBD724B5E7B', 'name': 'Buy more eggs' }
-{% endhighlight %}
+```
 
 > SpineではAjaxを使った同期について、他の多くのライブラリとは異なる方式で処理を行なっています。クライアント側にレコードが保管された後でリクエストが送信されるため、クライアントがレスポンスを待つことはありません。これによってクライアントとサーバを完全に疎結合の状態に保つことができ、たとえサーバーが利用できなくても処理を続行できます。
 > サーバとの疎結合の関係には3つの大きなメリットがあります。まず、ユーザーにとってインターフェースが高速でしかも停止せず、処理の完了を待つ必要がなくなります。また、コードをシンプルなものにできます。例えばサーバからのレスポンスを待つ間レコードを編集不可の状態にするといった処理の必要はありません。さらに、必要ならオフライン状態での操作にも対応できるようになります。  
 > サーバ側でデータの検証を行うのかと疑問に思った読者がいるかもしれません。Spineでは、検証はすべてクライアント側で行うと想定しています。サーバからエラーが返されるのは、サーバー側のプログラム自体に何らかの問題があるという特殊な場合に限られます。  
 > サーバがエラーのレスポンスを返した場合、モデル上でajaxErrorイベントが発生します。イベントハンドラには、レコード、XMLHttpRequestオブジェクト、Ajaxの設定、エラーを表すオブジェクトが渡されます。
 
-{% highlight javascript %}
+```javascript
 Task.bind('ajaxError', function(record, xhr, setting, error){
 	// 不正なレスポンスが返されました
 });
-{% endhighlight %}
+```
 
 # 11.5 コントローラ
 
 > 最後に紹介するコンポーネントがコントローラです。コントローラはアプリケーション全体を結びつける役割を果たします。一般的に、コントローラはDOMにイベントハンドラを追加し、テンプレートの描画を行い、そしてビューとモデルの同期を保ってくれます。コントローラを作成するには、以下のようにcreate()を呼び出すことによってSpine.Controllerの子クラスを定義します。
 
-{% highlight javascript %}
+```javascript
 jQuery(function(){
 	window.Tasks = Spine.Controller.create({
 		// コントローラのプロパティ
 	});
 });
-{% endhighlight %}
+```
 
 > ページの状態変化の影響を受けないようにするために、コントローラはページ上の他の部分よりも後で読み込むのがよいでしょう。Spineを使ったサンプルコードでは、jQuery()への呼び出しの内部でコントローラが定義されています。こうすることによって、ドキュメントの準備ができてからコントローラが作成されることになります。  
 > Spineでのコントローラの名前は、関連するモデルの名前を複数形にして先頭を大文字にしたものというルールを定めます。ほとんどのコントローラはインスタンスプロパティだけを持ちます。これらはもっぱらインスタンス化の後で使われるためです。他のクラスト同様に、コントローラも以下のようにinit()関数を呼び出すことによってインスタンス化できます。
 
-{% highlight javascript %}
+```javascript
 var tasks = Tasks.init();
-{% endhighlight %}
+```
 
 > コントローラにはDOMの要素が関連づけられており、elプロパティを通じてアクセスできます。以下のようにしてインスタンス化時に要素を指定することもできますが、デフォルトではdiv要素が自動生成されます。
 
-{% highlight javascript %}
+```javascript
 var tasks = Task.init({ el: $('#tasks') });
 assertEqual(tasks.el.attr('id'), 'tasks');
-{% endhighlight %}
+```
 
 > この要素は、テンプレートの追加やビューの描画の際に内部的に使われます。以下に例用例を示します。
 
-{% highlight javascript %}
+```javascript
 window.Tasks = Spine.Controller.create({
 	init: function(){
 		this.el.html('表示テスト');
@@ -526,26 +526,26 @@ window.Tasks = Spine.Controller.create({
 
 var tasks = Tasks.init();
 $('body').append(tasks.el);
-{% endhighlight %}
+```
 
 > また、init()関数に渡された引数はすべてコントローラのプロパティとしてセットされます。
 
-{% highlight javascript %}
+```javascript
 var tasks = Tasks.init({ item: Task.first() });
 assertEqual(Task.first(), tasks.item);
-{% endhighlight %}
+```
 
 ## 11.5.1 プロキシ
 
 > 「11.2.3 コンテキスト」で、イベントのコールバックをthis.proxy()でラップすることによってコールバックを適切なコンテキストのもとで実行するというコード例を紹介しました。これは非常に多用されるパターンであり、Spineではproxiedというショートカットを用意しています。コントローラのコンテキストで実行したい関数の名前を配列として記述し、proxiedプロパティにセットします。
 
-{% highlight javascript %}
+```javascript
 var Tasks = Spine.Controller.create({
 	proxied: ['render', 'addAll'],
 	render: function(){ /* ... */ },
 	addAll: function(){ /* ... */ }
 });
-{% endhighlight %}
+```
 
 > こうすると、指定された関数は常に適切なコンテキストで実行されるようになります。コンテキストについて心配することなしに、render()などのコールバックをイベントハンドラとして設定できます。
 
@@ -553,7 +553,7 @@ var Tasks = Spine.Controller.create({
 
 > コントローラ配下の要素に、ローカルなプロパティとしてアクセスできると便利なことがあります。Spineではこのためのショートカットとしてelementsが用意されています。セレクタとプロパティ名との関係を指定したオブジェクトを、コントローラのelementsプロパティにセットします。以下の例では、セレクタform input[type=text]にマッチする要素がthis.inputという変数として扱えるようになります。セレクタの評価はコントローラの要素elを基準として行われ、ページ全体が対象になるわけではない点に注意が必要です。
 
-{% highlight javascript %}
+```javascript
 // inputはインスタンス変数です
 var Tasks = Spine.Controller.create({
 	elements: {
@@ -564,7 +564,7 @@ var Tasks = Spine.Controller.create({
 		console.log(this.input.val());
 	}
 });
-{% endhighlight %}
+```
 
 > コントローラのelが持つHTMLを置き換えた場合、要素への参照を更新するためにrefreshElements()を呼び出す必要があります。
 
@@ -573,14 +573,14 @@ var Tasks = Spine.Controller.create({
 > eventsプロパティを使うと、イベントリスナを一括して追加でき便利です。Spineの内部ではイベントのバブリング（「2.2 イベントの発生順序」参照）が行われており、コントローラの要素elに1つだけイベントリスナが設定されています。eventsプロパティと同様に、すべてのイベントの委譲も有効範囲はel内です。  
 > eventsプロパティで指定するイベントハンドラは**\"eventName selector\": \"callback\"**の形式で記述します。selectorは省略可能であり、省略されている場合はelに直接登録されます。省略されていない場合はイベント処理が委譲（[http://api.jquery.com/delegate/](http://api.jquery.com/delegate/ 'http://api.jquery.com/delegate/')参照）され、セレクタにマッチする子要素でイベントが発生した場合にイベントハンドラが呼び出されるようになります。この処理は動的に行われるため、elのコンテンツが変更されても正しく処理されます。利用例を以下に示します。
 
-{% highlight javascript %}
+```javascript
 var Tasks = Spine.Controller.create({
 	events: {
 		'keydown form input[type=text]': 'keydown'
 	},
 	keydown: function(e){ /* ... */ }
 });
-{% endhighlight %}
+```
 
 > この例では、セレクタにマッチするinput要素でkeydownイベントが発生したときにコントローラのコールバックkeydown()が呼び出されます。コールバックは適切なコンテキストのもとで呼び出されることがSpineによって保証されているため、ここではプロキシ関数を利用する必要はありません。  
 > コールバックにはeventオブジェクトが渡されます。この例ではこのオブジェクトから、どのキーが押されたかなどの情報が取り出されることになります。イベントの発生元の要素はeventのtargetプロパティにセットされています。
@@ -589,7 +589,7 @@ var Tasks = Spine.Controller.create({
 
 > イベントの委譲に加え、コントローラはカスタムイベントにも対応しています。デフォルトでコントローラはSpine.Eventsをextend()しているため、bind()やtrigger()といったイベント関連の関数も利用できます。この仕組によってコントローラ間の独立性を保ったり、コントローラの内部構造としてこの仕組みを活用したりできます。
 
-{% highlight javascript %}
+```javascript
 var Sidebar = Spine.Controller.create({
 	events: {
 		'click[data-name]': this.click
@@ -608,7 +608,7 @@ var sidebar = Sidebar.init({ el: $('#sidebar') });
 sidebar.bind('change', function(name){
 	console.log('サイドバーが更新されました:', name);
 });
-{% endhighlight %}
+```
 
 > この例では別のコントローラからSidebarのchangeイベントに関連付けを行なっており、イベントを発生させることも可能です。2章でも紹介しましたが、カスタムイベントはアプリケーションの内部構造を定義する際に非常に有用であり、たとえ外部でイベントがまったく使われないとしてもその有用性は変わりません。
 
@@ -616,7 +616,7 @@ sidebar.bind('change', function(name){
 
 > Spineではグローバルにイベントへの関連づけを行ったり、イベントを発生させたりできます。これは一種のパブリッシュ／サブスクライブであり、複数のコントローラが互いについて知らない場合でもコミュニケーションを行えるようになります。同時にコントローラ間の疎結合の関係も保たれます。これはグローバルなオブジェクトSpine.Appを通じて実現されます。どんなオブジェクトもこのSpine.Appに対してイベントの関連付けや発生を行えます。以下のようにして使います。
 
-{% highlight javascript %}
+```javascript
 var Sidebar = Spine.Controller.create({
 	proxied: ['change'],
 	init: function(){
@@ -624,20 +624,20 @@ var Sidebar = Spine.Controller.create({
 	},
 	change: function(name){ /* ... */ }
 });
-{% endhighlight %}
+```
 
 > SpineのコントローラによってSpine.Appにthis.Appという別名が与えられており、タイピングの量を少しだけ削減できます。このコードでは、Sidebarコントローラがchangeというグローバルなイベントに関連付けを行なっています。他のコントローラやスクリプトが以下のようにしてこのイベントを発生させ、必要なデータを渡すことが可能です。
 
-{% highlight javascript %}
+```javascript
 Spine.App.trigger('change', 'message');
-{% endhighlight %}
+```
 
 ## 11.5.6 Renderパターン
 
 > コントローラで利用可能なオブションの主なものについてここまで紹介してきたので、ここでは一般的な利用例について見てみましょう。  
 > モデルとビューを関連づける上でRenderパターンはとても有効です。コントローラがインスタンス化される際に、関連するモデルに対してイベントリスナを設定します。このイベントリスナはモデルが再読み込みあるいは変更された場合にコールバックとして呼び出されます。そしてイベントリスナは要素elを更新します。多くの場合、テンプレートによって描画された内容を元にelのコンテンツが置き換えられます。以上の処理を記述したのが以下のコードです。
 
-{% highlight javascript %}
+```javascript
 var Tasks = Spine.Controller.create({
 	init: function(){
 		Task.bind('refresh change', this.proxy(this.render));
@@ -649,7 +649,7 @@ var Tasks = Spine.Controller.create({
 		this.el.html(this.template(Task.all()));
 	}
 });
-{% endhighlight %}
+```
 
 > この方法はシンプルですがやや乱暴であり、レコードが1つでも変更されると表示全体が更新されてしまいます。単純な短いリストについてはこの方法でも十分ですが、個々の要素に対してより詳細な制御を行いたい場合もあります。例えばそれぞれの項目にイベントハンドラを設定したい場合などですが、このようなときに活用できるのがElementパターンです。
 
@@ -657,7 +657,7 @@ var Tasks = Spine.Controller.create({
 
 > Elementパターンの機能は基本的にはRenderパターンと同一ですが、より細かな処理が可能です。ここではコントローラが2つ使われます。1つは項目の集合を管理し、もう1つは個々の項目を扱います。以下のコードを見れば、このパターンの仕組みをより良く理解できるでしょう。
 
-{% highlight javascript %}
+```javascript
 var TaskItem = Spine.Controller.create({
 	// クリックイベントの処理をローカルのハンドラに委譲します
 	events: {
@@ -711,7 +711,7 @@ var Tasks = Spine.Controller.create({
 		Task.each(this.addOne);
 	}
 });
-{% endhighlight %}
+```
 
 > このコードで、Tasksはレコードが新規作成された際の追加に責任を持ち、TasksItemは個々のレコードに対する変更や破棄のイベントに対する処理（必要に応じてレコードの再描画を行います）に責任を持ちます。コードは複雑になりましたが、いくつかの点でRenderパターンよりも優れています。  
 > まず、ElementパターンはRenderパターンよりも効率的です。項目が1つ変更されただけでリスト全体が再描画されてしまうようなことはなくなりました。また、個々の項目に対してはるかに詳細な制御が可能になりました。イベントハンドラ（例ではclick()）を設定したり、個々の項目単位で描画を行ったりできます。

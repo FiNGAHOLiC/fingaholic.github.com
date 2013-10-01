@@ -49,7 +49,7 @@ preventDefault関数でデフォルトのアクションをキャンセル出来
 
 まあ最初はよく分からんかった。
 
-{% highlight javascript %}
+```javascript
 new function(){
 	this.appName = 'wem';
 	document.body.addEventListener('click', function(e){
@@ -57,18 +57,18 @@ new function(){
 		alert(this.appName);
 	}, false);
 };
-{% endhighlight %}
+```
 
 上記を解決するには、
 
-{% highlight javascript %}
+```javascript
 new function(){
 	this.appName = 'wem';
 	document.body.addEventListener('click', $.proxy(function(e){
 		alert(this.appName);
 	}, this), false);
 };
-{% endhighlight %}
+```
 
 のように$.proxyでコンテキストとして利用したいオブジェクトを使用してやるといい。
 
@@ -77,18 +77,18 @@ new function(){
 **子孫の要素でそれぞれイベントを設定するより祖先要素にリスナを1つ登録**すればいいよねと。  
 これ割りと基本的な事だし実践的だから忘れないようにしないとなあ。余計なクラス付与しなくてもいいし。
 
-{% highlight javascript %}
+```javascript
 $(function(){
 	var $elem = $('ul > li');
 	$elem.on('click', function(e){
 		console.log('clicked');
 	});
 });
-{% endhighlight %}
+```
 
 上記だとli要素それぞれにリスナを登録してるけど、
 
-{% highlight javascript %}
+```javascript
 $(function(){
 	var $elem = $('ul');
 	// 1.7以前だとdelegate()
@@ -96,7 +96,7 @@ $(function(){
 		console.log('clicked');
 	});
 });
-{% endhighlight %}
+```
 
 # 2.8 カスタムイベント
 
@@ -109,7 +109,7 @@ $(function(){
 
 HTML
 
-{% highlight html %}
+```html
 <ul id="tabs">
 	<li data-tab="users">ユーザー</li>
 	<li data-tab="groups">グループ</li>
@@ -118,11 +118,11 @@ HTML
 	<div data-tab="users"> ... </div>
 	<div data-tab="groups"> ... </div>
 </div>
-{% endhighlight %}
+```
 
 JavaScript
 
-{% highlight javascript %}
+```javascript
 $.fn.tabs = function(control){
 	var element = this,
 	control = $(control);
@@ -137,7 +137,7 @@ $.fn.tabs = function(control){
 	control.find('div:first').addClass('active');
 	return this;
 };
-{% endhighlight %}
+```
 
 上記だと、
 
@@ -149,7 +149,7 @@ $.fn.tabs = function(control){
 
 JavaScript
 
-{% highlight javascript %}
+```javascript
 $.fn.tabs = function(control){
 	var element = this,
 	control = $(control);
@@ -167,7 +167,7 @@ $.fn.tabs = function(control){
 	element.trigger('change.tabs', firstName);
 	return this;
 };
-{% endhighlight %}
+```
 
 大分見通しは良くなった。
 これだと$('#tabs').trigger('change.tabs', 'groups')でプログラムの中からタブを切り替えたりも出来る。
@@ -178,7 +178,7 @@ $.fn.tabs = function(control){
 
 > パブリッシュ/サブスクライブはパブサブ（Pub/Sub）と呼ばれることもあり、パブリッシャーとサブスクライバーという2つの実体の間で行われるメッセージ交換をパターン化したものです。パブリッシャーは特定のチャンネルにメッセージをパブリッシュ（公開）し、そのチャンネルをサブスクライブ（購読）しているサブスクライバーは新規メッセージの公開時通知を受け取ります。ここでのポイントはパブリッシャーとサブスクライバーのプログラムが完全に分離しており、お互いの存在について関知する必要すらないという点です。
 
-{% highlight javascript %}
+```javascript
 var PubSub = {
 	subscribe: function(ev, callback){
 		// _callbacksオブジェクトが存在しない場合は生成します
@@ -215,12 +215,12 @@ PubSub.subscribe('wem', function(){
 	alert('Wem!');
 });
 PubSub.publish('wem');
-{% endhighlight %}
+```
 
 上記コードをhashchangeでお馴染みのBen AlmanさんがjQueryライブラリとして公開してる。  
 ※記事ではbind、unbindだけどon、offにアップデートされてた。
 
-{% highlight javascript %}
+```javascript
 /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
  * http://benalman.com/
  * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL */
@@ -242,17 +242,17 @@ PubSub.publish('wem');
 	};
 
 }(jQuery));
-{% endhighlight %}
+```
 
 * [jQuery Tiny Pub/Sub: A really, really, REALLY tiny pub/sub implementation for jQuery. &mdash; Gist](https://gist.github.com/661855 'jQuery Tiny Pub/Sub: A really, really, REALLY tiny pub/sub implementation for jQuery. &mdash; Gist')
 
 使い方は下記。
 
-{% highlight javascript %}
+```javascript
 $.subscribe('/some/topic', function(event, a, b, c){
 	console.log(event.type, a + b + c);
 });
 $.publish('/some/topic', ['a', 'b', 'c']);
-{% endhighlight %}
+```
 
 という訳でいよいよ次からMVC。

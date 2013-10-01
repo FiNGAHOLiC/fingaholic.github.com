@@ -11,21 +11,21 @@ summary: MAMPとかXAMPPとかでもいいんだけどローカル用の管理�
 SimpleHTTPServerが便利そうだけどWindowで使ってみるとなぜか外部ファイル（CSS）読み込まれなかったりでうまくいかなかった。  
 ちなみにコマンドラインからPython使うには環境変数にPythonのパス（例：C:\Python25）を追加しとく必要がある。
 
-{% highlight bash %}
+```bash
 $ cd /path/to/directory
 $ python -m SimpleHTTPServer
-{% endhighlight %}
+```
 
 若しくは下記ファイルをwebserver.pyとかの名前で設置しといて実行するのもあり。
 
-{% highlight python %}
+```python
 #! /usr/bin/env python
 # coding: utf-8
 
 import SimpleHTTPServer
 
 SimpleHTTPServer.test()
-{% endhighlight %}
+```
 
 いずれも[http://localhost:8000/](http://localhost:8000/ 'http://localhost:8000/')にアクセスすると確認できる。
 
@@ -34,16 +34,16 @@ SimpleHTTPServer.test()
 こっちはスムーズにいった。  
 まずはコマンドラインから叩く場合。
 
-{% highlight bash %}
+```bash
 $ cd /path/to/directory
 $ ruby -rwebrick -e "WEBrick::HTTPServer.new({:DocumentRoot => './', :Port => 8000}).start"
-{% endhighlight %}
+```
 
 コマンドラインから叩く場合は下記ファイルをwebserver.rbとして保存しておく。  
 <del>ちなみにDocumentRootはその都度設定しておく。</del>  
 カレントディレクトリで起動の場合は不要だった。
 
-{% highlight ruby %}
+```ruby
 require 'webrick'
 
 server = WEBrick::HTTPServer.new({
@@ -57,14 +57,14 @@ server = WEBrick::HTTPServer.new({
 }
 
 server.start
-{% endhighlight %}
+```
 
 んで、
 
-{% highlight bash %}
+```bash
 $ cd /path/to/directory
 $ ruby webserver.rb
-{% endhighlight %}
+```
 
 いずれも[http://localhost:8000/](http://localhost:8000/ 'http://localhost:8000/')にアクセスすると確認できる。
 
