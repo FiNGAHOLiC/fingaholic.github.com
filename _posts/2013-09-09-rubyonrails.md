@@ -10,7 +10,7 @@ Ruby On Railsを勉強するためにせっかくなんでVagrantでCentOS上に
 
 # 1. Githubからシェルスクリプトをダウンロード
 
-VagrantにProvisioningでRailsをインストールしてくれる便利なシェルスクリプトが公開されているので、READMEの通りやってみる。  
+VagrantにProvisioningでRailsをインストールしてくれる便利なシェルスクリプトが公開されているので、READMEの通りやってみる。
 ※仮想OSは下記リポジトリの説明にある通りCentOSの6.4を使用している前提
 
 ```bash
@@ -43,5 +43,6 @@ Rails 4.0.0
 ```
 
 たったこれだけでセットアップしてくれる＼(^o^)／
+ちなみに下記のように手動でインストールする方法もある。
 
-
+* [#12 Ruby on Railsを導入してみよう | ローカル開発環境の構築 - プログラミングならドットインストール](http://dotinstall.com/lessons/basic_local_development_v2/24812 '#12 Ruby on Railsを導入してみよう | ローカル開発環境の構築 - プログラミングならドットインストール')

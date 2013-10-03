@@ -16,7 +16,7 @@ summary: ステートフルJavaScript6章の備考録、っていうか写経。
 
 そもそもCommonJSとは
 
-> JavaScriptでいろんなアプリケーションを作るための標準仕様。（を策定するプロジェクト）  
+> JavaScriptでいろんなアプリケーションを作るための標準仕様。（を策定するプロジェクト）
 
 と下記スライドにあった。
 
@@ -47,7 +47,7 @@ assertEqual(Maths.per(50, 100), 50);
 
 ## 6.1.2 モジュールとブラウザ
 
-> 以上のような仕組みがクライアント側でのJavaScript開発にとってどのような意味を持つのか考えてみましょう。クライアント側でモジュールを使うことの問題点すなわち、CommonJSのモジュールは同期形式で読み込まれる必要があるということについて多くの開発者がきづいています。サーバー側で実行されるJavaScriptではこのことは大きな問題になりませんが、クライアント側では読み込みの間UIを利用できず、しかも避けるべきeval()によるスクリプトの解釈が必要になってしまいます。この問題に対処するため、CommonJSの開発チームはModule Transport Format（[http://wiki.commonjs.ofg/wiki/Modules/Transport](http://wiki.commonjs.ofg/wiki/Modules/Transport 'http://wiki.commonjs.ofg/wiki/Modules/Transport')）という仕様を提案しています。この仕様で定義されている形式に基づいてCommonJSのモジュールはコールバックとともにラップされ、クライアント側での非同期形式の読み込みが可能になっています。  
+> 以上のような仕組みがクライアント側でのJavaScript開発にとってどのような意味を持つのか考えてみましょう。クライアント側でモジュールを使うことの問題点すなわち、CommonJSのモジュールは同期形式で読み込まれる必要があるということについて多くの開発者がきづいています。サーバー側で実行されるJavaScriptではこのことは大きな問題になりませんが、クライアント側では読み込みの間UIを利用できず、しかも避けるべきeval()によるスクリプトの解釈が必要になってしまいます。この問題に対処するため、CommonJSの開発チームはModule Transport Format（[http://wiki.commonjs.ofg/wiki/Modules/Transport](http://wiki.commonjs.ofg/wiki/Modules/Transport 'http://wiki.commonjs.ofg/wiki/Modules/Transport')）という仕様を提案しています。この仕様で定義されている形式に基づいてCommonJSのモジュールはコールバックとともにラップされ、クライアント側での非同期形式の読み込みが可能になっています。
 > 先ほどの例に戻り、Module Transport Formatを使ってモジュールをラップします。これによってモジュールは非同期形式で読み込まれ、ブラウザとの相性の良いモジュールが実現されます。
 
 ```javascript
@@ -79,7 +79,7 @@ require.define('application', function(){
 
 ## 6.2.2 RequireJS
 
-> Yabbleに対抗する有力な選択肢がRequireJS（[RequireJS](http://requirejs.org/ 'RequireJS')）であり、最も広く利用されているモジュールローダーの1つです。RequireJSでのモジュールの読み込み方法は他と少し異なり、AMD（Asynchronous Module Definition。[http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition 'http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition')）という形式に従っています。利用の際に留意するべきなのは、依存性の評価が（必要になる前に）積極的に行われるという点です。しかし、実質的にはRequireJSとCommonJSのモジュールは完全に互換性があり、ラップするトランスポートが異なるだけです。  
+> Yabbleに対抗する有力な選択肢がRequireJS（[RequireJS](http://requirejs.org/ 'RequireJS')）であり、最も広く利用されているモジュールローダーの1つです。RequireJSでのモジュールの読み込み方法は他と少し異なり、AMD（Asynchronous Module Definition。[http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition 'http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition')）という形式に従っています。利用の際に留意するべきなのは、依存性の評価が（必要になる前に）積極的に行われるという点です。しかし、実質的にはRequireJSとCommonJSのモジュールは完全に互換性があり、ラップするトランスポートが異なるだけです。
 
 RequireJSはjQueryを内包してるバージョンがあって一時期使ってた。ただアプリというか通常のサイトで使用しようとするとページごとにJS読み込ませたい時とかにちょっとした問題があって結局使うのをやめた（URL dispatcherとかで分岐させればページごとも可能っちゃ可能？）。ちょっと古いけどtakazudoさんも記事にしていた。まあアプリなら選択肢として考えてもいいかと思う。
 

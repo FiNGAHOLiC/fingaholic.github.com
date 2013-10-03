@@ -42,6 +42,9 @@ maruku:
 rdiscount:
   extensions: []
 
+redcarpet:
+  extensions: ["tables"]
+
 kramdown:
   auto_ids: true,
   footnote_nr: 1

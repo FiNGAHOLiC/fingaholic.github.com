@@ -8,7 +8,7 @@ summary: MAMPとかXAMPPとかでもいいんだけどローカル用の管理�
 
 # Pythonの場合
 
-SimpleHTTPServerが便利そうだけどWindowで使ってみるとなぜか外部ファイル（CSS）読み込まれなかったりでうまくいかなかった。  
+SimpleHTTPServerが便利そうだけどWindowで使ってみるとなぜか外部ファイル（CSS）読み込まれなかったりでうまくいかなかった。
 ちなみにコマンドラインからPython使うには環境変数にPythonのパス（例：C:\Python25）を追加しとく必要がある。
 
 ```bash
@@ -31,7 +31,7 @@ SimpleHTTPServer.test()
 
 # Rubyの場合
 
-こっちはスムーズにいった。  
+こっちはスムーズにいった。
 まずはコマンドラインから叩く場合。
 
 ```bash
@@ -39,8 +39,8 @@ $ cd /path/to/directory
 $ ruby -rwebrick -e "WEBrick::HTTPServer.new({:DocumentRoot => './', :Port => 8000}).start"
 ```
 
-コマンドラインから叩く場合は下記ファイルをwebserver.rbとして保存しておく。  
-<del>ちなみにDocumentRootはその都度設定しておく。</del>  
+コマンドラインから叩く場合は下記ファイルをwebserver.rbとして保存しておく。
+<del>ちなみにDocumentRootはその都度設定しておく。</del>
 カレントディレクトリで起動の場合は不要だった。
 
 ```ruby

@@ -19,7 +19,7 @@ $ vagrant ssh
 
 # 2. アプリケーションを作成
 
-アプリケーションに必要なコントローラ、モデル、ビューをまとめて生成。  
+アプリケーションに必要なコントローラ、モデル、ビューをまとめて生成。
 なお、必要なbundleを既にインストールしている場合は--skip-bundleオプションを使用しても良い。
 
 ```bash
@@ -54,7 +54,7 @@ $ rails s
 
 # 5. モデルを作る
 
-モデルの名前（ここではProject）は大文字で始まり、単数形でなければならない。  
+モデルの名前（ここではProject）は大文字で始まり、単数形でなければならない。
 なお、属性の初期値はstringなのでなくてもよい。
 
 ```bash
@@ -144,7 +144,7 @@ $ rake routes
 
 # 10. プロジェクトの一覧画面を作る
 
-まずはコントローラー。  
+まずはコントローラー。
 app/controllers/projects_controller.rbを下記のように編集。
 
 ```ruby
@@ -155,7 +155,7 @@ class ProjectsController < ApplicationController
 end
 ```
 
-次にビューを作る。  
+次にビューを作る。
 app/views/projectsにindex.html.erbを作成して下記のように編集。
 
 ```erb
@@ -246,7 +246,7 @@ class ProjectsController < ApplicationController
 end
 ```
 
-次にビューを作る。  
+次にビューを作る。
 app/views/projectsにshow.html.erbを作成して下記のように編集。
 
 ```erb
@@ -286,7 +286,7 @@ class ProjectsController < ApplicationController
 end
 ```
 
-次にビューを作る。  
+次にビューを作る。
 app/views/projectsにnew.html.erbを作成して下記のように編集。
 
 ```erb
@@ -896,7 +896,7 @@ Taskapp::Application.routes.draw do
 end
 ```
 
-アクションを設定するためにapp/controllers/tasks_controller.rbを編集。  
+アクションを設定するためにapp/controllers/tasks_controller.rbを編集。
 なお、画面切り替えはしないので<code class="inline">render nothing: true</code>も入れておく。
 
 ```ruby

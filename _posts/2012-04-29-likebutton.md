@@ -70,7 +70,7 @@ summary: Facebookだけじゃなく仕事でよく使うLikeボタンをまと�
 }(jQuery, window, this.document));
 ```
 
-Facebookに関してはロケールを明示的に示したかったので**パスをen_USからja_JP**に変更した。  
+Facebookに関してはロケールを明示的に示したかったので**パスをen_USからja_JP**に変更した。
 また、appIdを発行している、する場合はinit時にappIdを渡す必要がある。
 
 動作サンプルは下記。
